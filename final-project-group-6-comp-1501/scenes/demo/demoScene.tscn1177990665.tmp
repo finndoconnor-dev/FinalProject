@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ca5o6kviyaii7"]
+
+[ext_resource type="PackedScene" uid="uid://jdqyqeeyvt0c" path="res://scenes/demo/level/demoMap.tscn" id="1_cii8x"]
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
+[ext_resource type="PackedScene" uid="uid://b718ir04m0exx" path="res://scenes/demo/weapons/demo gun/gun.tscn" id="3_gba4l"]
+[ext_resource type="PackedScene" uid="uid://dolffc12i2vyf" path="res://scenes/demo/weapons/demo gun/projectile.tscn" id="4_oax88"]
+[ext_resource type="PackedScene" uid="uid://c44k25eosbwg2" path="res://scenes/demo/enemy.tscn" id="5_1yc2b"]
+
+[node name="Demo" type="Node" unique_id=1738964985]
+
+[node name="DemoMap" parent="." unique_id=1025334352 instance=ExtResource("1_cii8x")]
+
+[node name="Player" parent="." unique_id=164105634 instance=ExtResource("2_gba4l")]
+position = Vector2(372, 346)
+speed = 100
+gunScene = ExtResource("3_gba4l")
+
+[node name="Gun" parent="Player" unique_id=385922210 instance=ExtResource("3_gba4l")]
+position = Vector2(2, 3)
+projectileScene = ExtResource("4_oax88")
+useSpeed = 0.1
+
+[node name="Enemy" parent="." unique_id=2094719843 node_paths=PackedStringArray("player") instance=ExtResource("5_1yc2b")]
+position = Vector2(539, 471)
+player = NodePath("../Player")
+
+[connection signal="outOfAmmo" from="Player/Gun" to="Player" method="_on_gun_out_of_ammo"]

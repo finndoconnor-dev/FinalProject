@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ca5o6kviyaii7"]
+
+[ext_resource type="PackedScene" uid="uid://jdqyqeeyvt0c" path="res://scenes/demo/level/demoMap.tscn" id="1_cii8x"]
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
+[ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="3_1yc2b"]
+[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="4_1yc2b"]
+[ext_resource type="PackedScene" uid="uid://dfbesiupawjly" path="res://scenes/demo/weapons/guns/demo_pistol.tscn" id="5_srymo"]
+[ext_resource type="PackedScene" uid="uid://hsndrpeld1xa" path="res://scenes/demo/weapons/guns/demo_ar.tscn" id="6_6ijgr"]
+[ext_resource type="PackedScene" uid="uid://b75ejnbhiiuq2" path="res://scenes/demo/weapons/guns/demo_shotgun.tscn" id="7_sj21m"]
+[ext_resource type="PackedScene" uid="uid://b07qsk3nrn0es" path="res://scenes/demo/weapons/guns/demo_smg.tscn" id="8_343tm"]
+[ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="8_c82i2"]
+
+[node name="Demo" type="Node" unique_id=1738964985]
+
+[node name="DemoMap" parent="." unique_id=1025334352 instance=ExtResource("1_cii8x")]
+
+[node name="Player" parent="." unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("2_gba4l")]
+position = Vector2(524, 341)
+speed = 100
+gunController = NodePath("EquipSlot")
+
+[node name="EquipSlot" type="Node2D" parent="Player" unique_id=1021083204]
+script = ExtResource("3_1yc2b")
+gun_scenes = Array[PackedScene]([ExtResource("4_1yc2b"), ExtResource("5_srymo"), ExtResource("6_6ijgr"), ExtResource("7_sj21m"), ExtResource("8_343tm")])
+
+[node name="EnemyController" parent="." unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("8_c82i2")]
+position = Vector2(267, 105)
+target = NodePath("../Player")
+
+[connection signal="useItem" from="Player" to="Player/EquipSlot" method="_on_player_use_item"]

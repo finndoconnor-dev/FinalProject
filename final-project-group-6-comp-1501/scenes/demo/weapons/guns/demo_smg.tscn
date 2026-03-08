@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b07qsk3nrn0es"]
+
+[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="1_kw54a"]
+[ext_resource type="Script" uid="uid://slnm6xs3l5qs" path="res://scenes/demo/weapons/guns/demo_smg.gd" id="2_na5t2"]
+[ext_resource type="PackedScene" uid="uid://dlrsx0c0sehmo" path="res://scenes/demo/weapons/projectiles/smg_round.tscn" id="3_fraqj"]
+[ext_resource type="Texture2D" uid="uid://cgi2echk5ybqh" path="res://assets/placeholders/weapons/MP5.png" id="3_iit12"]
+
+[node name="demoSMG" unique_id=385922210 instance=ExtResource("1_kw54a")]
+script = ExtResource("2_na5t2")
+bulletSpread = 0.2
+bulletSpeedVariance = 0.1
+projectileScene = ExtResource("3_fraqj")
+useSpeed = 0.01
+maxAmmoCount = 25
+
+[node name="Sprite2D" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+position = Vector2(11, 0)
+texture = ExtResource("3_iit12")
+
+[node name="ExitPoint" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
+position = Vector2(16, -1.5)

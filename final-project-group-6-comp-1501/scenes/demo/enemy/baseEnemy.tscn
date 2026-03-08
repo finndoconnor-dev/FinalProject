@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://c44k25eosbwg2"]
+
+[ext_resource type="Script" uid="uid://8cl7cvi11l7a" path="res://scripts/npc/enemy.gd" id="1_1yxd1"]
+[ext_resource type="Texture2D" uid="uid://br16evpuur12e" path="res://assets/placeholders/npcs/pixil-frame-0.png" id="2_1abod"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqumy"]
+atlas = ExtResource("2_1abod")
+region = Rect2(34, 36, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vi48"]
+atlas = ExtResource("2_1abod")
+region = Rect2(60, 36, 26, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ou6j7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqumy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vi48")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aacww"]
+radius = 8.062258
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1yxd1"]
+radius = 48.010414
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tqumy"]
+radius = 6.0
+height = 18.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2094719843]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_1yxd1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1100765421]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_ou6j7")
+animation = &"run"
+frame_progress = 0.7916713
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320551257]
+shape = SubResource("CircleShape2D_aacww")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2074323009]
+position = Vector2(-13, 0)
+
+[node name="rangeArea" type="CollisionShape2D" parent="Area2D" unique_id=1878206081]
+position = Vector2(13, 0)
+shape = SubResource("CircleShape2D_1yxd1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1611063569]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="pathfindingTimer" type="Timer" parent="." unique_id=2138587168]
+wait_time = 0.00999999999999999
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1915077424]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1672556409]
+shape = SubResource("CapsuleShape2D_tqumy")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=892002081]
+offset_left = -5.0
+offset_top = -14.0
+offset_right = 5.0
+offset_bottom = -10.0
+show_percentage = false
+
+[node name="InvinicbilityFrames" type="Timer" parent="." unique_id=1482128566]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="pathfindingTimer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

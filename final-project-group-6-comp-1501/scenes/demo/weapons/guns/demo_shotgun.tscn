@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b75ejnbhiiuq2"]
+
+[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="1_x2wnf"]
+[ext_resource type="Script" uid="uid://bk4skllek862o" path="res://scripts/weapons/weapons/demo_shotgun.gd" id="2_x2wnf"]
+[ext_resource type="PackedScene" uid="uid://dr1dkgqwkya2e" path="res://scenes/demo/weapons/projectiles/shotgun_pellet.tscn" id="3_1kck4"]
+[ext_resource type="Texture2D" uid="uid://20ruowaicvew" path="res://assets/placeholders/weapons/SawedOffShotgun.png" id="3_8qntf"]
+
+[node name="demoShotgun" unique_id=385922210 instance=ExtResource("1_x2wnf")]
+script = ExtResource("2_x2wnf")
+pelletCount = 8
+pelletSpread = 0.2
+pelletSpeedVariance = 0.5
+projectileScene = ExtResource("3_1kck4")
+useSpeed = 1.25
+maxAmmoCount = 6
+
+[node name="Sprite2D" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+texture = ExtResource("3_8qntf")
+
+[node name="ExitPoint" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
+position = Vector2(15, -2.5)

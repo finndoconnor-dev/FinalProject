@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dfbesiupawjly"]
+
+[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="1_u5p2l"]
+[ext_resource type="PackedScene" uid="uid://ukrvtj16db8c" path="res://scenes/demo/weapons/projectiles/regular_round.tscn" id="2_3iwde"]
+[ext_resource type="Texture2D" uid="uid://c4d3kqd5rtgm" path="res://assets/placeholders/weapons/M92.png" id="3_tqjno"]
+
+[node name="demoPistol" unique_id=385922210 instance=ExtResource("1_u5p2l")]
+projectileScene = ExtResource("2_3iwde")
+useSpeed = 0.3
+maxAmmoCount = 10
+
+[node name="Sprite2D" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+texture = ExtResource("3_tqjno")

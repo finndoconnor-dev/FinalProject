@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dqdatr2o6n1yn"]
+
+[ext_resource type="PackedScene" uid="uid://b718ir04m0exx" path="res://scenes/demo/weapons/demo gun/gun.tscn" id="1_4tx5m"]
+[ext_resource type="Script" uid="uid://cn122yv0dxmj0" path="res://scripts/weapons/weapons/demo_revolver.gd" id="2_hmlmh"]
+[ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="3_ip0jc"]
+
+[node name="demoRevolver" unique_id=385922210 instance=ExtResource("1_4tx5m")]
+script = ExtResource("2_hmlmh")
+projectileScene = ExtResource("3_ip0jc")
+useSpeed = 1.0
+maxAmmoCount = 3
