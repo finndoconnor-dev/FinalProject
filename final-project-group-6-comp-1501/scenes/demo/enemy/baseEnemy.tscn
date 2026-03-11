@@ -36,6 +36,7 @@ radius = 6.0
 height = 18.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2094719843]
+y_sort_enabled = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_1yxd1")
