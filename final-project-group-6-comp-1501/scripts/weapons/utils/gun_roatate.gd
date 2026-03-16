@@ -1,7 +1,7 @@
 extends Node2D
 
-var target : Node2D   # the node to aim at
-var useMouse := true # if true, aim at mouse instead
+@export var target : Node2D   # the node to aim at
+@export var useMouse := true # if true, aim at mouse instead
 
 func _process(delta):
 	if useMouse:

@@ -1,18 +1,22 @@
 extends CharacterBody2D
-
+class_name baseEnemy
 
 @export var player= Node2D
 @export var speed = 75.0
 @export var maxHealthPoints = 100
-@export var immunityTime = 0.005
+@export var immunityTime = 0.00
+@export var gun : PackedScene
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var navAgent := $NavigationAgent2D as NavigationAgent2D
 @onready var hpBar = $HealthBar
 @onready var invincibilityTimer = $InvinicbilityFrames
+@onready var shootTimer : Timer = $ShootTimer
 
 var canMove=true
 var hitpoints : float
+var gunNode
+
 
 func _ready() -> void:
 	invincibilityTimer.one_shot = true
@@ -21,6 +25,15 @@ func _ready() -> void:
 	hpBar.min_value = 0
 	hpBar.value = hitpoints
 	updateHealthbar()
+	
+	gunNode = gun.instantiate()
+	add_child(gunNode)
+	
+	# Aim gun at player instead of mouse
+	var gunRotate = gunNode.get_node_or_null("GunRotate")
+	if gunRotate:
+		gunRotate.useMouse = false
+		gunRotate.target = player
 	
 #For animations
 func _process(delta: float) -> void:
@@ -42,14 +55,20 @@ func makepath() -> void:
 func _on_timer_timeout() -> void:
 	makepath()
 	
+func takeStopAction() -> void:
+	pass
+
+func takeMoveAction() -> void:
+	pass
+	
 #Acts as range detection will cause the enemy to stop and eventually start shooting at the player
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body==player):
-		canMove=false
+		takeStopAction()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if(body==player):
-		canMove=true
+		takeMoveAction()
 
 func onDamage(incDamage : Attack) -> void:
 	print(self.name + " took damage.")
@@ -60,12 +79,3 @@ func onDamage(incDamage : Attack) -> void:
 	
 func updateHealthbar() -> void:
 	hpBar.value = hitpoints
-
-"
-#Enemy dropping collectibles would likely go in here
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is Bullet:
-		queue_free()
-		area.queue_free()
-		
-"

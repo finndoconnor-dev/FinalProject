@@ -23,21 +23,14 @@ func _ready() -> void:
 
 #This is being stolen for the nemies when the enmies get guns they shoot every frame from the same weapon pool
 func _process(delta: float) -> void:
-	if !attachedToPlayer:
-		tryShoot()
-		enemyReload()
+	pass
 		
 	
 func isEmpty() -> bool:
 	return ammoCount <= 0
 	
 func reload() -> void:
-	ammoCount = maxAmmoCount
-
-func enemyReload() -> void:
-	await get_tree().create_timer(10.0).timeout
-	ammoCount = maxAmmoCount
-	
+	ammoCount = maxAmmoCount	
 	
 func tryShoot() -> void:
 	#print("Attempting to shoot " + self.name)

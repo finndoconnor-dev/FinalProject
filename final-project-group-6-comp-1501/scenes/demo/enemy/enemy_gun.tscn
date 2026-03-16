@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d16bbren1vy1d"]
+
+[ext_resource type="Script" uid="uid://cyec4uydq50w6" path="res://scripts/weapons/utils/gun_roatate.gd" id="1_dv4qq"]
+[ext_resource type="Texture2D" uid="uid://bljoyqr100ebg" path="res://assets/placeholders/npcs/Target_Dummy.png" id="2_qsklw"]
+
+[node name="enemyGun" type="Node2D" unique_id=1166724633]
+
+[node name="GunRotate" type="Node2D" parent="." unique_id=1993175540]
+script = ExtResource("1_dv4qq")
+useMouse = false
+
+[node name="Sprite2D" type="Sprite2D" parent="GunRotate" unique_id=371702976]
+texture = ExtResource("2_qsklw")
+
+[node name="ExitPoint" type="Marker2D" parent="GunRotate" unique_id=346026145]
+
+[node name="ShotDelay" type="Timer" parent="." unique_id=37297072]

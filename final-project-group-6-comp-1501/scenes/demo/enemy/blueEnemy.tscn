@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://tmnnhrp3kwmo"]
-
-[ext_resource type="PackedScene" uid="uid://c44k25eosbwg2" path="res://scenes/demo/enemy/baseEnemy.tscn" id="1_235v3"]
-
-[node name="Enemy" unique_id=2094719843 instance=ExtResource("1_235v3")]
-
-[node name="NavigationAgent2D" parent="." index="3" unique_id=1611063569]
-debug_enabled = false

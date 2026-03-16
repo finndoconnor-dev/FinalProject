@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://c2vr6kr0xxj3j"]
 
 [ext_resource type="Script" uid="uid://jww6b5swd8rd" path="res://scenes/demo/enemy/enemy_controller.gd" id="1_bcav3"]
-[ext_resource type="PackedScene" uid="uid://tmnnhrp3kwmo" path="res://scenes/demo/enemy/blueEnemy.tscn" id="2_1k7ap"]
-[ext_resource type="PackedScene" uid="uid://bd8373oevtodh" path="res://scenes/demo/enemy/redEnemy.tscn" id="3_80pvo"]
+[ext_resource type="PackedScene" uid="uid://bhdw3rhm6pq8" path="res://scenes/demo/enemy/cactusEnemy.tscn" id="2_wyubg"]
 [ext_resource type="PackedScene" uid="uid://hsndrpeld1xa" path="res://scenes/demo/weapons/guns/demo_ar.tscn" id="4_3bbsi"]
 [ext_resource type="PackedScene" uid="uid://dfbesiupawjly" path="res://scenes/demo/weapons/guns/demo_pistol.tscn" id="5_sem8b"]
 [ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="6_pnyvl"]
@@ -11,6 +10,6 @@
 
 [node name="EnemyController" type="Node2D" unique_id=421038925]
 script = ExtResource("1_bcav3")
-enemyPrefabArray = Array[PackedScene]([ExtResource("2_1k7ap"), ExtResource("3_80pvo")])
+enemyPrefabArray = Array[PackedScene]([ExtResource("2_wyubg")])
 gunPrefabArray = Array[PackedScene]([ExtResource("4_3bbsi"), ExtResource("5_sem8b"), ExtResource("6_pnyvl"), ExtResource("7_3kd45"), ExtResource("8_gsb8h")])
 enemyCount = 10
