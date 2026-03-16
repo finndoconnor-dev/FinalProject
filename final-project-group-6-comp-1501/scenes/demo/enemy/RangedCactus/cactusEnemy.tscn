@@ -9,5 +9,8 @@ script = ExtResource("2_7ba56")
 speed = 30.0
 gun = ExtResource("3_ur63o")
 
-[node name="NavigationAgent2D" parent="." index="3" unique_id=1611063569]
-debug_enabled = false
+[node name="Area2D" parent="." index="2" unique_id=2074323009]
+visible = false
+
+[node name="Hitbox" parent="." index="5" unique_id=1915077424]
+visible = false

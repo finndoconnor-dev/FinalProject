@@ -133,7 +133,15 @@ y_sort_enabled = true
 y_sort_enabled = true
 position = Vector2(267, 105)
 target = NodePath("../Player")
-enemyCount = 500
+enemyCount = 2
+
+[node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
+
+[node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
+position = Vector2(35, 55)
+
+[node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
+position = Vector2(104, 55)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 y_sort_enabled = true
