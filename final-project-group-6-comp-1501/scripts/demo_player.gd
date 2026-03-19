@@ -57,3 +57,8 @@ func getMovementDirection() -> String:
 	
 
 	
+
+
+func _on_base_layers_map_changed() -> void:
+	self.global_position.x=272
+	self.global_position.y=447

@@ -159,4 +159,5 @@ gunController = NodePath("EquipSlot")
 script = ExtResource("3_1yc2b")
 gun_scenes = Array[PackedScene]([ExtResource("4_1yc2b"), ExtResource("5_srymo"), ExtResource("6_6ijgr"), ExtResource("7_sj21m"), ExtResource("8_343tm")])
 
+[connection signal="mapChanged" from="BaseLayers" to="YsortingContainer/Player" method="_on_base_layers_map_changed"]
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]

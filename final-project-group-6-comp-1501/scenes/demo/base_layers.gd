@@ -2,6 +2,7 @@ extends Node2D
 @export var map_scene: PackedScene
 @onready var mapPaths: Array[String]=["res://level_1S1.tscn","res://level_1s_2.tscn"]
 @export var mapCount=0
+signal mapChanged
 var map: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +18,7 @@ func changeMap():
 	map_scene=load(mapPaths[mapCount])
 	map=map_scene.instantiate()
 	self.add_child(map)
-	print("Should be map2")
+	mapChanged.emit()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
