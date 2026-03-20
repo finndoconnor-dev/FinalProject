@@ -22,11 +22,6 @@ animation = &"walkUpRight"
 position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_074rn")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1665667349]
-zoom = Vector2(1.5, 1.5)
-process_callback = 0
-position_smoothing_enabled = true
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=999035237]
 script = ExtResource("3_dds5i")
 

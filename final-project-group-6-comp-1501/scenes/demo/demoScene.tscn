@@ -151,13 +151,20 @@ tile_map_data = PackedByteArray("AAAhAB0AAAADAAEAAAAbABoAAAACAAMAAAAqAA8AAAACAAM
 tile_set = SubResource("TileSet_iv1bh")
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("2_gba4l")]
-position = Vector2(524, 341)
+position = Vector2(272, 341)
 speed = 100
 gunController = NodePath("EquipSlot")
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("3_1yc2b")
 gun_scenes = Array[PackedScene]([ExtResource("4_1yc2b"), ExtResource("5_srymo"), ExtResource("6_6ijgr"), ExtResource("7_sj21m"), ExtResource("8_343tm")])
+
+[node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
+zoom = Vector2(1.5, 1.5)
+limit_left = 0
+limit_top = 0
+limit_right = 528
+limit_bottom = 480
 
 [connection signal="mapChanged" from="BaseLayers" to="YsortingContainer/Player" method="_on_base_layers_map_changed"]
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
