@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://157ks7v8mgv"]
 
 [ext_resource type="TileSet" uid="uid://cb86uq3pjjhbs" path="res://assets/placeholders/tilesets/trees_collision.tres" id="1_3hls8"]
-[ext_resource type="Script" uid="uid://bb8xorte2jl3d" path="res://level_1s_1.gd" id="1_6ieo5"]
+[ext_resource type="Script" uid="uid://bb8xorte2jl3d" path="res://scripts/classes/level_1s_1.gd" id="1_6ieo5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yug2i"]
 size = Vector2(538, 12)

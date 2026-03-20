@@ -1,6 +1,6 @@
 extends Node2D
 @export var map_scene: PackedScene
-@onready var mapPaths: Array[String]=["res://level_1S1.tscn","res://level_1s_2.tscn"]
+@onready var mapPaths: Array[String]=["res://scenes/demo/level/level_1S1.tscn","res://scenes/demo/level/level_1s_2.tscn"]
 @export var mapCount=0
 signal mapChanged
 var map: Node

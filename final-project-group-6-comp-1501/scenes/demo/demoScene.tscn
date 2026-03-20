@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://ca5o6kviyaii7"]
 
 [ext_resource type="Script" uid="uid://djtixthw2b5u4" path="res://scenes/demo/base_layers.gd" id="1_0elbr"]
-[ext_resource type="PackedScene" uid="uid://157ks7v8mgv" path="res://level_1S1.tscn" id="1_343tm"]
+[ext_resource type="PackedScene" uid="uid://157ks7v8mgv" path="res://scenes/demo/level/level_1S1.tscn" id="1_343tm"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/placeholders/tilesets/forest_ [resources].png" id="3_0elbr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="3_1yc2b"]
