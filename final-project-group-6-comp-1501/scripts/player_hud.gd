@@ -10,6 +10,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	HPBar.max_value = player.maxHP
+	HPBar.value = player.hitPoints
 	HPBar.min_value = 0
 
 func _process(delta: float) -> void:

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bopc1jdbpjsju"]
+
+[ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="1_g6hx6"]
+[ext_resource type="Script" uid="uid://vrcbqvv8t4o1" path="res://scripts/weapons/projectiles/regular_round.gd" id="2_nih7n"]
+
+[node name="CactusRound" unique_id=1277775916 instance=ExtResource("1_g6hx6")]
+script = ExtResource("2_nih7n")
+speed = 15.0
+lifetime = 0.15
+damage = 20.0
