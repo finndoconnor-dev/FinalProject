@@ -2,12 +2,20 @@ extends CharacterBody2D
 
 @export var speed = 20
 @export var gunController : Node2D
+@export var maxHP = 100
+@export var invincibilityTime = 0.14 #how long player is immune to damage after being hit.
+
+@onready var invincTimer = $InvincFrames
 
 var lastDirection = "Down" #Directions need capitalization
+var hitPoints = maxHP
 signal useItem
+signal tookDamage
 
 func _ready() -> void:
-	pass
+	invincTimer.one_shot = true
+	tookDamage.emit(hitPoints) #inits healthbar
+	
 
 func _process(delta:float) -> void:
 	self.setAnimation()
@@ -54,10 +62,16 @@ func getMovementDirection() -> String:
 		lastDirection = "DownRight"
 		return "DownRight"
 	return "Up"
-	
 
-	
-
+func onDamage(inc : Attack) -> bool:
+	if (inc.damagesPlayer and invincTimer.is_stopped()):
+		hitPoints -= inc.damage
+		if (hitPoints <= 0):
+			print("Player died... That isn't programmed yet...")
+		invincTimer.start(invincibilityTime)
+		tookDamage.emit()
+		return true
+	return false
 
 func _on_base_layers_map_changed() -> void:
 	self.global_position.x=272

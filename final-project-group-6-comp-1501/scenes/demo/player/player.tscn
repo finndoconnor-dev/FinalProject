@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bnq2gdjipp61"]
 
 [ext_resource type="Script" uid="uid://dd4q3m1o482y0" path="res://scripts/demo_player.gd" id="1_dds5i"]
-[ext_resource type="Script" uid="uid://ltu208mmlfps" path="res://scenes/demo/player/player_hud.gd" id="3_dds5i"]
+[ext_resource type="Script" uid="uid://ltu208mmlfps" path="res://scripts/player_hud.gd" id="3_dds5i"]
 [ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/placeholders/player/demo_sprite_frames.tres" id="3_sahy8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_074rn"]
@@ -21,6 +21,8 @@ animation = &"walkUpRight"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=818119796]
 position = Vector2(0, 0.5)
 shape = SubResource("CapsuleShape2D_074rn")
+
+[node name="InvincFrames" type="Timer" parent="." unique_id=1354273674]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=999035237]
 script = ExtResource("3_dds5i")
@@ -75,3 +77,13 @@ offset_left = 104.0
 offset_top = 1.0
 offset_right = 258.0
 offset_bottom = 24.0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Panel" unique_id=327245704]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 73.0
+offset_right = 261.0
+offset_bottom = 100.0
+show_percentage = false
+
+[connection signal="tookDamage" from="." to="CanvasLayer" method="_on_player_took_damage"]

@@ -1,12 +1,14 @@
 extends Node2D
 @export var map_scene: PackedScene
+@export var mapList: Array[PackedScene]
 @onready var mapPaths: Array[String]=["res://scenes/demo/level/level_1S1.tscn","res://scenes/demo/level/level_1s_2.tscn"]
 @export var mapCount=0
 signal mapChanged
 var map: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	map_scene=load(mapPaths[mapCount])
+	#map_scene=load(mapPaths[mapCount])
+	map_scene=mapList[0]
 	map=map_scene.instantiate()
 	map.mapExited.connect(changeMap)
 	self.add_child(map)
