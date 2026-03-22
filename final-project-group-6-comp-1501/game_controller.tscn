@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://blqclburswevf"]
+
+[ext_resource type="PackedScene" uid="uid://ca5o6kviyaii7" path="res://scenes/demo/demoScene.tscn" id="1_3iy47"]
+
+[node name="GameController" type="Node" unique_id=860625884]
+
+[node name="DemoLevel" parent="." unique_id=1738964985 instance=ExtResource("1_3iy47")]

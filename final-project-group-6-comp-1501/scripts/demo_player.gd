@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 @onready var invincTimer = $InvincFrames
 
+var isPlayer = true
 var lastDirection = "Down" #Directions need capitalization
 var hitPoints = maxHP
 signal useItem
@@ -15,7 +16,7 @@ signal tookDamage
 func _ready() -> void:
 	invincTimer.one_shot = true
 	tookDamage.emit(hitPoints) #inits healthbar
-	
+	add_to_group("player")
 
 func _process(delta:float) -> void:
 	self.setAnimation()

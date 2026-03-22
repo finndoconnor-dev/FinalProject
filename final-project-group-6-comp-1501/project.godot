@@ -15,6 +15,10 @@ run/main_scene="uid://ca5o6kviyaii7"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+upgradeController="*uid://cp8lw24e7763f"
+
 [display]
 
 window/stretch/scale=2.0
