@@ -16,6 +16,7 @@ class_name baseEnemy
 var canMove=true
 var hitpoints : float
 var gunNode
+signal enemyDied
 
 
 func _ready() -> void:
@@ -46,7 +47,9 @@ func _physics_process(delta: float) -> void:
 	if(canMove):
 		velocity = direction*speed
 		move_and_slide()
-	if(hitpoints <= 0): queue_free()
+	if(hitpoints <= 0): 
+		enemyDied.emit()
+		queue_free()
 	
 #updates the path based on the timer if it becomes to resource intensive then we can limit the timer
 func makepath() -> void:
