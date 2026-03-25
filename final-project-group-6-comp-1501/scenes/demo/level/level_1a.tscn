@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://hsndrpeld1xa" path="res://scenes/demo/weapons/guns/demo_ar.tscn" id="8_lulco"]
 [ext_resource type="PackedScene" uid="uid://b75ejnbhiiuq2" path="res://scenes/demo/weapons/guns/demo_shotgun.tscn" id="9_rg6ha"]
 [ext_resource type="PackedScene" uid="uid://b07qsk3nrn0es" path="res://scenes/demo/weapons/guns/demo_smg.tscn" id="10_txfmi"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="11_a6my5"]
+[ext_resource type="PackedScene" uid="uid://bsmr0phq47xaa" path="res://level_1b.tscn" id="12_qnjxx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_qnjxx")
@@ -118,6 +120,9 @@ texture = ExtResource("3_qnjxx")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_412rl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnjxx"]
+size = Vector2(544, 20)
+
 [node name="Level1A" type="Node" unique_id=1738964985]
 
 [node name="BaseLayers" type="Node2D" parent="." unique_id=525971682]
@@ -162,10 +167,18 @@ gun_scenes = Array[PackedScene]([ExtResource("6_4gu24"), ExtResource("7_vodmw"),
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
-limit_enabled = false
 limit_left = 0
 limit_top = 0
-limit_right = 528
+limit_right = 530
 limit_bottom = 480
 
+[node name="LevelExit" type="Area2D" parent="." unique_id=114152664]
+script = ExtResource("11_a6my5")
+outgoingLevel = ExtResource("12_qnjxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1834312573]
+position = Vector2(261, -1)
+shape = SubResource("RectangleShape2D_qnjxx")
+
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
