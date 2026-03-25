@@ -133,19 +133,18 @@ y_sort_enabled = true
 
 [node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("8_c82i2")]
 y_sort_enabled = true
-position = Vector2(268, 109)
 target = NodePath("../Player")
 
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 
 [node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
-position = Vector2(154, 104)
+position = Vector2(327, 186)
 
 [node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
-position = Vector2(107, 49)
+position = Vector2(461, 189)
 
 [node name="Marker2D3" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=534285445]
-position = Vector2(34, 136)
+position = Vector2(309, 255)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 y_sort_enabled = true

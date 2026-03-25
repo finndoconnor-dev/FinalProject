@@ -5,7 +5,6 @@ extends Node2D
 @onready var spawnPoints=$SpawnPointsStage1.get_children()
 
 @export var enemyCount : int
-var usedPosition
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	enemyCount=spawnPoints.size()
