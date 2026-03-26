@@ -146,6 +146,9 @@ position = Vector2(461, 189)
 [node name="Marker2D3" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=534285445]
 position = Vector2(309, 255)
 
+[node name="Marker2D4" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=611734052]
+position = Vector2(559, 247)
+
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 y_sort_enabled = true
 
