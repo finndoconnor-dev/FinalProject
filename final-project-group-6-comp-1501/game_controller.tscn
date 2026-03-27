@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://blqclburswevf"]
 
 [ext_resource type="PackedScene" uid="uid://ca5o6kviyaii7" path="res://scenes/demo/demoScene.tscn" id="1_3iy47"]
+[ext_resource type="Script" uid="uid://orkrqfmllr8a" path="res://game_controller.gd" id="1_i1fhm"]
+[ext_resource type="PackedScene" uid="uid://c2hl6ieoiqn77" path="res://pause_menu.tscn" id="3_u7d8s"]
+[ext_resource type="Script" uid="uid://brtnay1p7jcnq" path="res://pause_menu.gd" id="4_whgth"]
 
 [node name="GameController" type="Node" unique_id=860625884]
+script = ExtResource("1_i1fhm")
 
 [node name="DemoLevel" parent="." unique_id=1738964985 instance=ExtResource("1_3iy47")]
+
+[node name="PauseMenu" parent="." unique_id=504482800 instance=ExtResource("3_u7d8s")]
+process_mode = 2
+visible = false
+script = ExtResource("4_whgth")
