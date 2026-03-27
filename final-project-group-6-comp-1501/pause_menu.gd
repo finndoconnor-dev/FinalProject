@@ -21,6 +21,7 @@ func _on_controls_button_pressed() -> void:
 	$ControlPanel.show()
 	$ResumeButton.hide()
 	$ControlsButton.hide()
+	$QuitButton.hide()
 	
 
 
@@ -28,3 +29,8 @@ func _on_controls_exit_button_pressed() -> void:
 	$ControlPanel.hide()
 	$ResumeButton.show()
 	$ControlsButton.show()
+	$QuitButton.show()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()
