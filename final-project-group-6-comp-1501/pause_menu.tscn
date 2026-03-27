@@ -6,6 +6,12 @@
 [node name="PauseMenu" type="CanvasLayer" unique_id=504482800]
 script = ExtResource("1_nwcfo")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1083130458]
+light_mask = 3
+offset_right = 1155.0
+offset_bottom = 646.0
+color = Color(0.13608721, 0.0950185, 0.12784582, 1)
+
 [node name="ResumeButton" type="Button" parent="." unique_id=881293322]
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,4 +28,62 @@ text = "Resume
 "
 script = ExtResource("1_hdmo1")
 
+[node name="ControlsButton" type="Button" parent="." unique_id=752046152]
+anchors_preset = -1
+anchor_left = 0.50200003
+anchor_top = 0.64400005
+anchor_right = 0.50200003
+anchor_bottom = 0.64400005
+offset_left = -36.304016
+offset_top = -18.312042
+offset_right = 37.695984
+offset_bottom = 12.687958
+text = "Controls"
+
+[node name="ControlPanel" type="Panel" parent="." unique_id=523131421]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlsLabel" type="Label" parent="ControlPanel" unique_id=1365767236]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -24.5
+offset_right = 70.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "WASD to Move
+Left Click to Shoot"
+
+[node name="ControlsExitButton" type="Button" parent="ControlPanel" unique_id=1570861468]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.7040002
+anchor_top = -1.286
+anchor_right = 2.7040002
+anchor_bottom = -1.286
+offset_left = -20.160011
+offset_top = -21.559998
+offset_right = 21.839989
+offset_bottom = 21.440002
+grow_horizontal = 0
+text = "X"
+
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="ControlPanel/ControlsExitButton" to="." method="_on_controls_exit_button_pressed"]

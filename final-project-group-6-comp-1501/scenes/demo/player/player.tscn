@@ -24,16 +24,16 @@ shape = SubResource("CapsuleShape2D_074rn")
 
 [node name="InvincFrames" type="Timer" parent="." unique_id=1354273674]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=999035237]
+[node name="PlayerHUD" type="CanvasLayer" parent="." unique_id=999035237]
 script = ExtResource("3_dds5i")
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=875432706]
+[node name="Panel" type="Panel" parent="PlayerHUD" unique_id=875432706]
 offset_left = 5.0
 offset_top = 3.0
 offset_right = 267.0
 offset_bottom = 74.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel" unique_id=1093587669]
+[node name="Label" type="Label" parent="PlayerHUD/Panel" unique_id=1093587669]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 22.0
@@ -41,7 +41,7 @@ offset_right = 80.0
 offset_bottom = 45.0
 text = "Next Gun:"
 
-[node name="Label2" type="Label" parent="CanvasLayer/Panel" unique_id=1425086334]
+[node name="Label2" type="Label" parent="PlayerHUD/Panel" unique_id=1425086334]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 45.0
@@ -49,7 +49,7 @@ offset_right = 59.0
 offset_bottom = 68.0
 text = "Ammo:"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Panel" unique_id=1807059627]
+[node name="Label3" type="Label" parent="PlayerHUD/Panel" unique_id=1807059627]
 layout_mode = 0
 offset_left = 2.0
 offset_top = -1.0
@@ -57,32 +57,32 @@ offset_right = 103.0
 offset_bottom = 22.0
 text = "Current Gun:"
 
-[node name="NextGun" type="Label" parent="CanvasLayer/Panel" unique_id=1370577409]
+[node name="NextGun" type="Label" parent="PlayerHUD/Panel" unique_id=1370577409]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 25.0
 offset_right = 221.0
 offset_bottom = 48.0
 
-[node name="AmmoCounter" type="Label" parent="CanvasLayer/Panel" unique_id=1971650842]
+[node name="AmmoCounter" type="Label" parent="PlayerHUD/Panel" unique_id=1971650842]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 46.0
 offset_right = 118.0
 offset_bottom = 69.0
 
-[node name="CurrentGun" type="Label" parent="CanvasLayer/Panel" unique_id=345654036]
+[node name="CurrentGun" type="Label" parent="PlayerHUD/Panel" unique_id=345654036]
 layout_mode = 0
 offset_left = 104.0
 offset_top = 1.0
 offset_right = 258.0
 offset_bottom = 24.0
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Panel" unique_id=327245704]
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=327245704]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 73.0
 offset_right = 261.0
 offset_bottom = 100.0
 
-[connection signal="tookDamage" from="." to="CanvasLayer" method="_on_player_took_damage"]
+[connection signal="tookDamage" from="." to="PlayerHUD" method="_on_player_took_damage"]

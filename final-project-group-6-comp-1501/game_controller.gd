@@ -1,5 +1,5 @@
 extends Node
-
+signal gamePaused
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,3 +16,9 @@ func pauseGame():
 	print("Paused???")
 	get_tree().paused=true
 	$PauseMenu.visible=true
+	$DemoLevel/YsortingContainer/Player/PlayerHUD.hide()
+	gamePaused.emit()
+
+
+func _on_pause_menu_resumed() -> void:
+	$DemoLevel/YsortingContainer/Player/PlayerHUD.visible=true
