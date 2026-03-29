@@ -17,6 +17,7 @@ func _ready() -> void:
 	invincTimer.one_shot = true
 	tookDamage.emit(hitPoints) #inits healthbar
 	add_to_group("player")
+	upgradeController.setPlayer(self)
 
 func _process(delta:float) -> void:
 	self.setAnimation()

@@ -3,8 +3,10 @@ extends gun
 @export var bulletSpread : float = 0.12
 @export var bulletSpeedVariance : float = 0.05
 
+@export var bulletSpreadUpgradeRange: Array = [0.0,0.0]
+
 func createProjectile() -> void:
-	print("Creating shotgun blast.")
+	#print("Creating shotgun blast.")
 	gunFired.emit()
 	
 	var parentScene = get_tree().current_scene
@@ -17,4 +19,15 @@ func createProjectile() -> void:
 	proj.global_rotation += randf_range(-bulletSpread,bulletSpread)
 	#random offset the speed.
 	proj.speed += randf_range(-bulletSpeedVariance,bulletSpeedVariance)
-		
+
+func getUpgrades()->Array:
+	var upgrades = super()
+	var value = randf_range(bulletSpreadUpgradeRange[0],bulletSpreadUpgradeRange[1])
+	upgrades.append({
+		"gun": self,
+		"stat": "bulletSpread",
+		"upgradeName" : "???",
+		"value": value,
+		"label":"%s, -.%f3 increased pellet count." % [displayName,value]
+	})
+	return upgrades

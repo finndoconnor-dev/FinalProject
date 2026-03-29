@@ -1,14 +1,22 @@
 [gd_scene format=3 uid="uid://hsndrpeld1xa"]
 
 [ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="1_q580n"]
+[ext_resource type="Script" uid="uid://ba1l60337uf8a" path="res://scripts/weapons/weapons/rifle.gd" id="2_q580n"]
 [ext_resource type="Texture2D" uid="uid://b08444q0oojon" path="res://assets/placeholders/weapons/AK47.png" id="3_p82e1"]
 
 [node name="demoAR" unique_id=385922210 instance=ExtResource("1_q580n")]
+script = ExtResource("2_q580n")
 useSpeed = 0.15
 maxAmmoCount = 30
+reloadSpeed = 7.0
+displayName = "Assault Rifle"
 
-[node name="Sprite2D" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+[node name="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
 texture = ExtResource("3_p82e1")
 
-[node name="ExitPoint" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
+[node name="ExitPoint" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
 position = Vector2(16, -2)
+
+[node name="QueueCooldown" type="Timer" parent="." index="2" unique_id=574769087]
+
+[connection signal="timeout" from="QueueCooldown" to="." method="_on_queue_cooldown_timeout"]

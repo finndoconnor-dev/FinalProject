@@ -20,6 +20,8 @@ func _process(delta: float) -> void:
 			ammoCounter.text = "%d/%d" % [gunController.currentGun.ammoCount, gunController.currentGun.maxAmmoCount]
 		if !gunController.gunQueue.is_empty():
 			nextGun.text = gunController.gunQueue[0].name
+		else:
+			nextGun.text = "Recharging!"
 
 func updateHealthbar(newHP : int) -> void:
 	HPBar.value = newHP
