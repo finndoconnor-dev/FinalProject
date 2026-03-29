@@ -10,4 +10,4 @@ func takeMoveAction() -> void:
 
 func _on_shot_timer_timeout() -> void:
 	gunNode.tryShoot()
-	print("trying to shoot")
+	#print("trying to shoot")
