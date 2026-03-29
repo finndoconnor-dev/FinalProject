@@ -23,9 +23,12 @@ signal addToQueue(gun)
 
 var ammoCount : int = maxAmmoCount
 
+var shootFunctionPointer : Callable
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	shootFunctionPointer = defaultProjectile
 	ammoCount = maxAmmoCount
 	cooldownTimer.one_shot = true #Makes it so that the timer will not restart when time reaches 0
 	queueCooldown.one_shot = true
@@ -54,26 +57,42 @@ func tryShoot() -> void:
 	if isEmpty():
 		return
 	#Finally create the projectile.
-	cooldownTimer.start(useSpeed)
+	if (useSpeed > 0): cooldownTimer.start(useSpeed)
 	ammoCount -= 1
 	gunFired.emit()
-	createProjectile()
+	shootFunctionPointer.call()
 	
-func createProjectile() -> void:
-	print("Gun of name "+self.name+" has no overridden createProjectile() method.")
+func defaultProjectile() -> void:
+	#print("Creating projectile.")
+	gunFired.emit()
+	var proj := projectileScene.instantiate() as Node2D
+	get_tree().current_scene.add_child(proj)
+	proj.global_transform = projPoint.global_transform
+
 #Cooldown methods --------------------------------------------------
 func onCooldown() -> void:
 	ammoCount = maxAmmoCount
+	if (reloadSpeed < 0): addToQueue.emit(self)
 	queueCooldown.start(reloadSpeed)
 
 func offCooldown() -> void:
 	print(displayName + " is off cooldown.")
 	addToQueue.emit(self)
 #Upgrade methods ---------------------------------------------------	
-func applyUpgrade(statName,value) -> void:
+func applyUpgrade(upgradeData : Dictionary) -> void:
 	print("Upgrade recieved.")
-	print(statName," is being increased by ",value)
-	self.set(statName, self.get(statName)+value)
+	#Simple stat changes
+	if (upgradeData.has("stat")):
+		var current = self.get(upgradeData["stat"])
+		var new = current + (upgradeData["value"])
+		print("Modifying stat: ",upgradeData["stat"])
+		print("Original value ",current)
+		print("Increasing by ",upgradeData["value"])
+		print("New value ",new)
+		self.set(upgradeData["stat"],new)
+		
+	#Complex stat changes
+	if (upgradeData.has("apply")): upgradeData["apply"].call(self)
 
 func getUpgrades()->Array:
 	var upgrades : Array = []
@@ -85,20 +104,20 @@ func getUpgrades()->Array:
 		"value": value,
 		"label":"%s, +%d max ammo." % [displayName,value]
 	})
-	value = randf_range(speedUpgradeRange[0],speedUpgradeRange[1])
+	value = randf_range(speedUpgradeRange[0],speedUpgradeRange[1])*-1
 	upgrades.append({
 		"gun": self,
 		"stat": "useSpeed",
 		"upgradeName" : "Nose Candy",
-		"value": value*-1,
-		"label":"%s, %.3f increased firerate." % [displayName,value]
+		"value": value,
+		"label":"%s, %.5f increased firerate." % [displayName,value*-1]
 	})
-	value = randi_range(cooldownUpgradeRange[0],cooldownUpgradeRange[1])
+	value = randf_range(cooldownUpgradeRange[0],cooldownUpgradeRange[1])*-1
 	upgrades.append({
 		"gun": self,
 		"stat": "reloadSpeed",
 		"upgradeName" : "Steroids",
-		"value": value*-1,
-		"label":"%s, %d reduced reload time." % [displayName,value]
+		"value": value,
+		"label":"%s, %0.5f reduced reload time." % [displayName,value]
 	})
 	return upgrades

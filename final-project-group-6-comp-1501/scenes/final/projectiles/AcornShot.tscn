@@ -1,18 +1,21 @@
-[gd_scene format=3 uid="uid://dolffc12i2vyf"]
+[gd_scene format=3 uid="uid://d0vdtrby6lih2"]
 
-[ext_resource type="Script" uid="uid://bxima10m76h05" path="res://scenes/demo/weapons/projectiles/AcronShot.gd" id="1_4dkg3"]
-[ext_resource type="Texture2D" uid="uid://cr6qadu20k46a" path="res://assets/placeholders/weapons/demo_gun_projectile.png" id="2_qi2xh"]
+[ext_resource type="Script" uid="uid://e01fa2s8odep" path="res://scripts/weapons/projectiles/AcornShot.gd" id="1_s37ad"]
+[ext_resource type="Texture2D" uid="uid://bl6f84ut1plc2" path="res://assets/projectiles/projectile_acorn.png" id="2_s37ad"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dkg3"]
-radius = 4.0
+radius = 2.0
 
 [node name="AcornShot" type="Area2D" unique_id=1277775916]
-script = ExtResource("1_4dkg3")
+script = ExtResource("1_s37ad")
+speed = 10.0
+lifetime = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_qi2xh")
+position = Vector2(4.7683716e-07, 0)
+scale = Vector2(0.044540234, 0.045289893)
+texture = ExtResource("2_s37ad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648281658]
 shape = SubResource("CircleShape2D_4dkg3")

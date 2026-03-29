@@ -10,8 +10,10 @@ var ammo=0
 var currentGun : gun
 
 func _ready() -> void :
-	for i in range(gunScenes.size()) :
-		addToInventory(gunScenes[i].instantiate())
+	add_to_group("gunslot")
+	if (!importFromLevelTransition()):
+		for i in range(gunScenes.size()) :
+			addToInventory(gunScenes[i].instantiate())
 	print("Gun inventory initialized.")
 
 func _physics_process(delta: float) -> void:
@@ -28,15 +30,25 @@ func _physics_process(delta: float) -> void:
 	else: cycleGun()
 
 func cycleGun() -> void :
-	if gunQueue.is_empty(): return
+	#Player doesn't have a gun, but theres a gun in queue.
 	if currentGun == null:
-		currentGun = gunQueue.pop_front()
-		currentGun.visible = true
-	else:
-		currentGun.visible = false #This should be the OLD gun pointer, and make the OLD gun invisible.
+		if !gunQueue.is_empty():
+			currentGun = gunQueue.pop_front()
+			currentGun.visible = true
+		return
+
+	#The player has a gun, but theres no gun in queue.
+	if gunQueue.is_empty():
 		currentGun.onCooldown()
-		currentGun = gunQueue.pop_front() #This should switch to the NEW gun pointer.
-		currentGun.visible = true #This should point to the NEW gun and make is visible.
+		currentGun.visible = false
+		currentGun = null
+		return
+
+	#Regular gun switch -> Player has a gun, theres a gun in queue
+	currentGun.visible = false #This should be the OLD gun pointer, and make the OLD gun invisible.
+	currentGun.onCooldown()
+	currentGun = gunQueue.pop_front() #This should switch to the NEW gun pointer.
+	currentGun.visible = true #This should point to the NEW gun and make is visible.
 
 func addToInventory(item : gun) -> void :
 	print("adding to inventory: "+item.name)
@@ -44,13 +56,27 @@ func addToInventory(item : gun) -> void :
 	item.visible = false
 	gunInventory.append(item)
 	item.addToQueue.connect(addToQueue)
+	item.onCooldown()
 
 func addToQueue(item : gun) -> void :
 	#print("adding to queue: "+item.name)
 	gunQueue.append(item)
 
+func exportToLevelTransition() -> void:
+	for i in gunInventory:
+		remove_child(i)
+		levelTransitionController.saveGunToCache(i)
 
-
+func importFromLevelTransition() -> bool:
+	if (levelTransitionController.playerInventory.size() <= 0):
+		print("Didn't find any saved data.")
+		return false
+	else:
+		var data = levelTransitionController.loadGunsFromCache()
+		for i in data:
+			addToInventory(i)
+		print("Found saved data.")
+		return true
 
 
 #func _ready() -> void:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4iunitldbc5p"
-path="res://.godot/imported/projectile_snake.jpg-1ec2041137643cca01830c1edb86b17d.ctex"
+uid="uid://dfnnyh34waptt"
+path="res://.godot/imported/SnakeSniper.png-a9c2affb12ea44eab70b40009d3e2e66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/projectiles/projectile_snake.jpg"
-dest_files=["res://.godot/imported/projectile_snake.jpg-1ec2041137643cca01830c1edb86b17d.ctex"]
+source_file="res://assets/weapons/SnakeSniper.png"
+dest_files=["res://.godot/imported/SnakeSniper.png-a9c2affb12ea44eab70b40009d3e2e66.ctex"]
 
 [params]
 
