@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://xs038hsit5s1"]
+
+[ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="1_y7jxn"]
+[ext_resource type="Script" uid="uid://vrcbqvv8t4o1" path="res://scripts/weapons/projectiles/regular_round.gd" id="2_bocma"]
+
+[node name="BossShot" unique_id=1277775916 instance=ExtResource("1_y7jxn")]
+script = ExtResource("2_bocma")
+speed = 2.0
+lifetime = 5.0
+damage = 5.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1218213356]
+scale = Vector2(1.0625, 1.0625)
