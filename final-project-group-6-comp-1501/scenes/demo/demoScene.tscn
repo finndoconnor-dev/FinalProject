@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/placeholders/tilesets/forest_ [resources].png" id="3_0elbr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="3_1yc2b"]
+[ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_sj21m"]
+[ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="7_c82i2"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="8_c82i2"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="11_0elbr"]
 [ext_resource type="PackedScene" uid="uid://805m6jbipeba" path="res://scenes/demo/level/level_1a.tscn" id="12_412rl"]
@@ -168,6 +170,7 @@ gunController = NodePath("EquipSlot")
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("3_1yc2b")
+gunScenes = Array[PackedScene]([ExtResource("6_sj21m"), ExtResource("7_c82i2")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)

@@ -48,5 +48,5 @@ func initUpgradeMenu():
 func _on_upgradeSelected(upgradeData : Dictionary):
 	print("Upgrade receieved by controller: ",upgradeData)
 	var gunToUpgrade = upgradeData.get("gun")
-	gunToUpgrade.applyUpgrade(upgradeData.get("stat"),upgradeData.get("value"))
+	gunToUpgrade.applyUpgrade(upgradeData)
 	get_tree().paused = false

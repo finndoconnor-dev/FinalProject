@@ -27,5 +27,13 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	onHit(body)
 
-func onHit(body:Node2D):
-	print("Generic projectile collision by " + body.name + " from " + self.name)
+func onHit(body : Node2D) -> void:
+	if body.has_method("onDamage"):
+		if (attack.pierces):
+			body.onDamage(attack)
+		else:
+			if body.onDamage(attack):
+				queue_free()
+
+#func onHit(body:Node2D):
+	#print("Generic projectile collision by " + body.name + " from " + self.name)

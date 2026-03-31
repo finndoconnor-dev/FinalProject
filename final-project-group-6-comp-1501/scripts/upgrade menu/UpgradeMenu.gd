@@ -18,11 +18,10 @@ func start() -> void:
 	if availableGuns.is_empty(): print("No guns to create a menu!"); return
 	generateUpgradeList()
 	#print("Selecting ",numberOfOptions," random upgrades...")
+	var rng = getRandomIndexes(upgradeList.size(),numberOfOptions)
 	var options = []
-	for i in range(numberOfOptions):
-		var rng = randi_range(0,upgradeList.size()-1)
-		var selected = upgradeList[rng]
-		options.append(selected)
+	for i in range(rng.size()):
+		options.append(upgradeList[rng[i]])
 	createButtons(options)
 
 func selectUpgrade(upgrade : Dictionary):
@@ -46,4 +45,12 @@ func createButtons(options : Array):
 		buttonContainer.add_child(button)
 		button.setUpgradeOption(options[i])
 		button.upgradeSelected.connect(selectUpgrade)
+
+func getRandomIndexes(maxValue : int, count : int) -> Array:
+	var numbers  = []
+	for i in range(maxValue):
+		numbers.append(i)
+	numbers.shuffle()
+	return numbers.slice(0,count)
+	
 	
