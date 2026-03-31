@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bv6rjjf62r5x4"]
+
+[ext_resource type="Script" uid="uid://e01fa2s8odep" path="res://scripts/weapons/projectiles/AcornShot.gd" id="1_c6yqb"]
+[ext_resource type="Texture2D" uid="uid://btms8t747pm43" path="res://assets/projectiles/SnakeShot.png" id="2_c6yqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6yqb"]
+size = Vector2(18, 8)
+
+[node name="SnakeShot" type="Area2D" unique_id=1277775916]
+script = ExtResource("1_c6yqb")
+speed = 8.0
+lifetime = 5.0
+damage = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
+texture_filter = 1
+position = Vector2(4.7683716e-07, 0)
+scale = Vector2(0.09944074, 0.18887712)
+texture = ExtResource("2_c6yqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648281658]
+shape = SubResource("RectangleShape2D_c6yqb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

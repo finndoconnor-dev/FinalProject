@@ -8,6 +8,8 @@
 projectileScene = ExtResource("2_3iwde")
 useSpeed = 0.3
 maxAmmoCount = 10
+reloadSpeed = 2.0
+displayName = "Pistol"
 
-[node name="Sprite2D" parent="GunRoatate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+[node name="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
 texture = ExtResource("3_tqjno")

@@ -2,13 +2,12 @@ extends Node2D
 
 @export var enemyPrefabArray : Array[PackedScene]
 @export var target : Node2D
-@export var enemyCount=50
-
 @onready var spawnPoints=$SpawnPointsStage1.get_children()
 
-var usedPosition
+@export var enemyCount : int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	enemyCount=spawnPoints.size()
 	spawnEnemies()
 	
 #Adds an enemy at a random spot the paramaters still need to be adjusted
@@ -17,9 +16,7 @@ func spawnEnemies():
 		var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
 		enemy.player=target
 		
-		usedPosition=spawnPoints[randi_range(0,spawnPoints.size()-1)]
-		self.global_position=usedPosition.global_position
-		spawnPoints.erase(usedPosition)
+		enemy.global_position=spawnPoints[i].global_position
 		
 		add_child(enemy)
 		

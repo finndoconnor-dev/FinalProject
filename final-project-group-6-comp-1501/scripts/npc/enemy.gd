@@ -17,6 +17,8 @@ var canMove=true
 var hitpoints : float
 var gunNode
 
+signal npcHasDied
+
 
 func _ready() -> void:
 	invincibilityTimer.one_shot = true
@@ -26,6 +28,8 @@ func _ready() -> void:
 	hpBar.value = hitpoints
 	updateHealthbar()
 	
+	npcHasDied.connect(upgradeController._on_enemyDied)
+	
 	gunNode = gun.instantiate()
 	add_child(gunNode)
 	
@@ -34,7 +38,8 @@ func _ready() -> void:
 	if gunRotate:
 		gunRotate.useMouse = false
 		gunRotate.target = player
-	
+
+
 #For animations
 func _process(delta: float) -> void:
 	animatedSprite.play("run")
@@ -46,7 +51,9 @@ func _physics_process(delta: float) -> void:
 	if(canMove):
 		velocity = direction*speed
 		move_and_slide()
-	if(hitpoints <= 0): queue_free()
+	if(hitpoints <= 0):
+		npcHasDied.emit()
+		queue_free()
 	
 #updates the path based on the timer if it becomes to resource intensive then we can limit the timer
 func makepath() -> void:
@@ -70,12 +77,13 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 	if(body==player):
 		takeMoveAction()
 
-func onDamage(incDamage : Attack) -> void:
-	print(self.name + " took damage.")
-	if !invincibilityTimer.is_stopped(): return
+func onDamage(incDamage : Attack) -> bool:
+	#print(self.name + " took damage.")
+	if !invincibilityTimer.is_stopped(): return false
 	if incDamage.triggerInvulnerability:invincibilityTimer.start(immunityTime)
 	hitpoints -= incDamage.damage
 	updateHealthbar()
+	return true
 	
 func updateHealthbar() -> void:
 	hpBar.value = hitpoints
