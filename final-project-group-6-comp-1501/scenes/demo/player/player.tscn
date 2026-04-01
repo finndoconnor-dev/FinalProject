@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dd4q3m1o482y0" path="res://scripts/player.gd" id="1_dds5i"]
 [ext_resource type="Script" uid="uid://ltu208mmlfps" path="res://scripts/player_hud.gd" id="3_dds5i"]
-[ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/placeholders/player/demo_sprite_frames.tres" id="3_sahy8"]
+[ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/pictures/player/demo_sprite_frames.tres" id="3_sahy8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_074rn"]
 radius = 6.0
@@ -28,61 +28,102 @@ shape = SubResource("CapsuleShape2D_074rn")
 script = ExtResource("3_dds5i")
 
 [node name="Panel" type="Panel" parent="PlayerHUD" unique_id=875432706]
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 267.0
-offset_bottom = 74.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
 
-[node name="Label" type="Label" parent="PlayerHUD/Panel" unique_id=1093587669]
+[node name="Label" type="Label" parent="PlayerHUD/Panel" unique_id=1425086334]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 22.0
-offset_right = 80.0
-offset_bottom = 45.0
-text = "Next Gun:"
-
-[node name="Label2" type="Label" parent="PlayerHUD/Panel" unique_id=1425086334]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 45.0
-offset_right = 59.0
-offset_bottom = 68.0
+offset_left = 452.0
+offset_top = 5.0
+offset_right = 508.0
+offset_bottom = 28.0
 text = "Ammo:"
-
-[node name="Label3" type="Label" parent="PlayerHUD/Panel" unique_id=1807059627]
-layout_mode = 0
-offset_left = 2.0
-offset_top = -1.0
-offset_right = 103.0
-offset_bottom = 22.0
-text = "Current Gun:"
-
-[node name="NextGun" type="Label" parent="PlayerHUD/Panel" unique_id=1370577409]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 25.0
-offset_right = 221.0
-offset_bottom = 48.0
 
 [node name="AmmoCounter" type="Label" parent="PlayerHUD/Panel" unique_id=1971650842]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 46.0
-offset_right = 118.0
-offset_bottom = 69.0
-
-[node name="CurrentGun" type="Label" parent="PlayerHUD/Panel" unique_id=345654036]
-layout_mode = 0
-offset_left = 104.0
-offset_top = 1.0
-offset_right = 258.0
-offset_bottom = 24.0
+offset_left = 511.0
+offset_top = 5.0
+offset_right = 569.0
+offset_bottom = 28.0
 
 [node name="HealthBar" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=327245704]
 layout_mode = 0
+offset_left = 184.0
+offset_top = 5.0
+offset_right = 444.0
+offset_bottom = 32.0
+
+[node name="Slot1" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=618753950]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 44.0
+offset_bottom = 32.0
+fill_mode = 3
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD/Panel/Slot1" unique_id=2147387946]
+layout_mode = 0
 offset_left = 1.0
-offset_top = 73.0
-offset_right = 261.0
-offset_bottom = 100.0
+offset_top = -5.0
+offset_right = 36.0
+offset_bottom = 30.0
+
+[node name="Slot2" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=272358478]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 87.0
+offset_bottom = 32.0
+fill_mode = 3
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD/Panel/Slot2" unique_id=1422778446]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 36.0
+offset_bottom = 30.0
+
+[node name="Slot3" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=1716316837]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 5.0
+offset_right = 131.0
+offset_bottom = 32.0
+fill_mode = 3
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD/Panel/Slot3" unique_id=1666726355]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 36.0
+offset_bottom = 30.0
+
+[node name="Slot4" type="ProgressBar" parent="PlayerHUD/Panel" unique_id=374370414]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 5.0
+offset_right = 176.0
+offset_bottom = 32.0
+fill_mode = 3
+show_percentage = false
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="PlayerHUD/Panel/Slot4" unique_id=1009804655]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 36.0
+offset_bottom = 30.0
 
 [connection signal="tookDamage" from="." to="PlayerHUD" method="_on_player_took_damage"]

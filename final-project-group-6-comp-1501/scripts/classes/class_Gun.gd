@@ -105,19 +105,25 @@ func getUpgrades()->Array:
 		"label":"%s, +%d max ammo." % [displayName,value]
 	})
 	value = randf_range(speedUpgradeRange[0],speedUpgradeRange[1])*-1
-	upgrades.append({
-		"gun": self,
-		"stat": "useSpeed",
-		"upgradeName" : "Nose Candy",
-		"value": value,
-		"label":"%s, %.5f increased firerate." % [displayName,value*-1]
-	})
+	var firerate_percent := 0.0
+	if useSpeed > 0 and (useSpeed + value) > 0:
+		firerate_percent = (((1.0 / (useSpeed + value)) - (1.0 / useSpeed)) / (1.0 / useSpeed)) * 100.0
+		upgrades.append({
+			"gun": self,
+			"stat": "useSpeed",
+			"upgradeName" : "Nose Candy",
+			"value": value,
+			"label":"%s, %.2f%% increased firerate." % [displayName,firerate_percent]
+		})
 	value = randf_range(cooldownUpgradeRange[0],cooldownUpgradeRange[1])*-1
-	upgrades.append({
-		"gun": self,
-		"stat": "reloadSpeed",
-		"upgradeName" : "Steroids",
-		"value": value,
-		"label":"%s, %0.5f reduced reload time." % [displayName,value]
-	})
+	var reload_percent := 0.0
+	if reloadSpeed > 0:
+		reload_percent = absf(value) / reloadSpeed * 100.0
+		upgrades.append({
+			"gun": self,
+			"stat": "reloadSpeed",
+			"upgradeName" : "Steroids",
+			"value": value,
+			"label":"%s, %.2f%% reduced reload time." % [displayName,reload_percent]
+		})
 	return upgrades
