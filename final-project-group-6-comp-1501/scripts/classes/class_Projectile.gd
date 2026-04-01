@@ -27,13 +27,13 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	onHit(body)
 
-func onHit(body : Node2D) -> void:
-	var damageTarget := _resolve_damage_target(body)
-	if damageTarget != null and damageTarget.has_method("onDamage"):
+func onHit(area : Node2D) -> void:
+	#var damageTarget := _resolve_damage_target(body)
+	if area.has_method("onDamage"):
 		if (attack.pierces):
-			damageTarget.onDamage(attack)
+			area.onDamage(attack)
 		else:
-			if damageTarget.onDamage(attack):
+			if area.onDamage(attack):
 				queue_free()
 
 func _resolve_damage_target(target: Node) -> Node2D:
@@ -43,7 +43,6 @@ func _resolve_damage_target(target: Node) -> Node2D:
 		if current is Node2D and current.has_method("onDamage"):
 			return current as Node2D
 		current = current.get_parent()
-
 	return null
 
 #func onHit(body:Node2D):

@@ -72,8 +72,15 @@ func onDamage(inc : Attack) -> bool:
 			print("Player died... That isn't programmed yet...")
 		invincTimer.start(invincibilityTime)
 		tookDamage.emit()
+		blinkRed()
 		return true
 	return false
+
+func blinkRed() -> void:
+	$AnimatedSprite2D.modulate = Color(1,0,0)
+	await get_tree().create_timer(invincibilityTime).timeout
+	$AnimatedSprite2D.modulate = Color(1,1,1)
+	
 
 func _on_base_layers_map_changed() -> void:
 	self.global_position.x=272
