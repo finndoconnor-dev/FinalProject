@@ -19,10 +19,11 @@ signal attackStarted(state: HandState)
 @export var hoverHeight := 25
 @export var hoverSpeed := 3
 @export var returnSpeed := 140
-@export var trackPositionOffsetLeft : Vector2 = Vector2(0,150)
-@export var trackPositionOffsetRight: Vector2 = Vector2(-150,0)
+@export var trackPositionOffsetLeft : Vector2 = Vector2(0,200)
+@export var trackPositionOffsetRight: Vector2 = Vector2(-200,0)
 @export var trackSpeed := 240.0
-@export var dashSpeed := 140
+@export var dashDelay := 0.5
+@export var dashSpeed := 280
 @export var trackDuration := 3
 @export var dashDuration := 3
 @export var projectileCount := 7
@@ -150,7 +151,7 @@ func onDeath() -> void:
 		hitBox.monitorable = false
 	handSprite.hide()
 	handSpriteDead.show()
-	transition_to(HandState.BROKEN)
+	transition_to(HandState.RETURNING)
 
 
 func on_body_idle() -> void:
@@ -171,18 +172,22 @@ func transition_to(newState: HandState) -> void:
 			shotsRemaining = 0
 			projectileTimer = 0.0
 			dashDirection = Vector2.ZERO
+			handSprite.play("default")
 		HandState.HOVER:
 			attackCooldown = randf_range(attackCooldownMin, attackCooldownMax)
 		HandState.PROJECTILE:
+			handSprite.play("shooting")
 			shotsRemaining = projectileCount
 			projectileTimer = 0.0
 			attackStarted.emit(handState)
 		HandState.TRACKING:
 			attackStarted.emit(handState)
 		HandState.DASH:
+			#await get_tree().create_timer(dashDelay).timeout
+			handSprite.play("dashing")
 			attackStarted.emit(handState)
 		HandState.RETURNING:
-			pass
+			handSprite.play("default")
 		HandState.BROKEN:
 			shotsRemaining = 0
 			projectileTimer = 0.0
@@ -251,7 +256,9 @@ func _update_dash(delta: float) -> void:
 func _update_returning(delta: float) -> void:
 	var reachedRest := _move_to_rest(delta)
 	if reachedRest:
-		if active:
+		if isDead:
+			transition_to(HandState.BROKEN)
+		elif active:
 			transition_to(HandState.HOVER)
 		else:
 			transition_to(HandState.INACTIVE)

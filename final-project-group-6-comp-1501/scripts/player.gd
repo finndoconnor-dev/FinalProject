@@ -19,11 +19,11 @@ func _ready() -> void:
 	add_to_group("player")
 	upgradeController.setPlayer(self)
 
-func _process(delta:float) -> void:
+func _process(_delta:float) -> void:
 	self.setAnimation()
 	
 func _physics_process(delta: float) -> void:
-	self.getInput()
+	self.getInput(delta)
 	self.move_and_slide()
 
 func setAnimation() -> void:
@@ -32,7 +32,7 @@ func setAnimation() -> void:
 	else:
 		$AnimatedSprite2D.play("idle"+lastDirection)
 
-func getInput():
+func getInput(_delta: float):
 	var input_vector = Input.get_vector("a","d","w","s")
 	self.velocity = input_vector * speed
 	if (Input.is_action_just_pressed("left_click")):

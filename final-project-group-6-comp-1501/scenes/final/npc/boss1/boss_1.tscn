@@ -16,6 +16,10 @@ height = 103.95
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxl3"]
 size = Vector2(2461.462, 133.86954)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gakja"]
+atlas = ExtResource("4_lxxl3")
+region = Rect2(1362, 0, 454, 465)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yq8t"]
 atlas = ExtResource("4_lxxl3")
 region = Rect2(0, 0, 454, 465)
@@ -23,10 +27,6 @@ region = Rect2(0, 0, 454, 465)
 [sub_resource type="AtlasTexture" id="AtlasTexture_k83dc"]
 atlas = ExtResource("4_lxxl3")
 region = Rect2(908, 0, 454, 465)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gakja"]
-atlas = ExtResource("4_lxxl3")
-region = Rect2(1362, 0, 454, 465)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3l0uk"]
 atlas = ExtResource("4_lxxl3")
@@ -36,58 +36,78 @@ region = Rect2(454, 0, 454, 465)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_gakja")
+}],
+"loop": true,
+"name": &"dashing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0yq8t")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k83dc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gakja")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3l0uk")
 }],
 "loop": true,
-"name": &"default",
+"name": &"shooting",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yq8t"]
 size = Vector2(170, 135)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5jqn"]
+atlas = ExtResource("4_lxxl3")
+region = Rect2(1362, 465, 454, 465)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyrur"]
 atlas = ExtResource("4_lxxl3")
 region = Rect2(0, 465, 454, 465)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epyp8"]
-atlas = ExtResource("4_lxxl3")
-region = Rect2(454, 465, 454, 465)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mohnx"]
 atlas = ExtResource("4_lxxl3")
 region = Rect2(908, 465, 454, 465)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_llxvo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4480b"]
 atlas = ExtResource("4_lxxl3")
-region = Rect2(1362, 465, 454, 465)
+region = Rect2(454, 465, 454, 465)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c1ng2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o5jqn")
+}],
+"loop": true,
+"name": &"dashing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wyrur")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_epyp8")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_mohnx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_llxvo")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4480b")
+}],
+"loop": true,
+"name": &"shooting",
 "speed": 5.0
 }]
 
@@ -181,7 +201,6 @@ texture = ExtResource("6_gakja")
 
 [node name="HandAlive" type="AnimatedSprite2D" parent="LeftHand" unique_id=1592377626]
 sprite_frames = SubResource("SpriteFrames_o5jqn")
-frame = 1
 
 [node name="HoverParticles" type="CPUParticles2D" parent="LeftHand/HandAlive" unique_id=1085301433]
 z_index = -1
