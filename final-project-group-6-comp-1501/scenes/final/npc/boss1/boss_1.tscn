@@ -216,6 +216,7 @@ scale_amount_max = 5.0
 color = Color(0.42078167, 0.06876243, 0.5139768, 1)
 
 [node name="Hitbox" type="Area2D" parent="LeftHand" unique_id=788771982]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand/Hitbox" unique_id=1040268951]
 position = Vector2(5, 65)
@@ -243,6 +244,7 @@ texture = ExtResource("8_3l0uk")
 sprite_frames = SubResource("SpriteFrames_c1ng2")
 
 [node name="Hitbox" type="Area2D" parent="RightHand" unique_id=2116970895]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand/Hitbox" unique_id=121462275]
 position = Vector2(5, 65)
