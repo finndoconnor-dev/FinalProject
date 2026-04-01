@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 
 class_name Boss1ChildFSM
 
@@ -8,54 +8,82 @@ enum HandState {
 	PROJECTILE,
 	TRACKING,
 	DASH,
-	RETURNING
+	RETURNING,
+	BROKEN
 }
 
-signal active_changed(is_active: bool)
-signal attack_started(state: HandState)
+signal activeChanged(isActive: bool)
+signal attackStarted(state: HandState)
 
-@export var projectile_scene: PackedScene = preload("res://scenes/final/npc/boss1/boss_shot.tscn")
-@export var hover_height := 24.0
-@export var hover_speed := 3.0
-@export var return_speed := 240.0
-@export var track_speed := 240.0
-@export var dash_speed := 500
-@export var track_duration := 2
-@export var dash_duration := 0.9
-@export var projectile_count := 7
-@export var projectile_interval := 0.22
-@export var attack_cooldown_min := 1.0
-@export var attack_cooldown_max := 2.4
+@export var projectileScene: PackedScene = preload("res://scenes/final/npc/boss1/boss_shot.tscn")
+@export var hoverHeight := 25
+@export var hoverSpeed := 3
+@export var returnSpeed := 140
+@export var trackPositionOffsetLeft : Vector2 = Vector2(0,150)
+@export var trackPositionOffsetRight: Vector2 = Vector2(-150,0)
+@export var trackSpeed := 240.0
+@export var dashSpeed := 140
+@export var trackDuration := 3
+@export var dashDuration := 3
+@export var projectileCount := 7
+@export var projectileInterval := 0.22
+@export var projectileSpread := 0.22
+@export var projectileSpeedVariance := 0.2
+@export var attackCooldownMin := 1.0
+@export var attackCooldownMax := 2.4
+@export var brokenAttackCooldownMin := 2.0
+@export var brokenAttackCooldownMax := 5.0
+@export var dashDamage := 3.0
+@export var maxHP : float = 1000.0
+@export var immunityFrames := 0.01
 
-@onready var hand_sprite: AnimatedSprite2D = $HandAlive
+@onready var handSprite: AnimatedSprite2D = $HandAlive
+@onready var handSpriteDead : Sprite2D = $HandDead
+@onready var hitBox: Area2D = $Hitbox
+@onready var invincTimer: Timer = $ImmunityFrames
+@onready var healthBar := $HealthBar
 
 var active := false
-var hand_state := HandState.INACTIVE
-var boss_body: Node2D
+var isDead := false
+var handState := HandState.INACTIVE
+var bossBody: Node2D
 var player: Node2D
-var rest_offset := Vector2.ZERO
-var hover_time := 0.0
-var state_timer := 0.0
-var attack_cooldown := 0.0
-var shots_remaining := 0
-var projectile_timer := 0.0
-var dash_direction := Vector2.ZERO
+var restOffset := Vector2.ZERO
+var hoverTime := 0.0
+var stateTimer := 0.0
+var attackCooldown := 0.0
+var shotsRemaining := 0
+var projectileTimer := 0.0
+var dashDirection := Vector2.ZERO
+var dashAttack : Attack = Attack.new()
+var hitpoints : float
 
 
 func _ready() -> void:
-	boss_body = get_parent() as Node2D
-	rest_offset = position
-	hand_sprite.play("default")
+	bossBody = get_parent() as Node2D
+	hitpoints = maxHP
+	dashAttack.damage = dashDamage
+	dashAttack.damagesNPC = false
+	dashAttack.damagesPlayer = true
+	restOffset = position
+	invincTimer.one_shot = true
+	healthBar.max_value = maxHP
+	healthBar.min_value = 0
+	healthBar.value = hitpoints
+	handSprite.play("default")
+	if is_instance_valid(hitBox) and not hitBox.body_entered.is_connected(_on_body_entered):
+		hitBox.body_entered.connect(_on_body_entered)
+	handSpriteDead.hide()
 	set_physics_process(true)
 	transition_to(HandState.INACTIVE)
 
 
 func _physics_process(delta: float) -> void:
-	hover_time += delta
-	state_timer += delta
+	hoverTime += delta
+	stateTimer += delta
 	player = _get_player()
 
-	match hand_state:
+	match handState:
 		HandState.INACTIVE:
 			_move_to_rest(delta)
 		HandState.HOVER:
@@ -68,14 +96,19 @@ func _physics_process(delta: float) -> void:
 			_update_dash(delta)
 		HandState.RETURNING:
 			_update_returning(delta)
+		HandState.BROKEN:
+			_update_broken(delta)
 
 
 func set_active(value: bool) -> void:
+	if isDead:
+		return
+
 	if active == value:
 		return
 
 	active = value
-	active_changed.emit(active)
+	activeChanged.emit(active)
 
 	if active:
 		transition_to(HandState.HOVER)
@@ -87,6 +120,39 @@ func is_active() -> bool:
 	return active
 
 
+func onDamage(inc: Attack) -> bool:
+	if isDead:
+		return false
+	if not inc.damagesNPC:
+		return false
+	if not invincTimer.is_stopped():
+		return false
+
+	invincTimer.start(immunityFrames)
+	hitpoints -= inc.damage
+
+	healthBar.value = hitpoints
+
+	if hitpoints <= 0.0:
+		onDeath()
+
+	return true
+
+
+func onDeath() -> void:
+	if isDead:
+		return
+
+	isDead = true
+	active = false
+	if is_instance_valid(hitBox):
+		hitBox.monitoring = false
+		hitBox.monitorable = false
+	handSprite.hide()
+	handSpriteDead.show()
+	transition_to(HandState.BROKEN)
+
+
 func on_body_idle() -> void:
 	set_active(false)
 
@@ -95,35 +161,40 @@ func on_body_attacking() -> void:
 	set_active(true)
 
 
-func transition_to(new_state: HandState) -> void:
-	hand_state = new_state
-	state_timer = 0.0
+func transition_to(newState: HandState) -> void:
+	handState = newState
+	stateTimer = 0.0
 
-	match hand_state:
+	match handState:
 		HandState.INACTIVE:
-			attack_cooldown = 0.0
-			shots_remaining = 0
-			projectile_timer = 0.0
-			dash_direction = Vector2.ZERO
+			attackCooldown = 0.0
+			shotsRemaining = 0
+			projectileTimer = 0.0
+			dashDirection = Vector2.ZERO
 		HandState.HOVER:
-			attack_cooldown = randf_range(attack_cooldown_min, attack_cooldown_max)
+			attackCooldown = randf_range(attackCooldownMin, attackCooldownMax)
 		HandState.PROJECTILE:
-			shots_remaining = projectile_count
-			projectile_timer = 0.0
-			attack_started.emit(hand_state)
+			shotsRemaining = projectileCount
+			projectileTimer = 0.0
+			attackStarted.emit(handState)
 		HandState.TRACKING:
-			attack_started.emit(hand_state)
+			attackStarted.emit(handState)
 		HandState.DASH:
-			attack_started.emit(hand_state)
+			attackStarted.emit(handState)
 		HandState.RETURNING:
 			pass
+		HandState.BROKEN:
+			shotsRemaining = 0
+			projectileTimer = 0.0
+			dashDirection = Vector2.ZERO
+			attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
 
 
 func _update_hover(delta: float) -> void:
 	_move_to_rest(delta)
-	attack_cooldown -= delta
+	attackCooldown -= delta
 
-	if attack_cooldown > 0.0:
+	if attackCooldown > 0.0:
 		return
 
 	if randf() < 0.5:
@@ -138,21 +209,21 @@ func _update_projectile_attack(delta: float) -> void:
 		return
 
 	_move_to_rest(delta)
-	projectile_timer -= delta
+	projectileTimer -= delta
 
-	if projectile_timer > 0.0:
+	if projectileTimer > 0.0:
 		return
 
-	if shots_remaining <= 0:
+	if shotsRemaining <= 0:
 		transition_to(HandState.HOVER)
 		return
 
 	_fire_projectile()
-	shots_remaining -= 1
-	projectile_timer = projectile_interval
+	shotsRemaining -= 1
+	projectileTimer = projectileInterval
 
-	if shots_remaining <= 0:
-		attack_cooldown = randf_range(attack_cooldown_min, attack_cooldown_max)
+	if shotsRemaining <= 0:
+		attackCooldown = randf_range(attackCooldownMin, attackCooldownMax)
 
 
 func _update_tracking(delta: float) -> void:
@@ -160,45 +231,61 @@ func _update_tracking(delta: float) -> void:
 		transition_to(HandState.RETURNING)
 		return
 
-	var desired_position := player.global_position + _get_hand_side_offset()
-	global_position = global_position.move_toward(desired_position, track_speed * delta)
+	var desiredPosition := player.global_position + _get_hand_side_offset()
+	global_position = global_position.move_toward(desiredPosition, trackSpeed * delta)
 
-	if state_timer >= track_duration:
-		dash_direction = global_position.direction_to(player.global_position)
-		if dash_direction == Vector2.ZERO:
-			dash_direction = Vector2.RIGHT.rotated(randf() * TAU)
+	if stateTimer >= trackDuration:
+		dashDirection = global_position.direction_to(player.global_position)
+		if dashDirection == Vector2.ZERO:
+			dashDirection = Vector2.RIGHT.rotated(randf() * TAU)
 		transition_to(HandState.DASH)
 
 
 func _update_dash(delta: float) -> void:
-	global_position += dash_direction * dash_speed * delta
+	global_position += dashDirection * dashSpeed * delta
 
-	if state_timer >= dash_duration:
+	if stateTimer >= dashDuration:
 		transition_to(HandState.RETURNING)
 
 
 func _update_returning(delta: float) -> void:
-	var reached_rest := _move_to_rest(delta)
-	if reached_rest:
+	var reachedRest := _move_to_rest(delta)
+	if reachedRest:
 		if active:
 			transition_to(HandState.HOVER)
 		else:
 			transition_to(HandState.INACTIVE)
 
 
+func _update_broken(delta: float) -> void:
+	attackCooldown -= delta
+
+	if attackCooldown > 0.0:
+		return
+
+	if not is_instance_valid(player):
+		attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+		return
+
+	for _shot in projectileCount:
+		_fire_projectile()
+
+	attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+
+
 func _move_to_rest(delta: float) -> bool:
-	var rest_position := _get_rest_global_position()
-	global_position = global_position.move_toward(rest_position, return_speed * delta)
-	return global_position.distance_to(rest_position) <= 4.0
+	var restPosition := _get_rest_global_position()
+	global_position = global_position.move_toward(restPosition, returnSpeed * delta)
+	return global_position.distance_to(restPosition) <= 4.0
 
 
 func _get_rest_global_position() -> Vector2:
-	var hover_offset := Vector2(0.0, sin(hover_time * hover_speed) * hover_height)
+	var hoverOffset := Vector2(0.0, sin(hoverTime * hoverSpeed) * hoverHeight)
 
-	if boss_body == null:
-		return global_position + hover_offset
+	if bossBody == null:
+		return global_position + hoverOffset
 
-	return boss_body.global_position + rest_offset + hover_offset
+	return bossBody.global_position + restOffset + hoverOffset
 
 
 func _get_player() -> Node2D:
@@ -209,23 +296,34 @@ func _get_player() -> Node2D:
 
 
 func _get_hand_side_offset() -> Vector2:
-	if rest_offset.x < 0.0:
-		return Vector2(-90.0, -40.0)
-	return Vector2(90.0, -40.0)
+	if restOffset.x < 0.0:
+		#return Vector2(-90.0, -40.0)
+		return trackPositionOffsetRight
+	return trackPositionOffsetLeft
 
 
 func _fire_projectile() -> void:
-	if projectile_scene == null or not is_instance_valid(player):
+	if projectileScene == null or not is_instance_valid(player):
 		return
 
-	var projectile_instance := projectile_scene.instantiate() as Node2D
-	if projectile_instance == null:
+	var projectileInstance := projectileScene.instantiate() as Node2D
+	if projectileInstance == null:
 		return
 
-	var spawn_parent := get_tree().current_scene
-	if spawn_parent == null:
-		spawn_parent = get_tree().root
+	var spawnParent := get_tree().current_scene
+	if spawnParent == null:
+		spawnParent = get_tree().root
 
-	spawn_parent.add_child(projectile_instance)
-	projectile_instance.global_position = global_position
-	projectile_instance.global_rotation = global_position.angle_to_point(player.global_position)
+	spawnParent.add_child(projectileInstance)
+	projectileInstance.global_position = global_position
+	projectileInstance.global_rotation = global_position.angle_to_point(player.global_position)
+	projectileInstance.global_rotation += randf_range(-projectileSpread, projectileSpread)
+	projectileInstance.speed += randf_range(-projectileSpeedVariance, projectileSpeedVariance)
+
+
+func _on_body_entered(body) -> void:
+	if handState != HandState.DASH:
+		return
+
+	if body.is_in_group("player") and body.has_method("onDamage"):
+		body.onDamage(dashAttack)

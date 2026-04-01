@@ -23,13 +23,13 @@ script = ExtResource("2_0up6a")
 gunScenes = Array[PackedScene]([ExtResource("3_f3g6x"), ExtResource("4_rkuey")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
-limit_enabled = false
-limit_left = 0
-limit_top = 0
-limit_right = 528
-limit_bottom = 480
+zoom = Vector2(0.8, 0.8)
+limit_left = 369
+limit_top = 131
+limit_right = 764
+limit_bottom = 250
 
 [node name="Boss1" parent="." unique_id=1882365501 instance=ExtResource("5_hqqig")]
-position = Vector2(272, 138)
+position = Vector2(565, 60)
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]

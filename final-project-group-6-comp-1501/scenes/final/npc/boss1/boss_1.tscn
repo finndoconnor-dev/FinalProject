@@ -4,9 +4,17 @@
 [ext_resource type="Script" uid="uid://cem3gfqiemsqw" path="res://scripts/npc/boss1/boss_1.gd" id="1_oh0x3"]
 [ext_resource type="Script" uid="uid://bbov440ih66ar" path="res://scripts/npc/boss1/boss_1child.gd" id="2_1frk4"]
 [ext_resource type="Texture2D" uid="uid://bdfpva0vb45ss" path="res://assets/pictures/animations/Laser_sheet.png" id="3_12uo4"]
+[ext_resource type="Script" uid="uid://bvohc0ko2tfqn" path="res://scripts/npc/boss1/boss_1_beam.gd" id="3_kh8nn"]
 [ext_resource type="Texture2D" uid="uid://bs7thy6jovxo7" path="res://assets/pictures/npcs/boss1/boss1_handsheet.png" id="4_lxxl3"]
+[ext_resource type="Texture2D" uid="uid://naey5joelcgm" path="res://assets/pictures/npcs/boss1/boss1_righthanddead.png" id="6_gakja"]
+[ext_resource type="Texture2D" uid="uid://v2o6gpxf350y" path="res://assets/pictures/npcs/boss1/boss1_lefthanddead.png" id="8_3l0uk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlw8k"]
+radius = 38.0
+height = 103.95
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxl3"]
+size = Vector2(2461.462, 133.86954)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yq8t"]
 atlas = ExtResource("4_lxxl3")
@@ -44,7 +52,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4480b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yq8t"]
+size = Vector2(170, 135)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wyrur"]
 atlas = ExtResource("4_lxxl3")
@@ -81,8 +90,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uyowk"]
 
 [sub_resource type="Animation" id="Animation_pbmk5"]
 resource_name = "BodyBeam"
@@ -134,11 +141,12 @@ script = ExtResource("1_oh0x3")
 shape = SubResource("CapsuleShape2D_qlw8k")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=486837601]
-scale = Vector2(0.4642857, 0.44401544)
+scale = Vector2(0.2, 0.191)
 texture = ExtResource("1_47hu1")
 
 [node name="BeamPivotBody" type="Node2D" parent="Body" unique_id=282826793]
 position = Vector2(0, -24.773912)
+script = ExtResource("3_kh8nn")
 
 [node name="Beam" type="Sprite2D" parent="Body/BeamPivotBody" unique_id=631393333]
 z_index = 1
@@ -147,29 +155,101 @@ scale = Vector2(10, 10)
 texture = ExtResource("3_12uo4")
 vframes = 15
 
-[node name="LeftHand" type="CharacterBody2D" parent="." unique_id=1730991995]
-position = Vector2(-300, 0)
-scale = Vector2(0.5, 0.5)
+[node name="BeamHitBox" type="Area2D" parent="Body/BeamPivotBody" unique_id=279904350]
+position = Vector2(4.3076935, -2.2521667)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/BeamPivotBody/BeamHitBox" unique_id=1235799699]
+position = Vector2(1307.3846, 9.0086975)
+shape = SubResource("RectangleShape2D_lxxl3")
+
+[node name="ImmunityFrames" type="Timer" parent="Body" unique_id=555571579]
+
+[node name="HealthBar" type="ProgressBar" parent="Body" unique_id=498900149]
+offset_left = -189.99998
+offset_top = -293.19373
+offset_right = 175.00002
+offset_bottom = -266.19373
+
+[node name="LeftHand" type="Node2D" parent="." unique_id=33889690]
+position = Vector2(-150, 0)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_1frk4")
-metadata/_edit_group_ = true
+
+[node name="HandDead" type="Sprite2D" parent="LeftHand" unique_id=184744903]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("6_gakja")
 
 [node name="HandAlive" type="AnimatedSprite2D" parent="LeftHand" unique_id=1592377626]
 sprite_frames = SubResource("SpriteFrames_o5jqn")
 frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand" unique_id=1097785129]
-shape = SubResource("CircleShape2D_4480b")
+[node name="HoverParticles" type="CPUParticles2D" parent="LeftHand/HandAlive" unique_id=1085301433]
+z_index = -1
+position = Vector2(9.999998, 95.00003)
+lifetime = 0.25
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 0.0
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0.42078167, 0.06876243, 0.5139768, 1)
 
-[node name="RightHand" type="CharacterBody2D" parent="." unique_id=1690137719]
-position = Vector2(300, 0)
-scale = Vector2(0.5, 0.5)
+[node name="Hitbox" type="Area2D" parent="LeftHand" unique_id=788771982]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand/Hitbox" unique_id=1040268951]
+position = Vector2(5, 65)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_0yq8t")
+
+[node name="ImmunityFrames" type="Timer" parent="LeftHand" unique_id=1248985244]
+
+[node name="HealthBar" type="ProgressBar" parent="LeftHand" unique_id=464744696]
+offset_left = -194.99997
+offset_top = 230.0
+offset_right = 170.00003
+offset_bottom = 257.0
+
+[node name="RightHand" type="Node2D" parent="." unique_id=563789781]
+position = Vector2(150, 0)
+scale = Vector2(0.2, 0.2)
 script = ExtResource("2_1frk4")
+
+[node name="HandDead" type="Sprite2D" parent="RightHand" unique_id=1510116918]
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("8_3l0uk")
 
 [node name="HandAlive" type="AnimatedSprite2D" parent="RightHand" unique_id=476200402]
 sprite_frames = SubResource("SpriteFrames_c1ng2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand" unique_id=654255823]
-shape = SubResource("CircleShape2D_uyowk")
+[node name="Hitbox" type="Area2D" parent="RightHand" unique_id=2116970895]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand/Hitbox" unique_id=121462275]
+position = Vector2(5, 65)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_0yq8t")
+
+[node name="ImmunityFrames" type="Timer" parent="RightHand" unique_id=864011312]
+
+[node name="HealthBar" type="ProgressBar" parent="RightHand" unique_id=1804773177]
+offset_left = -194.99997
+offset_top = 230.0
+offset_right = 170.00003
+offset_bottom = 257.0
+
+[node name="HoverParticles" type="CPUParticles2D" parent="RightHand" unique_id=1335741380]
+z_index = -1
+position = Vector2(9.999998, 95.00003)
+lifetime = 0.25
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 0.0
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color = Color(0.42078167, 0.06876243, 0.5139768, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1938969950]
 libraries/ = SubResource("AnimationLibrary_f1bj1")

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Final Project Group 6 COMP1501"
-run/main_scene="uid://ca5o6kviyaii7"
+run/main_scene="uid://b5esijq21wyqi"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
