@@ -15,9 +15,7 @@ func spawnEnemies():
 	for i in enemyCount:
 		var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
 		enemy.player=target
-		
 		enemy.global_position=spawnPoints[i].global_position
-		
 		add_child(enemy)
 		
 
