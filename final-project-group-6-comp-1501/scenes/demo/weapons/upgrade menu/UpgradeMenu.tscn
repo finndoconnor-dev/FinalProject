@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bo4uyola5dlha"]
+
+[ext_resource type="Script" uid="uid://ceisje4xc0csg" path="res://scripts/upgrade menu/UpgradeMenu.gd" id="1_48ntp"]
+[ext_resource type="PackedScene" uid="uid://csvsdf8ln78wf" path="res://scenes/demo/weapons/upgrade menu/UpgradeOption.tscn" id="2_umsk8"]
+
+[node name="UpgradeMenu" type="CanvasLayer" unique_id=2543362]
+process_mode = 3
+script = ExtResource("1_48ntp")
+optionScene = ExtResource("2_umsk8")
+numberOfOptions = 4
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1596108852]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14708558, 0.13757533, 0.14177787, 1)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="VBoxContainer" parent="." unique_id=1872051212]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="PleaseSelectAnUpgrade" type="Label" parent="Control" unique_id=865607482]
+z_index = 1
+layout_mode = 2
+text = "Please Select an Upgrade."
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="GridContainer" type="GridContainer" parent="Control" unique_id=1072589891]
+layout_mode = 2
+size_flags_vertical = 3

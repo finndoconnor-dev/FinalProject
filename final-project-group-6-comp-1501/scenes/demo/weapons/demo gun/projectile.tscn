@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dolffc12i2vyf"]
 
-[ext_resource type="Script" uid="uid://cbshsiohs7tsy" path="res://scripts/weapons/projectiles/high_velocity_round.gd" id="1_4dkg3"]
+[ext_resource type="Script" uid="uid://bxima10m76h05" path="res://scenes/demo/weapons/projectiles/AcronShot.gd" id="1_4dkg3"]
 [ext_resource type="Texture2D" uid="uid://cr6qadu20k46a" path="res://assets/placeholders/weapons/demo_gun_projectile.png" id="2_qi2xh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dkg3"]
 radius = 4.0
 
-[node name="Projectile" type="Area2D" unique_id=1277775916]
+[node name="AcornShot" type="Area2D" unique_id=1277775916]
 script = ExtResource("1_4dkg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]

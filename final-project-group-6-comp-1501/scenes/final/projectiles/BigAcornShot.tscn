@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://q1u8fkhw2dax"]
+
+[ext_resource type="Script" uid="uid://e01fa2s8odep" path="res://scripts/weapons/projectiles/AcornShot.gd" id="1_y310w"]
+[ext_resource type="Texture2D" uid="uid://bl6f84ut1plc2" path="res://assets/projectiles/projectile_acorn.png" id="2_gxhwi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dkg3"]
+radius = 6.0
+
+[node name="BigAcornShot" type="Area2D" unique_id=1277775916]
+script = ExtResource("1_y310w")
+speed = 5.0
+damage = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
+texture_filter = 1
+scale = Vector2(0.12571838, 0.10960147)
+texture = ExtResource("2_gxhwi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648281658]
+shape = SubResource("CircleShape2D_4dkg3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

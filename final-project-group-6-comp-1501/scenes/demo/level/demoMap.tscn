@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://jdqyqeeyvt0c"]
 
 [ext_resource type="Script" uid="uid://cahqgj3hmcr2w" path="res://scenes/demo/level/demo_map.gd" id="1_6ka3w"]
-[ext_resource type="TileSet" uid="uid://cb86uq3pjjhbs" path="res://assets/placeholders/tilesets/trees_collision.tres" id="1_rivnk"]
-[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/placeholders/tilesets/forest_ [resources].png" id="2_i3lj0"]
+[ext_resource type="TileSet" uid="uid://cb86uq3pjjhbs" path="res://assets/pictures/tilesets/trees_collision.tres" id="1_rivnk"]
+[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="2_i3lj0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3lj0"]
 texture = ExtResource("2_i3lj0")

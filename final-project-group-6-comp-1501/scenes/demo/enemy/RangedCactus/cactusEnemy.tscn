@@ -10,5 +10,8 @@ speed = 30.0
 immunityTime = 0.15
 gun = ExtResource("3_ur63o")
 
+[node name="rangeArea" parent="Area2D" parent_id_path=PackedInt32Array(2074323009) index="0" unique_id=1878206081]
+scale = Vector2(2.5, 2.5)
+
 [node name="NavigationAgent2D" parent="." index="3" unique_id=1611063569]
 debug_enabled = false

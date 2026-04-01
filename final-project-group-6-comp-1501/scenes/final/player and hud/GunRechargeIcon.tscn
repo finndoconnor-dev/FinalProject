@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bue2igli5cgkd"]
+
+[node name="GunRechargeIcon" type="Control" unique_id=2068276895]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2038837606]
+z_index = 5
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1470410122]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.060000002
+offset_right = -0.16800308
+offset_bottom = 0.11999893
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=503446889]
+z_index = 4
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.034
+anchor_bottom = 0.060000002
+offset_right = -0.16800308
+offset_bottom = 0.11999893
+show_percentage = false
