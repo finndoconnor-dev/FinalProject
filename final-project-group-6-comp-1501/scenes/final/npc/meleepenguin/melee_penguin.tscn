@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dagvwb2t13kcw"]
+
+[ext_resource type="PackedScene" uid="uid://c44k25eosbwg2" path="res://scenes/demo/enemy/baseEnemy.tscn" id="1_eb12t"]
+[ext_resource type="Script" uid="uid://owv18fe6ltn5" path="res://scenes/demo/enemy/RangedCactus/cactus_enemy.gd" id="2_6l2p8"]
+[ext_resource type="PackedScene" uid="uid://dgqt26shbm37e" path="res://scenes/demo/enemy/RangedCactus/cactusGun.tscn" id="3_81vg5"]
+
+[node name="meleePenguin" unique_id=2094719843 instance=ExtResource("1_eb12t")]
+script = ExtResource("2_6l2p8")
+speed = 30.0
+immunityTime = 0.15
+gun = ExtResource("3_81vg5")
+
+[node name="rangeArea" parent="Area2D" parent_id_path=PackedInt32Array(2074323009) index="0" unique_id=1878206081]
+scale = Vector2(2.5, 2.5)
+
+[node name="NavigationAgent2D" parent="." index="3" unique_id=1611063569]
+debug_enabled = false
