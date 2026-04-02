@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvmebjh17otdo"
+path="res://.godot/imported/Dreamty ahh beat.mp3-a8f66b0bdc8f195bbb75e64b8a7c430d.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Dreamty ahh beat.mp3"
+dest_files=["res://.godot/imported/Dreamty ahh beat.mp3-a8f66b0bdc8f195bbb75e64b8a7c430d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://lcqwegq76wiq"]
+
+[ext_resource type="PackedScene" uid="uid://b718ir04m0exx" path="res://scenes/demo/weapons/demo gun/gun.tscn" id="1_fjy4u"]
+[ext_resource type="Script" uid="uid://di0necymaxgun" path="res://scripts/weapons/weapons/UnicornRaygun.gd" id="2_7ec1l"]
+[ext_resource type="Texture2D" uid="uid://bdfpva0vb45ss" path="res://assets/pictures/animations/Laser_sheet.png" id="5_d3sbj"]
+[ext_resource type="Texture2D" uid="uid://cd4t560amn5e2" path="res://assets/pictures/weapons/unicorn.png" id="5_fjy4u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pnibi"]
+radius = 3.0
+height = 390.0
+
+[sub_resource type="Animation" id="Animation_whn30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GunRotate/Beam:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uepvi"]
+resource_name = "firebeam"
+length = 2.0000124
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GunRotate/Beam:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75, 1.875, 2, 2.00002),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 13, 14, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_413jr"]
+_data = {
+&"RESET": SubResource("Animation_whn30"),
+&"firebeam": SubResource("Animation_uepvi")
+}
+
+[node name="UnicornRaygun" unique_id=385922210 instance=ExtResource("1_fjy4u")]
+script = ExtResource("2_7ec1l")
+laserDamage = 5
+chargeTime = 1.2
+damageTickRate = 0.01
+fireAnimationName = "firebeam"
+resetAnimationName = "RESET"
+projectileScene = null
+useSpeed = 0.0
+maxAmmoCount = 1
+reloadSpeed = 1.0
+displayName = "Uniray"
+speedUpgradeRange = [0.0, 0.0]
+ammoUpgradeRange = [0, 0]
+cooldownUpgradeRange = [10.0, 15.0]
+
+[node name="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
+position = Vector2(24.000002, -1.9999998)
+rotation = 1.2217305
+scale = Vector2(0.032511376, 0.032124516)
+texture = ExtResource("5_fjy4u")
+
+[node name="BeamHitbox" type="Area2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=1400322813]
+position = Vector2(2, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GunRotate/BeamHitbox" index="0" unique_id=871911072]
+z_index = 11
+position = Vector2(252, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pnibi")
+disabled = true
+
+[node name="Beam" type="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="2" unique_id=1387724288]
+position = Vector2(210, 9)
+scale = Vector2(1.5133332, 0.71999997)
+texture = ExtResource("5_d3sbj")
+vframes = 15
+
+[node name="ExitPoint" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="3" unique_id=302921545]
+position = Vector2(62, -3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1005852151]
+libraries/ = SubResource("AnimationLibrary_413jr")

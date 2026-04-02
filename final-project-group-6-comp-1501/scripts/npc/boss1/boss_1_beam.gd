@@ -23,9 +23,12 @@ signal activeChanged(isActive: bool)
 @export var barrageProjectileSpread := 0.5
 @export var barrageProjectileSpeedVariance := 0.2
 @export var barrageSpawnOffset := 32.0
+@export_range(0.0, 180.0) var barrageFanHalfAngleDegrees := 60.0
 @export_range(0.0, 1.0) var barrageAttackChance := 0.5
 @export var animationName := "BodyBeam"
 @export var resetAnimationName := "RESET"
+@export var allowBeamAttacks := true
+@export var allowBarrageAttacks := false
 
 @onready var beamHitBox: Area2D = $BeamHitBox
 @onready var beamHitBoxShape: CollisionShape2D = $BeamHitBox/CollisionShape2D
@@ -41,9 +44,13 @@ var beamLockedRotation := 0.0
 var beamAttack := Attack.new()
 var beamHitTargets: Array[Node2D] = []
 var barrageShotsRemaining := 0
+var defaultBodyBeamCooldownMin := 0.0
+var defaultBodyBeamCooldownMax := 0.0
 
 
 func _ready() -> void:
+	defaultBodyBeamCooldownMin = bodyBeamCooldownMin
+	defaultBodyBeamCooldownMax = bodyBeamCooldownMax
 	beamAttack.damage = bodyBeamDamage
 	beamAttack.damagesPlayer = true
 	beamAttack.damagesNPC = false
@@ -63,10 +70,12 @@ func _physics_process(delta: float) -> void:
 		BeamState.COOLDOWN:
 			beamCooldown -= delta
 			if beamCooldown <= 0.0:
-				if _can_use_barrage() and randf() <= barrageAttackChance:
+				if allowBarrageAttacks and _can_use_barrage() and randf() <= barrageAttackChance:
 					_start_barrage_attack()
-				else:
+				elif allowBeamAttacks:
 					_start_beam_windup()
+				else:
+					_start_beam_cooldown()
 		BeamState.WINDUP:
 			beamTimer -= delta
 			global_rotation = beamLockedRotation
@@ -100,6 +109,21 @@ func is_INACTIVE() -> bool:
 
 func is_COOLDOWN() -> bool:
 	return beamState == BeamState.COOLDOWN
+
+
+func set_attack_permissions(enableBeam: bool, enableBarrage: bool) -> void:
+	allowBeamAttacks = enableBeam
+	allowBarrageAttacks = enableBarrage
+
+
+func set_attack_cooldown_range(minCooldown: float, maxCooldown: float) -> void:
+	bodyBeamCooldownMin = minCooldown
+	bodyBeamCooldownMax = maxCooldown
+
+
+func reset_attack_cooldown_range() -> void:
+	bodyBeamCooldownMin = defaultBodyBeamCooldownMin
+	bodyBeamCooldownMax = defaultBodyBeamCooldownMax
 
 
 func _start_beam_cooldown() -> void:
@@ -233,8 +257,7 @@ func _is_hand_broken(hand: Node) -> bool:
 
 
 func _fire_barrage_projectile() -> bool:
-	var player := _get_player()
-	if projectileScene == null or not is_instance_valid(player):
+	if projectileScene == null:
 		return false
 
 	var projectileInstance := projectileScene.instantiate() as Node2D
@@ -246,7 +269,9 @@ func _fire_barrage_projectile() -> bool:
 		spawnParent = get_tree().root
 
 	spawnParent.add_child(projectileInstance)
-	projectileInstance.global_rotation = global_position.angle_to_point(player.global_position)
+	var baseRotation := PI / 2.0
+	var fanHalfAngleRadians := deg_to_rad(barrageFanHalfAngleDegrees)
+	projectileInstance.global_rotation = baseRotation + randf_range(-fanHalfAngleRadians, fanHalfAngleRadians)
 	projectileInstance.global_rotation += randf_range(-barrageProjectileSpread, barrageProjectileSpread)
 	projectileInstance.global_position = global_position + Vector2.from_angle(projectileInstance.global_rotation) * barrageSpawnOffset
 	projectileInstance.speed += randf_range(-barrageProjectileSpeedVariance, barrageProjectileSpeedVariance)

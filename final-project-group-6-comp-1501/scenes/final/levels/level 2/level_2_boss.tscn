@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bngu5341u1cwh"]
+
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="1_40w1n"]
+[ext_resource type="PackedScene" uid="uid://b701cyv6gqsv1" path="res://scenes/final/levels/level 2/level_2_boss_map.tscn" id="1_qqibm"]
+[ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="2_hyuby"]
+[ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="3_qqibm"]
+[ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="4_cyvx7"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="5_uqdpf"]
+[ext_resource type="PackedScene" uid="uid://dubj5acfe174x" path="res://scenes/final/levels/level 2/level_2b.tscn" id="6_jtglk"]
+[ext_resource type="PackedScene" uid="uid://bs2tt8xtb1yag" path="res://scenes/final/npc/boss1/boss_1.tscn" id="8_cyvx7"]
+[ext_resource type="AudioStream" uid="uid://cflnpxt4b73ff" path="res://assets/sounds/creepty ahh beat inst..mp3" id="9_cyvx7"]
+[ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="10_uqdpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_343tm"]
+size = Vector2(35.5, 33.674683)
+
+[node name="Level_2A" type="Node" unique_id=1738964985]
+
+[node name="Node2D" parent="." unique_id=1190139919 instance=ExtResource("1_qqibm")]
+
+[node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]
+y_sort_enabled = true
+
+[node name="EnemySpawners" type="Node2D" parent="YsortingContainer" unique_id=614861689]
+
+[node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
+y_sort_enabled = true
+
+[node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("1_40w1n")]
+position = Vector2(5, -24)
+speed = 100
+gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
+
+[node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
+script = ExtResource("2_hyuby")
+gunScenes = Array[PackedScene]([ExtResource("3_qqibm"), ExtResource("4_cyvx7")])
+
+[node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
+position = Vector2(9, -23)
+zoom = Vector2(0.8, 0.8)
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 528
+limit_bottom = 480
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=353900613]
+position = Vector2(1560, -533)
+scale = Vector2(2, 1.943)
+script = ExtResource("5_uqdpf")
+outgoingLevel = ExtResource("6_jtglk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=2056437521]
+shape = SubResource("RectangleShape2D_343tm")
+
+[node name="Boss1" parent="." unique_id=1882365501 instance=ExtResource("8_cyvx7")]
+position = Vector2(-18, -448)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1691311664]
+stream = ExtResource("9_cyvx7")
+volume_db = -5.0
+autoplay = true
+script = ExtResource("10_uqdpf")
+
+[connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bsj4navu8bk6m"]
+
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="1_m4nfc"]
+[ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="2_pvce0"]
+
+[node name="Node" type="Node" unique_id=2058880027]
+
+[node name="Player" parent="." unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("1_m4nfc")]
+position = Vector2(-13, 60)
+speed = 100
+gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
+
+[node name="EquipSlot" type="Node2D" parent="Player" unique_id=988045930]
+script = ExtResource("2_pvce0")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=425902000]
+zoom = Vector2(1.5, 1.5)
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 528
+limit_bottom = 480
+
+[connection signal="useItem" from="Player" to="Player/EquipSlot" method="_on_player_use_item"]

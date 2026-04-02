@@ -34,13 +34,20 @@ signal attackStarted(state: HandState)
 @export var attackCooldownMax := 2.4
 @export var brokenAttackCooldownMin := 2.0
 @export var brokenAttackCooldownMax := 5.0
+@export var brokenBarrageProjectileInterval := 0.08
 @export var dashDamage := 3.0
 @export var maxHP : float = 1000.0
 @export var immunityFrames := 0.01
+@export_range(0.0, 1.0) var lowHPThresholdRatio := 0.35
+@export var enragedProjectileSpeedMultiplier := 1.35
+@export var enragedProjectileCountBonus := 3
+@export var enragedDashSpeedMultiplier := 1.25
+@export_range(0.0, 1.0) var enragedAttackCooldownMultiplier := 0.6
 
 @onready var handSprite: AnimatedSprite2D = $HandAlive
 @onready var handSpriteDead : Sprite2D = $HandDead
 @onready var hitBox: Area2D = $Hitbox
+@onready var bodyCollision: CollisionShape2D = $CollisionShape2D
 @onready var invincTimer: Timer = $ImmunityFrames
 @onready var healthBar := $HealthBar
 
@@ -55,9 +62,11 @@ var stateTimer := 0.0
 var attackCooldown := 0.0
 var shotsRemaining := 0
 var projectileTimer := 0.0
+var brokenBarrageShotsRemaining := 0
 var dashDirection := Vector2.ZERO
 var dashAttack : Attack = Attack.new()
 var hitpoints : float
+var isEnraged := false
 
 
 func _ready() -> void:
@@ -134,6 +143,9 @@ func onDamage(inc: Attack) -> bool:
 
 	healthBar.value = hitpoints
 
+	if not isEnraged and hitpoints > 0.0 and hitpoints <= maxHP * lowHPThresholdRatio:
+		_enter_enraged_state()
+
 	if hitpoints <= 0.0:
 		onDeath()
 
@@ -165,6 +177,7 @@ func on_body_attacking() -> void:
 func transition_to(newState: HandState) -> void:
 	handState = newState
 	stateTimer = 0.0
+	_set_body_collision_enabled(handState != HandState.DASH)
 
 	match handState:
 		HandState.INACTIVE:
@@ -174,14 +187,16 @@ func transition_to(newState: HandState) -> void:
 			dashDirection = Vector2.ZERO
 			handSprite.play("default")
 		HandState.HOVER:
-			attackCooldown = randf_range(attackCooldownMin, attackCooldownMax)
+			attackCooldown = _roll_attack_cooldown()
+			handSprite.play("default")
 		HandState.PROJECTILE:
 			handSprite.play("shooting")
-			shotsRemaining = projectileCount
+			shotsRemaining = _get_projectile_count()
 			projectileTimer = 0.0
 			attackStarted.emit(handState)
 		HandState.TRACKING:
 			attackStarted.emit(handState)
+			handSprite.play("default")
 		HandState.DASH:
 			#await get_tree().create_timer(dashDelay).timeout
 			handSprite.play("dashing")
@@ -191,8 +206,50 @@ func transition_to(newState: HandState) -> void:
 		HandState.BROKEN:
 			shotsRemaining = 0
 			projectileTimer = 0.0
+			brokenBarrageShotsRemaining = 0
 			dashDirection = Vector2.ZERO
+			isEnraged = false
 			attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+
+
+func _set_body_collision_enabled(enabled: bool) -> void:
+	if is_instance_valid(bodyCollision):
+		bodyCollision.set_deferred("disabled", not enabled)
+
+
+func _enter_enraged_state() -> void:
+	isEnraged = true
+
+
+func _roll_attack_cooldown() -> float:
+	return randf_range(
+		attackCooldownMin * _get_attack_cooldown_multiplier(),
+		attackCooldownMax * _get_attack_cooldown_multiplier()
+	)
+
+
+func _get_attack_cooldown_multiplier() -> float:
+	if isEnraged:
+		return enragedAttackCooldownMultiplier
+	return 1.0
+
+
+func _get_projectile_count() -> int:
+	if isEnraged:
+		return projectileCount + enragedProjectileCountBonus
+	return projectileCount
+
+
+func _get_dash_speed() -> float:
+	if isEnraged:
+		return dashSpeed * enragedDashSpeedMultiplier
+	return dashSpeed
+
+
+func _get_projectile_speed_multiplier() -> float:
+	if isEnraged:
+		return enragedProjectileSpeedMultiplier
+	return 1.0
 
 
 func _update_hover(delta: float) -> void:
@@ -228,7 +285,7 @@ func _update_projectile_attack(delta: float) -> void:
 	projectileTimer = projectileInterval
 
 	if shotsRemaining <= 0:
-		attackCooldown = randf_range(attackCooldownMin, attackCooldownMax)
+		attackCooldown = _roll_attack_cooldown()
 
 
 func _update_tracking(delta: float) -> void:
@@ -247,7 +304,7 @@ func _update_tracking(delta: float) -> void:
 
 
 func _update_dash(delta: float) -> void:
-	global_position += dashDirection * dashSpeed * delta
+	global_position += dashDirection * _get_dash_speed() * delta
 
 	if stateTimer >= dashDuration:
 		transition_to(HandState.RETURNING)
@@ -265,6 +322,28 @@ func _update_returning(delta: float) -> void:
 
 
 func _update_broken(delta: float) -> void:
+	_move_to_rest(delta)
+
+	if brokenBarrageShotsRemaining > 0:
+		projectileTimer -= delta
+
+		if projectileTimer > 0.0:
+			return
+
+		if not is_instance_valid(player):
+			brokenBarrageShotsRemaining = 0
+			attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+			return
+
+		_fire_projectile()
+		brokenBarrageShotsRemaining -= 1
+		projectileTimer = brokenBarrageProjectileInterval
+
+		if brokenBarrageShotsRemaining <= 0:
+			attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+
+		return
+
 	attackCooldown -= delta
 
 	if attackCooldown > 0.0:
@@ -274,10 +353,8 @@ func _update_broken(delta: float) -> void:
 		attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
 		return
 
-	for _shot in projectileCount:
-		_fire_projectile()
-
-	attackCooldown = randf_range(brokenAttackCooldownMin, brokenAttackCooldownMax)
+	brokenBarrageShotsRemaining = _get_projectile_count()
+	projectileTimer = 0.0
 
 
 func _move_to_rest(delta: float) -> bool:
@@ -325,6 +402,7 @@ func _fire_projectile() -> void:
 	projectileInstance.global_position = global_position
 	projectileInstance.global_rotation = global_position.angle_to_point(player.global_position)
 	projectileInstance.global_rotation += randf_range(-projectileSpread, projectileSpread)
+	projectileInstance.speed *= _get_projectile_speed_multiplier()
 	projectileInstance.speed += randf_range(-projectileSpeedVariance, projectileSpeedVariance)
 
 

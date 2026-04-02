@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0vdtrby6lih2"]
 
 [ext_resource type="Script" uid="uid://e01fa2s8odep" path="res://scripts/weapons/projectiles/AcornShot.gd" id="1_s37ad"]
-[ext_resource type="Texture2D" uid="uid://bl6f84ut1plc2" path="res://assets/projectiles/projectile_acorn.png" id="2_s37ad"]
+[ext_resource type="Texture2D" uid="uid://bl6f84ut1plc2" path="res://assets/pictures/projectiles/projectile_acorn.png" id="2_s37ad"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4dkg3"]
 radius = 2.0
@@ -9,7 +9,7 @@ radius = 2.0
 [node name="AcornShot" type="Area2D" unique_id=1277775916]
 script = ExtResource("1_s37ad")
 speed = 10.0
-lifetime = 3.0
+lifetime = 0.15
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
 texture_filter = 1

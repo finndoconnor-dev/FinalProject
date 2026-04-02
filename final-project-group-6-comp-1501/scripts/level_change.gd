@@ -17,7 +17,5 @@ func _on_body_exited(body) -> void:
 func switchScene(player : Node):
 	var inv = get_tree().get_first_node_in_group("gunslot")
 	inv.exportToLevelTransition()
-	
-	
 	get_tree().change_scene_to_packed(outgoingLevel)
 	

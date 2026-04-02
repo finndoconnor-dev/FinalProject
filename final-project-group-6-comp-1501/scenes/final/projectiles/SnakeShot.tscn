@@ -10,6 +10,7 @@ size = Vector2(18, 8)
 script = ExtResource("1_c6yqb")
 speed = 20.0
 lifetime = 3.0
+damage = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
 texture_filter = 1

@@ -30,14 +30,14 @@ func getUpgrades()->Array:
 		upgrades.append({
 			"gun": self,
 			"upgradeName" : "Mutation: Enhanced Cheek Pouches",
-			"label":"Your squirrel shoots bigger acorns. Moves slower with shorter range, but doubles the damage.",
+			"label":"Big acorns means high damage and low projectile speed.",
 			"apply": func(gun):
 				gun.projectileScene = mutationProjectiles[0]
 				mutated = true
 		})
 		upgrades.append({
 			"gun": self,
-			"upgradeName" : "Mustation: Three heads",
+			"upgradeName" : "Mutation: Three heads",
 			"label":"Your squirrel has three heads to shoot three acorns... Gross.",
 			"apply": func(gun):
 				gun.shootFunctionPointer = trishotProjectile

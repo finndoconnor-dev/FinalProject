@@ -8,6 +8,7 @@ var ammo=0
 @onready var gunQueue: Array[gun] #Gun nodes queued to be used.
 
 var currentGun : gun
+var waiting_for_shoot_release := false
 
 func _ready() -> void :
 	add_to_group("gunslot")
@@ -17,8 +18,11 @@ func _ready() -> void :
 	print("Gun inventory initialized.")
 
 func _physics_process(delta: float) -> void:
+	if waiting_for_shoot_release and !Input.is_action_pressed("left_click"):
+		waiting_for_shoot_release = false
+
 	if currentGun != null:
-		if Input.is_action_pressed("left_click"):
+		if !waiting_for_shoot_release and Input.is_action_pressed("left_click"):
 			#print("Trying to shoot "+currentGun.name)
 				currentGun.tryShoot()
 				#print(currentGun.ammoCount)
@@ -30,12 +34,15 @@ func _physics_process(delta: float) -> void:
 	else: cycleGun()
 
 func cycleGun() -> void :
+	var previousGun := currentGun
+
 	#Player doesn't have a gun, but theres a gun in queue.
 	#print(gunQueue)
 	if currentGun == null:
 		if !gunQueue.is_empty():
 			currentGun = gunQueue.pop_front()
 			currentGun.visible = true
+			_lock_shooting_until_release(previousGun)
 		return
 
 	#The player has a gun, but theres no gun in queue.
@@ -50,6 +57,11 @@ func cycleGun() -> void :
 	currentGun.onCooldown()
 	currentGun = gunQueue.pop_front() #This should switch to the NEW gun pointer.
 	currentGun.visible = true #This should point to the NEW gun and make is visible.
+	_lock_shooting_until_release(previousGun)
+
+func _lock_shooting_until_release(previousGun: gun) -> void:
+	if previousGun != null and Input.is_action_pressed("left_click"):
+		waiting_for_shoot_release = true
 
 func addToInventory(item : gun) -> void :
 	print("adding to inventory: "+item.name)

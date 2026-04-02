@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dubj5acfe174x"]
+[gd_scene format=3 uid="uid://b6ic05j4s6s56"]
 
-[ext_resource type="PackedScene" uid="uid://dresvbx8vllkv" path="res://scenes/final/levels/level 2/level_2a_map.tscn" id="1_iws8y"]
+[ext_resource type="PackedScene" uid="uid://qmy1ca3n3am" path="res://scenes/final/levels/level 2/level_2a_map.tscn" id="1_iws8y"]
 [ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="2_iws8y"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="3_ceh02"]
 [ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="3_dfddr"]
@@ -9,13 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="5_gn7hj"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="6_2ftoy"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="7_ft2ws"]
-[ext_resource type="PackedScene" uid="uid://805m6jbipeba" path="res://scenes/demo/level/level_1a.tscn" id="8_2s2o1"]
+[ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="9_gn7hj"]
+[ext_resource type="PackedScene" uid="uid://lcqwegq76wiq" path="res://scenes/final/weapons/UnicornRaygun.tscn" id="10_2ftoy"]
+[ext_resource type="PackedScene" uid="uid://dubj5acfe174x" path="res://scenes/final/levels/level 2/level_2b.tscn" id="10_ceh02"]
+[ext_resource type="AudioStream" uid="uid://cvmebjh17otdo" path="res://assets/sounds/Dreamty ahh beat.mp3" id="13_ft2ws"]
+[ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="14_2s2o1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_343tm"]
+size = Vector2(35.5, 33.674683)
 
 [node name="Level_2A" type="Node" unique_id=1738964985]
 
-[node name="Level_2A_Map" parent="." unique_id=659224260 instance=ExtResource("1_iws8y")]
+[node name="Level_2B_Map" parent="." unique_id=659224260 instance=ExtResource("1_iws8y")]
 
 [node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]
 y_sort_enabled = true
@@ -23,60 +28,60 @@ y_sort_enabled = true
 [node name="EnemySpawners" type="Node2D" parent="YsortingContainer" unique_id=614861689]
 
 [node name="HoardSpawner" parent="YsortingContainer/EnemySpawners" unique_id=1439190105 instance=ExtResource("2_iws8y")]
-position = Vector2(-215, 141)
-scale = Vector2(4, 4)
+position = Vector2(723, -793)
+scale = Vector2(5.1383543, -3.6085553)
 rareEnemy = ExtResource("4_ceh02")
 commonEnemy = ExtResource("3_dfddr")
-enemyCount = 25
+enemyCount = 10
+timeBetweenSpawns = 2.0
 spawnRadius = 5.0
 
-[node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_iws8y")]
-position = Vector2(562, -171)
-scale = Vector2(4, 4)
+[node name="HoardSpawner3" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_iws8y")]
+position = Vector2(486.00003, -1317)
+scale = Vector2(11.704029, -6.184744)
 rareEnemy = ExtResource("4_ceh02")
 commonEnemy = ExtResource("3_dfddr")
-enemyCount = 50
+enemyCount = 20
 timeBetweenSpawns = 0.1
-spawnRadius = 10.0
+spawnRadius = 5.0
 
-[node name="HoardSpawner3" parent="YsortingContainer/EnemySpawners" unique_id=1755404438 instance=ExtResource("2_iws8y")]
-position = Vector2(377, -556)
-scale = Vector2(4, 4)
+[node name="HoardSpawner4" parent="YsortingContainer/EnemySpawners" unique_id=176145515 instance=ExtResource("2_iws8y")]
+position = Vector2(1295.0001, -1314.0001)
+scale = Vector2(5.1383543, -3.6085553)
 rareEnemy = ExtResource("4_ceh02")
 commonEnemy = ExtResource("3_dfddr")
-enemyCount = 50
-timeBetweenSpawns = 0.1
-spawnRadius = 10.0
+enemyCount = 8
+timeBetweenSpawns = 0.01
+spawnRadius = 2.0
 
-[node name="HoardSpawner4" parent="YsortingContainer/EnemySpawners" unique_id=1253504028 instance=ExtResource("2_iws8y")]
-position = Vector2(756, -1229)
-scale = Vector2(4, 4)
+[node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=1745726363 instance=ExtResource("2_iws8y")]
+position = Vector2(1657, -1845.9999)
+scale = Vector2(4.56869, -10.101553)
 rareEnemy = ExtResource("4_ceh02")
 commonEnemy = ExtResource("3_dfddr")
-enemyCount = 100
-spawnRadius = 10.0
+enemyCount = 15
+spawnRadius = 5.0
 
-[node name="HoardSpawner5" parent="YsortingContainer/EnemySpawners" unique_id=396385273 instance=ExtResource("2_iws8y")]
-position = Vector2(272.00003, -904)
-scale = Vector2(2.5806832, -1.9165527)
+[node name="HoardSpawner5" parent="YsortingContainer/EnemySpawners" unique_id=811056034 instance=ExtResource("2_iws8y")]
+position = Vector2(2005.9999, -1854.9999)
+scale = Vector2(10.598001, -8.399475)
 rareEnemy = ExtResource("4_ceh02")
 commonEnemy = ExtResource("3_dfddr")
-enemyCount = 50
-timeBetweenSpawns = 0.1
-spawnRadius = 10.0
+enemyCount = 15
+spawnRadius = 5.0
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 y_sort_enabled = true
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("3_ceh02")]
-position = Vector2(6, 455)
+position = Vector2(849, -411)
 speed = 100
 gunController = NodePath("EquipSlot")
 metadata/_edit_group_ = true
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("4_73amv")
-gunScenes = Array[PackedScene]([ExtResource("5_gn7hj"), ExtResource("6_2ftoy")])
+gunScenes = Array[PackedScene]([ExtResource("5_gn7hj"), ExtResource("6_2ftoy"), ExtResource("9_gn7hj"), ExtResource("10_2ftoy")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 position = Vector2(9, -23)
@@ -88,12 +93,23 @@ limit_right = 528
 limit_bottom = 480
 
 [node name="LevelExit" type="Area2D" parent="." unique_id=353900613]
+position = Vector2(894, -595)
+scale = Vector2(2, 1.943)
 script = ExtResource("7_ft2ws")
-outgoingLevel = ExtResource("8_2s2o1")
+outgoingLevel = ExtResource("10_ceh02")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=2056437521]
-position = Vector2(945, -1545)
+position = Vector2(480.25, -786.2662)
 shape = SubResource("RectangleShape2D_343tm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1203202972]
+position = Vector2(0, -2)
+stream = ExtResource("13_ft2ws")
+volume_db = -5.0
+autoplay = true
+max_distance = 10000.0
+script = ExtResource("14_2s2o1")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

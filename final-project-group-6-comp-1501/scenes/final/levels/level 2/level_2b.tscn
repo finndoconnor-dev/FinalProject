@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dubj5acfe174x"]
+
+[ext_resource type="PackedScene" uid="uid://dresvbx8vllkv" path="res://scenes/final/levels/level 2/level_2b_map.tscn" id="1_mry0b"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="2_0dfyp"]
+[ext_resource type="PackedScene" uid="uid://bkyrgytodfill" path="res://scripts/npc/MeleePenguin/RangedPenguin.tscn" id="3_pndlj"]
+[ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="4_j7r1t"]
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="5_kh53k"]
+[ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="6_chmt5"]
+[ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="7_nllsc"]
+[ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="8_85j36"]
+[ext_resource type="PackedScene" uid="uid://lcqwegq76wiq" path="res://scenes/final/weapons/UnicornRaygun.tscn" id="9_0dfyp"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="9_bc5i3"]
+[ext_resource type="PackedScene" uid="uid://66a60abhev2r" path="res://scenes/final/levels/level 2/level_2c.tscn" id="11_0dfyp"]
+[ext_resource type="AudioStream" uid="uid://cvmebjh17otdo" path="res://assets/sounds/Dreamty ahh beat.mp3" id="12_j7r1t"]
+[ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="13_kh53k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_343tm"]
+
+[node name="Level_2B" type="Node" unique_id=1738964985]
+
+[node name="Level_2A_Map" parent="." unique_id=659224260 instance=ExtResource("1_mry0b")]
+
+[node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]
+y_sort_enabled = true
+
+[node name="EnemySpawners" type="Node2D" parent="YsortingContainer" unique_id=614861689]
+
+[node name="HoardSpawner" parent="YsortingContainer/EnemySpawners" unique_id=1439190105 instance=ExtResource("2_0dfyp")]
+position = Vector2(-215, 141)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("3_pndlj")
+commonEnemy = ExtResource("4_j7r1t")
+enemyCount = 25
+spawnRadius = 5.0
+
+[node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_0dfyp")]
+position = Vector2(562, -171)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("3_pndlj")
+commonEnemy = ExtResource("4_j7r1t")
+enemyCount = 10
+timeBetweenSpawns = 0.1
+spawnRadius = 10.0
+
+[node name="HoardSpawner3" parent="YsortingContainer/EnemySpawners" unique_id=1755404438 instance=ExtResource("2_0dfyp")]
+position = Vector2(377, -556)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("3_pndlj")
+commonEnemy = ExtResource("4_j7r1t")
+enemyCount = 10
+timeBetweenSpawns = 0.1
+spawnRadius = 10.0
+
+[node name="HoardSpawner4" parent="YsortingContainer/EnemySpawners" unique_id=1253504028 instance=ExtResource("2_0dfyp")]
+position = Vector2(941, -1456)
+scale = Vector2(12.139283, 11.590548)
+rareEnemy = ExtResource("3_pndlj")
+commonEnemy = ExtResource("4_j7r1t")
+enemyCount = 35
+spawnRadius = 5.0
+
+[node name="HoardSpawner5" parent="YsortingContainer/EnemySpawners" unique_id=396385273 instance=ExtResource("2_0dfyp")]
+position = Vector2(272.00003, -904)
+scale = Vector2(2.5806832, -1.9165527)
+rareEnemy = ExtResource("3_pndlj")
+commonEnemy = ExtResource("4_j7r1t")
+enemyCount = 5
+timeBetweenSpawns = 0.1
+spawnRadius = 10.0
+
+[node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
+y_sort_enabled = true
+
+[node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("5_kh53k")]
+position = Vector2(6, 455)
+speed = 100
+gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
+
+[node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
+script = ExtResource("6_chmt5")
+gunScenes = Array[PackedScene]([ExtResource("7_nllsc"), ExtResource("8_85j36"), ExtResource("9_0dfyp")])
+
+[node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
+position = Vector2(9, -23)
+zoom = Vector2(1.5, 1.5)
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 528
+limit_bottom = 480
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=353900613]
+script = ExtResource("9_bc5i3")
+outgoingLevel = ExtResource("11_0dfyp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=2056437521]
+position = Vector2(945, -1545)
+shape = SubResource("RectangleShape2D_343tm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=220030644]
+stream = ExtResource("12_j7r1t")
+volume_db = -5.0
+autoplay = true
+max_distance = 10000.0
+script = ExtResource("13_kh53k")
+
+[connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

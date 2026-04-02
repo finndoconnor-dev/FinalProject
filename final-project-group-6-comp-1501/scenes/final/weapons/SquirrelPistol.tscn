@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b718ir04m0exx" path="res://scenes/demo/weapons/demo gun/gun.tscn" id="1_ixb7v"]
 [ext_resource type="Script" uid="uid://huw2gbgvdonj" path="res://scripts/weapons/weapons/SquirrelPistol.gd" id="2_j8f1j"]
 [ext_resource type="PackedScene" uid="uid://d0vdtrby6lih2" path="res://scenes/final/projectiles/AcornShot.tscn" id="3_j8f1j"]
-[ext_resource type="Texture2D" uid="uid://bkoakui0qlelv" path="res://assets/weapons/squirrel_gun.png" id="3_l2eqs"]
+[ext_resource type="Texture2D" uid="uid://bkoakui0qlelv" path="res://assets/pictures/weapons/squirrel_gun.png" id="3_l2eqs"]
 [ext_resource type="PackedScene" uid="uid://q1u8fkhw2dax" path="res://scenes/final/projectiles/BigAcornShot.tscn" id="3_roya3"]
 
 [node name="SquirrelPistol" unique_id=385922210 instance=ExtResource("1_ixb7v")]
@@ -14,9 +14,9 @@ useSpeed = 0.2
 maxAmmoCount = 8
 reloadSpeed = 2.0
 displayName = "Squirrel Shooter"
-speedUpgradeRange = [0.05, 0.1]
-ammoUpgradeRange = [1, 8]
-cooldownUpgradeRange = [0.1, 0.5]
+speedUpgradeRange = [30.0, 45.0]
+ammoUpgradeRange = [50, 100]
+cooldownUpgradeRange = [10.0, 15.0]
 
 [node name="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
 position = Vector2(10.000001, -2)

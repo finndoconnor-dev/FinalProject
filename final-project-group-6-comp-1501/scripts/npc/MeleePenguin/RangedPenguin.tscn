@@ -59,6 +59,8 @@ radius = 112.11155
 z_index = 2
 script = ExtResource("1_8cdiy")
 cube = ExtResource("2_7tjfr")
+meleeMoveSpeed = 85.0
+immunityTime = 0.04
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1110222838]
 scale = Vector2(0.025, 0.025)
@@ -101,4 +103,6 @@ shape = SubResource("CircleShape2D_8cdiy")
 [connection signal="timeout" from="PathfindingTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="onDamageTimer"]
 [connection signal="body_entered" from="AttackRadius" to="." method="onAttackRadiusEntered"]
+[connection signal="body_exited" from="AttackRadius" to="." method="onAttackRadiusExited"]
 [connection signal="body_entered" from="ThrowRadius" to="." method="onThrowRadiusEntered"]
+[connection signal="body_exited" from="ThrowRadius" to="." method="onThrowRadiusExited"]

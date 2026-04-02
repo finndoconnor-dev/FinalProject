@@ -94,9 +94,17 @@ func applyUpgrade(upgradeData : Dictionary) -> void:
 	#Complex stat changes
 	if (upgradeData.has("apply")): upgradeData["apply"].call(self)
 
+func _get_percent_upgrade_amount(current_stat: float, percent_range: Array) -> float:
+	var percent := randf_range(percent_range[0], percent_range[1])
+	return current_stat * (percent / 100.0)
+
+func _get_percent_upgrade_int_amount(current_stat: int, percent_range: Array) -> int:
+	var amount := _get_percent_upgrade_amount(current_stat, percent_range)
+	return maxi(1, int(round(amount)))
+
 func getUpgrades()->Array:
 	var upgrades : Array = []
-	var value = randi_range(ammoUpgradeRange[0],ammoUpgradeRange[1])
+	var value = _get_percent_upgrade_int_amount(maxAmmoCount, ammoUpgradeRange)
 	upgrades.append({
 		"gun": self,
 		"stat": "maxAmmoCount",
@@ -104,7 +112,7 @@ func getUpgrades()->Array:
 		"value": value,
 		"label":"%s, +%d max ammo." % [displayName,value]
 	})
-	value = randf_range(speedUpgradeRange[0],speedUpgradeRange[1])*-1
+	value = -_get_percent_upgrade_amount(useSpeed, speedUpgradeRange)
 	var firerate_percent := 0.0
 	if useSpeed > 0 and (useSpeed + value) > 0:
 		firerate_percent = (((1.0 / (useSpeed + value)) - (1.0 / useSpeed)) / (1.0 / useSpeed)) * 100.0
@@ -115,7 +123,7 @@ func getUpgrades()->Array:
 			"value": value,
 			"label":"%s, %.2f%% increased firerate." % [displayName,firerate_percent]
 		})
-	value = randf_range(cooldownUpgradeRange[0],cooldownUpgradeRange[1])*-1
+	value = -_get_percent_upgrade_amount(reloadSpeed, cooldownUpgradeRange)
 	var reload_percent := 0.0
 	if reloadSpeed > 0:
 		reload_percent = absf(value) / reloadSpeed * 100.0

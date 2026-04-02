@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c0hfimmx5ckc6"]
+
+[ext_resource type="Script" uid="uid://bqwr0023q4qjg" path="res://scripts/weapons/projectiles/BoaPellet.gd" id="1_24mgl"]
+[ext_resource type="Texture2D" uid="uid://btms8t747pm43" path="res://assets/pictures/projectiles/SnakeShot.png" id="2_uk5se"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6yqb"]
+size = Vector2(11, 5)
+
+[node name="SnakePellet" type="Area2D" unique_id=1277775916]
+script = ExtResource("1_24mgl")
+speed = 2.0
+lifetime = 1.0
+damage = 7.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1218213356]
+texture_filter = 1
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(0.06134827, 0.11769437)
+texture = ExtResource("2_uk5se")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=648281658]
+shape = SubResource("RectangleShape2D_c6yqb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

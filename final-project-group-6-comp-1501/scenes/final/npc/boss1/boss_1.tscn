@@ -65,6 +65,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0yq8t"]
 size = Vector2(170, 135)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gakja"]
+radius = 205.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5jqn"]
 atlas = ExtResource("4_lxxl3")
 region = Rect2(1362, 465, 454, 465)
@@ -156,6 +159,7 @@ _data = {
 
 [node name="Boss1" type="CharacterBody2D" unique_id=1882365501]
 script = ExtResource("1_oh0x3")
+maxHP = 3000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1171498913]
 shape = SubResource("CapsuleShape2D_qlw8k")
@@ -167,6 +171,10 @@ texture = ExtResource("1_47hu1")
 [node name="BeamPivotBody" type="Node2D" parent="Body" unique_id=282826793]
 position = Vector2(0, -24.773912)
 script = ExtResource("3_kh8nn")
+bodyBeamCooldownMin = 5
+bodyBeamCooldownMax = 9
+bodyBeamDamage = 10.0
+barrageProjectileCount = 50
 
 [node name="Beam" type="Sprite2D" parent="Body/BeamPivotBody" unique_id=631393333]
 z_index = 1
@@ -190,10 +198,16 @@ offset_top = -293.19373
 offset_right = 175.00002
 offset_bottom = -266.19373
 
-[node name="LeftHand" type="Node2D" parent="." unique_id=33889690]
+[node name="LeftHand" type="CharacterBody2D" parent="." unique_id=1047074096]
 position = Vector2(-150, 0)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_1frk4")
+hoverHeight = 15
+hoverSpeed = 1
+returnSpeed = 360
+projectileCount = 5
+enragedProjectileCountBonus = 10
+enragedAttackCooldownMultiplier = 0.25
 
 [node name="HandDead" type="Sprite2D" parent="LeftHand" unique_id=184744903]
 scale = Vector2(0.99999994, 0.99999994)
@@ -219,7 +233,7 @@ color = Color(0.42078167, 0.06876243, 0.5139768, 1)
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand/Hitbox" unique_id=1040268951]
-position = Vector2(5, 65)
+position = Vector2(20, 80)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_0yq8t")
 
@@ -231,7 +245,11 @@ offset_top = 230.0
 offset_right = 170.00003
 offset_bottom = 257.0
 
-[node name="RightHand" type="Node2D" parent="." unique_id=563789781]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHand" unique_id=289482210]
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("CircleShape2D_gakja")
+
+[node name="RightHand" type="CharacterBody2D" parent="." unique_id=140389956]
 position = Vector2(150, 0)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("2_1frk4")
@@ -271,6 +289,10 @@ angle_max = 45.0
 scale_amount_min = 5.0
 scale_amount_max = 5.0
 color = Color(0.42078167, 0.06876243, 0.5139768, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHand" unique_id=1998335379]
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("CircleShape2D_gakja")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1938969950]
 libraries/ = SubResource("AnimationLibrary_f1bj1")
