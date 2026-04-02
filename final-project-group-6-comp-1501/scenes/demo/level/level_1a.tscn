@@ -2,14 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://157ks7v8mgv" path="res://scenes/demo/level/level_1S1.tscn" id="1_idpkh"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_a6my5"]
-[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/placeholders/tilesets/forest_ [resources].png" id="3_qnjxx"]
+[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_qnjxx"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_0k1us"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_37g17"]
-[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="6_4gu24"]
-[ext_resource type="PackedScene" uid="uid://dfbesiupawjly" path="res://scenes/demo/weapons/guns/demo_pistol.tscn" id="7_vodmw"]
-[ext_resource type="PackedScene" uid="uid://hsndrpeld1xa" path="res://scenes/demo/weapons/guns/demo_ar.tscn" id="8_lulco"]
-[ext_resource type="PackedScene" uid="uid://b75ejnbhiiuq2" path="res://scenes/demo/weapons/guns/demo_shotgun.tscn" id="9_rg6ha"]
-[ext_resource type="PackedScene" uid="uid://b07qsk3nrn0es" path="res://scenes/demo/weapons/guns/demo_smg.tscn" id="10_txfmi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_qnjxx")
@@ -136,10 +131,28 @@ enemyCount = 2
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 
 [node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
-position = Vector2(35, 55)
+position = Vector2(-149, -246)
 
 [node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
-position = Vector2(104, 55)
+position = Vector2(-99, -912)
+
+[node name="Marker2D3" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1126041284]
+position = Vector2(272, -558)
+
+[node name="Marker2D4" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1219904591]
+position = Vector2(392, -840)
+
+[node name="Marker2D5" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=993186594]
+position = Vector2(515, -1207)
+
+[node name="Marker2D6" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=672317874]
+position = Vector2(-108, -1187)
+
+[node name="Marker2D7" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1638458745]
+position = Vector2(254, -215)
+
+[node name="Marker2D8" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1849398591]
+position = Vector2(-91, -622)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false
@@ -152,20 +165,19 @@ tile_map_data = PackedByteArray("AAAhAB0AAAADAAEAAAAbABoAAAACAAMAAAAqAA8AAAACAAM
 tile_set = SubResource("TileSet_iv1bh")
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_0k1us")]
-position = Vector2(272, 341)
+position = Vector2(264, 244)
 speed = 100
 gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("5_37g17")
-gun_scenes = Array[PackedScene]([ExtResource("6_4gu24"), ExtResource("7_vodmw"), ExtResource("8_lulco"), ExtResource("9_rg6ha"), ExtResource("10_txfmi")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
-limit_enabled = false
-limit_left = 0
-limit_top = 0
-limit_right = 528
-limit_bottom = 480
+limit_left = -134
+limit_top = -1606
+limit_right = 1184
+limit_bottom = 334
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
