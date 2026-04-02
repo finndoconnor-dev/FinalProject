@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c44k25eosbwg2" path="res://scenes/demo/enemy/baseEnemy.tscn" id="1_thmah"]
 [ext_resource type="Script" uid="uid://owv18fe6ltn5" path="res://scenes/demo/enemy/RangedCactus/cactus_enemy.gd" id="2_7ba56"]
 [ext_resource type="PackedScene" uid="uid://dgqt26shbm37e" path="res://scenes/demo/enemy/RangedCactus/cactusGun.tscn" id="3_ur63o"]
-[ext_resource type="Texture2D" uid="uid://elhckrqhx6ri" path="res://assets/pictures/npcs/rangedCactus.png" id="4_7t4um"]
+[ext_resource type="Texture2D" uid="uid://elhckrqhx6ri" path="res://assets/pictures/npcs/rangedCactus/rangedCactus.png" id="4_7t4um"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bilue"]
 atlas = ExtResource("4_7t4um")
