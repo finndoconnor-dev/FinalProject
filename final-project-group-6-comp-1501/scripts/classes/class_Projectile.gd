@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	global_position += Vector2.from_angle(global_rotation) * speed
+	global_position += Vector2.from_angle(global_rotation) * speed 
 	
 func _on_area_entered(area: Area2D) -> void:
 	onHit(area)
