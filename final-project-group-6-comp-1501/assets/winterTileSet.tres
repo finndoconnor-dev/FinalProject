@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" format=3 uid="uid://6e2eytn4m26b"]
+[gd_resource type="TileSet" format=3 uid="uid://c85ygfvqfi0xb"]
 
 [ext_resource type="Texture2D" uid="uid://b8fmoxyvg7gfh" path="res://assets/winterTileSet.png" id="1_elfa7"]
 
@@ -339,6 +339,7 @@ texture_region_size = Vector2i(15, 15)
 9:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_0vhqg")
 9:0/0 = 0
 9:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_exdpu")
+12:3/0 = 0
 
 [resource]
 tile_size = Vector2i(15, 15)

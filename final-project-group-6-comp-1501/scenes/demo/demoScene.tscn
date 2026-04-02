@@ -122,8 +122,6 @@ sources/0 = SubResource("TileSetAtlasSource_412rl")
 
 [node name="DemoLevel" type="Node" unique_id=1738964985]
 
-[node name="BaseLayers" type="Node2D" parent="." unique_id=525971682]
-
 [node name="DemoMap" parent="." unique_id=1025334352 instance=ExtResource("2_0elbr")]
 
 [node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bkrll0ac32d2r"]
+
+[ext_resource type="Script" uid="uid://clk2s8lh2j4rs" path="res://scripts/npc/HoardSpawner.gd" id="1_4q64b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4q64b"]
+radius = 61.204575
+
+[node name="HoardSpawner" type="Node2D" unique_id=306356326]
+script = ExtResource("1_4q64b")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=115312136]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1680342488]
+shape = SubResource("CircleShape2D_4q64b")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1997331440]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
