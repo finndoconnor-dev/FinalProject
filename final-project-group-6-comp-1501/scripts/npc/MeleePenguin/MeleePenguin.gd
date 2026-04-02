@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name penguin
 
-@export var player= Node2D
 @export var speed = 50
 @export var maxHealthPoints = 100
 @export var immunityTime = 0.00
@@ -11,9 +10,12 @@ class_name penguin
 @onready var hpBar = $HealthBar
 @onready var invincibilityTimer = $InvinicbilityFrames
 @onready var damageTimer : Timer = $DamageTimer
+@onready var attackRadius : Area2D = $AttackRadius
 
 var canMove=true
 var hitpoints : float
+var meleeAttack : Attack = Attack.new()
+var player= Node2D
 
 signal npcHasDied
 
@@ -27,6 +29,10 @@ func _ready() -> void:
 	updateHealthbar()
 	npcHasDied.connect(upgradeController._on_enemyDied)
 	player = getPlayer()
+	#init melee attack
+	meleeAttack.damagesNPC=false
+	meleeAttack.damagesPlayer=true
+	meleeAttack.damage = 2
 	animatedSprite.play("default")
 	if player != null:
 		call_deferred("makepath")
@@ -82,3 +88,14 @@ func getPlayer() -> Node:
 	if p == null:
 		return null
 	return p
+
+func attackInRadius()-> void:
+	print("Attacking in radius for ",self.name)
+	var bodies = attackRadius.get_overlapping_bodies()
+	for b in bodies:
+		if b.is_in_group("player"):
+			b.onDamage(meleeAttack)
+
+
+func onDamageTimer() -> void:
+	attackInRadius()

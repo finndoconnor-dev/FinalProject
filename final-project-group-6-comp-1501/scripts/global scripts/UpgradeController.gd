@@ -4,10 +4,11 @@ const upgradeMenu = preload("res://scenes/demo/weapons/upgrade menu/UpgradeMenu.
 
 var player : Node
 
+var numberOfUpgrades : int = 0
 var nextUpgrade: int = 1 #current number of kills needed for an upgrade
 var enemiesKilled : int = 0  #Enemy kill count.
-var upgradeIncrement : int = 1 #next number of kills needed for an upgrade
-var upgradeCurve : float #how much each goal increases per upgrade -> more upgrade = more kills needed for next
+var baseIncrement : float = 15
+var curveIncrement : float = 6
 
 
 func _ready() -> void:
@@ -17,6 +18,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if (enemiesKilled >= nextUpgrade):
 		print("Upgrade Aquired.")
+		numberOfUpgrades +=1
+		var upgradeIncrement = baseIncrement * numberOfUpgrades
 		nextUpgrade += upgradeIncrement
 		initUpgradeMenu()
 	if Input.is_action_just_pressed("1"):

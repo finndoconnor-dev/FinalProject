@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dresvbx8vllkv" path="res://scenes/final/levels/level 2/level_2a_map.tscn" id="1_iws8y"]
 [ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/levels/level 2/HoardSpawner.tscn" id="2_iws8y"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="3_ceh02"]
-[ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="3_dfddr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="4_73amv"]
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="5_gn7hj"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="6_2ftoy"]
@@ -24,13 +23,12 @@ y_sort_enabled = true
 [node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_iws8y")]
 position = Vector2(526, -115)
 scale = Vector2(4, 4)
-enemyPrefabArray = Array[PackedScene]([ExtResource("3_dfddr")])
 
 [node name="HoardSpawner" parent="YsortingContainer/EnemySpawners" unique_id=1439190105 instance=ExtResource("2_iws8y")]
-position = Vector2(-143, 121)
+position = Vector2(-215, 141)
 scale = Vector2(4, 4)
-enemyPrefabArray = Array[PackedScene]([ExtResource("3_dfddr")])
 enemyCount = 25
+spawnRadius = 10.0
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 y_sort_enabled = true

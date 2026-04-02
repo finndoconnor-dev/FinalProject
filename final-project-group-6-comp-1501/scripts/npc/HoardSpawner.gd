@@ -1,33 +1,63 @@
 extends Node2D
 
-@export var enemyPrefabArray : Array[PackedScene]
-@export var testEnemy : PackedScene
+@export var rareEnemy : PackedScene
+@export var commonEnemy : PackedScene
 #@export var target : Node2D
 #@onready var spawnPoints=$SpawnPointsStage1.get_children()
 @onready var spawnPosition = $Marker2D
+@onready var triggerArea = $TriggerRadius
+@onready var spawnArea = $SpawnRadius
+@onready var spawnCollision = $SpawnRadius/CollisionShape2D
 
 @export var enemyCount : int
 @export var timeBetweenSpawns : float = 0.25
+@export var spawnRadius : float = 50.0
+
+var has_spawned := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var circle := spawnCollision.shape as CircleShape2D
+	if circle != null:
+		circle.radius = spawnRadius
 	print("Hoard Spawner initialized.")
 	pass
 	
 #Adds an enemy at a random spot the paramaters still need to be adjusted
 func spawnEnemies():
 	print("Spawner triggered, spawning enemies...")
-	for i in enemyCount:
+	var spawn_parent := get_parent()
+	for i in range(enemyCount):
 		print("Attempting to spawn enemy ",i)
-		var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
-		enemy.global_position = spawnPosition.global_position
-		add_child(enemy)
+		#var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
+		var enemy = pickEnemy()
+		spawn_parent.add_child(enemy)
+		if enemy is Node2D:
+			enemy.global_position = get_random_spawn_position()
 		await get_tree().create_timer(timeBetweenSpawns).timeout
+
+func get_random_spawn_position() -> Vector2:
+	var circle := spawnCollision.shape as CircleShape2D
+	if circle == null:
+		return spawnPosition.global_position
+
+	var angle := randf() * TAU
+	var distance := sqrt(randf()) * circle.radius
+	var local_offset := Vector2.RIGHT.rotated(angle) * distance
+	return spawnArea.to_global(spawnCollision.position + local_offset)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func pickEnemy() -> PackedScene:
+	var r = randi_range(1,20)
+	if (r >= 16):
+		return rareEnemy
+	else:
+		return commonEnemy
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if (body.is_in_group("player")):
+	if body.is_in_group("player") and !has_spawned:
+		has_spawned = true
 		spawnEnemies()

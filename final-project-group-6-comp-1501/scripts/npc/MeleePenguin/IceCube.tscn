@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cx4xkc3ndlxye"]
+
+[ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="1_bslrj"]
+[ext_resource type="Script" uid="uid://c35b0yvs84i3p" path="res://scripts/npc/boss1/boss_1_shot.gd" id="2_sinxx"]
+
+[node name="IceCube" unique_id=1277775916 instance=ExtResource("1_bslrj")]
+script = ExtResource("2_sinxx")
+speed = 3.5
+lifetime = 12.0
+damage = 5.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1218213356]
+scale = Vector2(1.0625, 1.0625)

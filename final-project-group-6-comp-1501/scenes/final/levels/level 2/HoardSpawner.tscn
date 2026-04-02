@@ -5,14 +5,21 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4q64b"]
 radius = 61.204575
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqyrc"]
+
 [node name="HoardSpawner" type="Node2D" unique_id=306356326]
 script = ExtResource("1_4q64b")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=115312136]
+[node name="TriggerRadius" type="Area2D" parent="." unique_id=115312136]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1680342488]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerRadius" unique_id=1680342488]
 shape = SubResource("CircleShape2D_4q64b")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1997331440]
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="SpawnRadius" type="Area2D" parent="." unique_id=677930256]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRadius" unique_id=1782119]
+shape = SubResource("CircleShape2D_wqyrc")
+
+[connection signal="body_entered" from="TriggerRadius" to="." method="_on_area_2d_body_entered"]

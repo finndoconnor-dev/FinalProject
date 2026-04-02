@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://bkyrgytodfill"]
+
+[ext_resource type="Script" uid="uid://dq7pbfffq60kd" path="res://scripts/npc/MeleePenguin/RangedPenguin.gd" id="1_8cdiy"]
+[ext_resource type="Texture2D" uid="uid://diofj4v72dv74" path="res://assets/pictures/npcs/penguin/penguin_melee.png" id="2_4aove"]
+[ext_resource type="PackedScene" uid="uid://cx4xkc3ndlxye" path="res://scripts/npc/MeleePenguin/IceCube.tscn" id="2_7tjfr"]
+[ext_resource type="Texture2D" uid="uid://cfnh1qu04jotq" path="res://assets/pictures/npcs/penguin/penguin_ranged.png" id="3_7tjfr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktrkt"]
+atlas = ExtResource("2_4aove")
+region = Rect2(0, 0, 634, 734)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7x3r"]
+atlas = ExtResource("2_4aove")
+region = Rect2(0, 818, 634, 734)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml5uc"]
+atlas = ExtResource("3_7tjfr")
+region = Rect2(0, 0, 516, 809)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v51x1"]
+atlas = ExtResource("3_7tjfr")
+region = Rect2(0, 837, 516, 809)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fku63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktrkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7x3r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml5uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v51x1")
+}],
+"loop": true,
+"name": &"hascube",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wt3w4"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogfpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cdiy"]
+radius = 112.11155
+
+[node name="RangedPenguin" type="CharacterBody2D" unique_id=894267061]
+z_index = 2
+script = ExtResource("1_8cdiy")
+cube = ExtResource("2_7tjfr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1110222838]
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_fku63")
+frame_progress = 0.6834096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580863415]
+shape = SubResource("CapsuleShape2D_wt3w4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=340184599]
+
+[node name="PathfindingTimer" type="Timer" parent="." unique_id=531750241]
+wait_time = 0.05
+autostart = true
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1956612981]
+offset_left = -7.0
+offset_top = -20.0
+offset_right = 7.0
+offset_bottom = -16.0
+show_percentage = false
+
+[node name="InvinicbilityFrames" type="Timer" parent="." unique_id=1423059859]
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=1080354026]
+wait_time = 0.02
+autostart = true
+
+[node name="AttackRadius" type="Area2D" parent="." unique_id=260992205]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius" unique_id=1438657021]
+shape = SubResource("CircleShape2D_ogfpt")
+
+[node name="ThrowRadius" type="Area2D" parent="." unique_id=1985031483]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowRadius" unique_id=2072370197]
+z_index = -3
+shape = SubResource("CircleShape2D_8cdiy")
+
+[connection signal="timeout" from="PathfindingTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="onDamageTimer"]
+[connection signal="body_entered" from="AttackRadius" to="." method="onAttackRadiusEntered"]
+[connection signal="body_entered" from="ThrowRadius" to="." method="onThrowRadiusEntered"]

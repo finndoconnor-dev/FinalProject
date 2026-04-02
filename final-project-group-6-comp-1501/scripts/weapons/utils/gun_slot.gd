@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 
 func cycleGun() -> void :
 	#Player doesn't have a gun, but theres a gun in queue.
+	#print(gunQueue)
 	if currentGun == null:
 		if !gunQueue.is_empty():
 			currentGun = gunQueue.pop_front()
@@ -61,6 +62,7 @@ func addToInventory(item : gun) -> void :
 func addToQueue(item : gun) -> void :
 	#print("adding to queue: "+item.name)
 	gunQueue.append(item)
+	print(gunQueue)
 
 func exportToLevelTransition() -> void:
 	for i in gunInventory:

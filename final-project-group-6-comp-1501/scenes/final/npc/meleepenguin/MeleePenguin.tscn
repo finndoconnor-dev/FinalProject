@@ -29,6 +29,8 @@ animations = [{
 radius = 6.0
 height = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ogfpt"]
+
 [node name="MeleePenguin" type="CharacterBody2D" unique_id=894267061]
 z_index = 2
 script = ExtResource("1_sbfm1")
@@ -57,6 +59,14 @@ show_percentage = false
 [node name="InvinicbilityFrames" type="Timer" parent="." unique_id=1423059859]
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=1080354026]
-wait_time = 0.3
+wait_time = 0.02
+autostart = true
+
+[node name="AttackRadius" type="Area2D" parent="." unique_id=260992205]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius" unique_id=1438657021]
+shape = SubResource("CircleShape2D_ogfpt")
 
 [connection signal="timeout" from="PathfindingTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DamageTimer" to="." method="onDamageTimer"]
+[connection signal="body_entered" from="AttackRadius" to="." method="onAttackRadiusEntered"]
