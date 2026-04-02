@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name baseEnemy
 
-@export var player= Node2D
+@export var player : Node2D
 @export var speed = 75.0
 @export var maxHealthPoints = 100
 @export var immunityTime = 0.00
@@ -45,13 +45,17 @@ func _process(delta: float) -> void:
 	animatedSprite.play("run")
 
 func _physics_process(delta: float) -> void:
-	#Controls Enemy movement 
-	#Pathfinding using a navigation agent and the navigation tiles in the tileset currently doesn't work for multilayered tilemaps
+	# Set gun target once player is available
+	var gunRotate = gunNode.get_node_or_null("GunRotate")
+	if gunRotate and player != null:
+		gunRotate.useMouse = false
+		gunRotate.target = player
+
 	var direction = to_local(navAgent.get_next_path_position()).normalized()
-	if(canMove):
-		velocity = direction*speed
+	if canMove:
+		velocity = direction * speed
 		move_and_slide()
-	if(hitpoints <= 0):
+	if hitpoints <= 0:
 		npcHasDied.emit()
 		queue_free()
 	

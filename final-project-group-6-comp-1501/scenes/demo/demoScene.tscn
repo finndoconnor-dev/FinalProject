@@ -131,7 +131,6 @@ y_sort_enabled = true
 
 [node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("8_c82i2")]
 y_sort_enabled = true
-enemyPrefabArray = Array[PackedScene]([ExtResource("3_343tm")])
 target = NodePath("../Player")
 enemyCount = 3
 
