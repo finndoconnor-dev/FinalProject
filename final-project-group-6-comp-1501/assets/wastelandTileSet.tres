@@ -1,7 +1,5 @@
 [gd_resource type="TileSet" format=3 uid="uid://cyio71lg85u1y"]
 
-[ext_resource type="Texture2D" uid="uid://dayqauovkl1e4" path="res://assets/wasteLandTileSet.png" id="1_gjyae"]
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyae"]
 vertices = PackedVector2Array(7.5, 7.5, -7.5, 7.5, -7.5, -7.5, 7.5, -7.5)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -128,8 +126,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-7.5, -7.5, 7.5, -7.5, 7.5, 7.5, -7.5, 7.5)])
 agent_radius = 0.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_scbsh"]
+load_path = "res://.godot/imported/wasteLandTileSet.png-cc57304906e7ad51d5f7a7c7a1eb6b91.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ld7kg"]
-texture = ExtResource("1_gjyae")
+texture = SubResource("CompressedTexture2D_scbsh")
 texture_region_size = Vector2i(15, 15)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0.35971832, 0.35971832, 7.5, 0.17985916, 7.5, 7.5, 0.71943474, 7.5)
