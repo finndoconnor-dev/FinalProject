@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://wwc1wexj26ar"]
+
+[ext_resource type="Script" uid="uid://bc70p8m1ahfv0" path="res://scripts/npc/AmbushSpawner.gd" id="1_8st2f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4q64b"]
+radius = 61.204575
+
+[node name="AmbushSpawner" type="Node2D" unique_id=306356326]
+script = ExtResource("1_8st2f")
+
+[node name="TriggerRadius" type="Area2D" parent="." unique_id=115312136]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerRadius" unique_id=1680342488]
+shape = SubResource("CircleShape2D_4q64b")
+
+[connection signal="body_entered" from="TriggerRadius" to="." method="_on_area_2d_body_entered"]

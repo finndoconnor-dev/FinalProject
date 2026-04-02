@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://dubj5acfe174x"]
 
 [ext_resource type="PackedScene" uid="uid://dresvbx8vllkv" path="res://scenes/final/levels/level 2/level_2a_map.tscn" id="1_iws8y"]
-[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/levels/level 2/HoardSpawner.tscn" id="2_iws8y"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="2_iws8y"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="3_ceh02"]
+[ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="3_dfddr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="4_73amv"]
+[ext_resource type="PackedScene" uid="uid://bkyrgytodfill" path="res://scripts/npc/MeleePenguin/RangedPenguin.tscn" id="4_ceh02"]
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="5_gn7hj"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="6_2ftoy"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="7_ft2ws"]
@@ -20,14 +22,47 @@ y_sort_enabled = true
 
 [node name="EnemySpawners" type="Node2D" parent="YsortingContainer" unique_id=614861689]
 
-[node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_iws8y")]
-position = Vector2(526, -115)
-scale = Vector2(4, 4)
-
 [node name="HoardSpawner" parent="YsortingContainer/EnemySpawners" unique_id=1439190105 instance=ExtResource("2_iws8y")]
 position = Vector2(-215, 141)
 scale = Vector2(4, 4)
+rareEnemy = ExtResource("4_ceh02")
+commonEnemy = ExtResource("3_dfddr")
 enemyCount = 25
+spawnRadius = 5.0
+
+[node name="HoardSpawner2" parent="YsortingContainer/EnemySpawners" unique_id=306356326 instance=ExtResource("2_iws8y")]
+position = Vector2(562, -171)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("4_ceh02")
+commonEnemy = ExtResource("3_dfddr")
+enemyCount = 50
+timeBetweenSpawns = 0.1
+spawnRadius = 10.0
+
+[node name="HoardSpawner3" parent="YsortingContainer/EnemySpawners" unique_id=1755404438 instance=ExtResource("2_iws8y")]
+position = Vector2(377, -556)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("4_ceh02")
+commonEnemy = ExtResource("3_dfddr")
+enemyCount = 50
+timeBetweenSpawns = 0.1
+spawnRadius = 10.0
+
+[node name="HoardSpawner4" parent="YsortingContainer/EnemySpawners" unique_id=1253504028 instance=ExtResource("2_iws8y")]
+position = Vector2(756, -1229)
+scale = Vector2(4, 4)
+rareEnemy = ExtResource("4_ceh02")
+commonEnemy = ExtResource("3_dfddr")
+enemyCount = 100
+spawnRadius = 10.0
+
+[node name="HoardSpawner5" parent="YsortingContainer/EnemySpawners" unique_id=396385273 instance=ExtResource("2_iws8y")]
+position = Vector2(272.00003, -904)
+scale = Vector2(2.5806832, -1.9165527)
+rareEnemy = ExtResource("4_ceh02")
+commonEnemy = ExtResource("3_dfddr")
+enemyCount = 50
+timeBetweenSpawns = 0.1
 spawnRadius = 10.0
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
@@ -57,7 +92,7 @@ script = ExtResource("7_ft2ws")
 outgoingLevel = ExtResource("8_2s2o1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=2056437521]
-position = Vector2(149, 336)
+position = Vector2(945, -1545)
 shape = SubResource("RectangleShape2D_343tm")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]

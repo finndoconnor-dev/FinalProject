@@ -6,8 +6,6 @@ extends Node2D
 #@onready var spawnPoints=$SpawnPointsStage1.get_children()
 @onready var spawnPosition = $Marker2D
 @onready var triggerArea = $TriggerRadius
-@onready var spawnArea = $SpawnRadius
-@onready var spawnCollision = $SpawnRadius/CollisionShape2D
 
 @export var enemyCount : int
 @export var timeBetweenSpawns : float = 0.25
@@ -16,9 +14,6 @@ extends Node2D
 var has_spawned := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var circle := spawnCollision.shape as CircleShape2D
-	if circle != null:
-		circle.radius = spawnRadius
 	print("Hoard Spawner initialized.")
 	pass
 	
@@ -29,21 +24,17 @@ func spawnEnemies():
 	for i in range(enemyCount):
 		print("Attempting to spawn enemy ",i)
 		#var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
-		var enemy = pickEnemy()
+		var enemy = pickEnemy().instantiate()
 		spawn_parent.add_child(enemy)
 		if enemy is Node2D:
 			enemy.global_position = get_random_spawn_position()
 		await get_tree().create_timer(timeBetweenSpawns).timeout
 
 func get_random_spawn_position() -> Vector2:
-	var circle := spawnCollision.shape as CircleShape2D
-	if circle == null:
-		return spawnPosition.global_position
-
 	var angle := randf() * TAU
-	var distance := sqrt(randf()) * circle.radius
+	var distance := sqrt(randf()) * spawnRadius
 	var local_offset := Vector2.RIGHT.rotated(angle) * distance
-	return spawnArea.to_global(spawnCollision.position + local_offset)
+	return spawnPosition.global_position + local_offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

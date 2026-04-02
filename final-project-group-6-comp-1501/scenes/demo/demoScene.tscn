@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_0elbr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="3_1yc2b"]
-[ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="3_343tm"]
+[ext_resource type="PackedScene" uid="uid://bkyrgytodfill" path="res://scripts/npc/MeleePenguin/RangedPenguin.tscn" id="3_343tm"]
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_sj21m"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="7_c82i2"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="8_c82i2"]
@@ -131,6 +131,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 enemyPrefabArray = Array[PackedScene]([ExtResource("3_343tm")])
 target = NodePath("../Player")
+enemyCount = 3
 
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 

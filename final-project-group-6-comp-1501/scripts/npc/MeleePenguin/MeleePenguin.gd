@@ -90,7 +90,7 @@ func getPlayer() -> Node:
 	return p
 
 func attackInRadius()-> void:
-	print("Attacking in radius for ",self.name)
+	#print("Attacking in radius for ",self.name)
 	var bodies = attackRadius.get_overlapping_bodies()
 	for b in bodies:
 		if b.is_in_group("player"):

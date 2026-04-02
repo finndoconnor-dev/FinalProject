@@ -63,7 +63,7 @@ cube = ExtResource("2_7tjfr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1110222838]
 scale = Vector2(0.025, 0.025)
 sprite_frames = SubResource("SpriteFrames_fku63")
-frame_progress = 0.6834096
+frame_progress = 0.4933337
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580863415]
 shape = SubResource("CapsuleShape2D_wt3w4")
