@@ -69,6 +69,11 @@ func _physics_process(delta: float) -> void:
 		velocity = direction*speed
 		move_and_slide()
 	
+	if player.global_position.x<self.global_position.x:
+		self.scale.x=-1
+	else:
+		self.scale.x=1
+	
 #updates the path based on the timer if it becomes to resource intensive then we can limit the timer
 func makepath() -> void:
 	if player == null:

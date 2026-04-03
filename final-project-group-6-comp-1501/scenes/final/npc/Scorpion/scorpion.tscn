@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ctbbdx87q3kg6"]
+
+[ext_resource type="PackedScene" uid="uid://c44k25eosbwg2" path="res://scenes/demo/enemy/baseEnemy.tscn" id="1_6gfyq"]
+[ext_resource type="Texture2D" uid="uid://c4jm80rjcgpi8" path="res://scenes/final/npc/Scorpion/scorpiondownleft.png" id="2_7vj6m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gfyq"]
+atlas = ExtResource("2_7vj6m")
+region = Rect2(688, 0, 344, 367)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vj6m"]
+atlas = ExtResource("2_7vj6m")
+region = Rect2(1032, 0, 344, 367)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cytsr"]
+atlas = ExtResource("2_7vj6m")
+region = Rect2(344, 0, 344, 367)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65xxl"]
+atlas = ExtResource("2_7vj6m")
+region = Rect2(688, 0, 344, 367)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dbriv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gfyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vj6m")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cytsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65xxl")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="scorpion" unique_id=2094719843 instance=ExtResource("1_6gfyq")]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1100765421]
+sprite_frames = SubResource("SpriteFrames_dbriv")
+animation = &"attack"
+frame_progress = 0.0
