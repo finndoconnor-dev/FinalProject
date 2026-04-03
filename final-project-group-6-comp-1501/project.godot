@@ -62,6 +62,11 @@ q={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player/NPC Collision"
+2d_physics/layer_2="Projectile Collision"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

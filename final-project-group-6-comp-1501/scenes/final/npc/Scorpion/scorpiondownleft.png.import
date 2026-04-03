@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://elhckrqhx6ri"
-path="res://.godot/imported/rangedCactus.png-bd1d975465a87d6097dbe2351e80bb7e.ctex"
+uid="uid://c4jm80rjcgpi8"
+path="res://.godot/imported/scorpiondownleft.png-36a823f1b158a8ba420dd9e4b39d96c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pictures/npcs/rangedCactus.png"
-dest_files=["res://.godot/imported/rangedCactus.png-bd1d975465a87d6097dbe2351e80bb7e.ctex"]
+source_file="res://scenes/final/npc/Scorpion/scorpiondownleft.png"
+dest_files=["res://.godot/imported/scorpiondownleft.png-36a823f1b158a8ba420dd9e4b39d96c0.ctex"]
 
 [params]
 

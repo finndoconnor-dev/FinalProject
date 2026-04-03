@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ltlb0einkg7r"]
+
+[ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="1_cjs7p"]
+[ext_resource type="Texture2D" uid="uid://ca4uyxjd8n5rn" path="res://assets/pictures/npcs/meleeCactus/meleeCactus.png" id="2_x6eg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xou46"]
+atlas = ExtResource("2_x6eg7")
+region = Rect2(0, 0, 367, 735)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt0v4"]
+atlas = ExtResource("2_x6eg7")
+region = Rect2(367, 0, 367, 735)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry2ff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xou46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt0v4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="meleeCactus" unique_id=894267061 instance=ExtResource("1_cjs7p")]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1110222838]
+position = Vector2(0.9999993, 1.15)
+scale = Vector2(0.04359673, 0.043129254)
+sprite_frames = SubResource("SpriteFrames_ry2ff")
+frame_progress = 0.0

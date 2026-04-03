@@ -19,3 +19,4 @@ func switchScene(player : Node):
 	inv.exportToLevelTransition()
 	get_tree().change_scene_to_packed(outgoingLevel)
 	
+	
