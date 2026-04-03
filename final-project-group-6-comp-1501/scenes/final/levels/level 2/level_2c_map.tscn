@@ -9,10 +9,10 @@ tile_map_data = PackedByteArray("AAAAAP7/BwAJAAIAAAAAAP//BwAKAAEAAAAAAAAABwAKAAE
 tile_set = ExtResource("1_ddfxr")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=147342489]
-offset_left = -294.0
-offset_top = -533.0
-offset_right = -118.0
-offset_bottom = -411.0
+offset_left = 38.0
+offset_top = -440.0
+offset_right = 214.0
+offset_bottom = -318.0
 
 [node name="Label" type="Label" parent="ColorRect" unique_id=400711373]
 self_modulate = Color(0.04755766, 0.047557645, 0.047557645, 1)
@@ -22,4 +22,5 @@ offset_top = 34.0
 offset_right = 172.0
 offset_bottom = 87.0
 text = "Evil Penguin Dungeon
-In here >"
+In here "
+horizontal_alignment = 1

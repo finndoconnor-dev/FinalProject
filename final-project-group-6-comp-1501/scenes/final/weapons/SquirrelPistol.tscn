@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d0vdtrby6lih2" path="res://scenes/final/projectiles/AcornShot.tscn" id="3_j8f1j"]
 [ext_resource type="Texture2D" uid="uid://bkoakui0qlelv" path="res://assets/pictures/weapons/squirrel_gun.png" id="3_l2eqs"]
 [ext_resource type="PackedScene" uid="uid://q1u8fkhw2dax" path="res://scenes/final/projectiles/BigAcornShot.tscn" id="3_roya3"]
+[ext_resource type="AudioStream" uid="uid://3icys2wqs61v" path="res://assets/sounds/laserShoot.wav" id="6_roya3"]
 
 [node name="SquirrelPistol" unique_id=385922210 instance=ExtResource("1_ixb7v")]
 script = ExtResource("2_j8f1j")
@@ -31,3 +32,7 @@ position = Vector2(17, -6)
 
 [node name="Trishot2" type="Marker2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="3" unique_id=1864334461]
 position = Vector2(17, -4)
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="2" unique_id=399430672]
+stream = ExtResource("6_roya3")
+pitch_scale = 0.64

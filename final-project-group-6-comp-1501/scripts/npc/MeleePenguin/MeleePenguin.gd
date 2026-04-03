@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name penguin
 
+static var _last_global_hurt_sound_time := -INF
+
 @export var speed = 50
 @export var maxHealthPoints = 100
 @export var immunityTime = 0.00
@@ -9,6 +11,9 @@ class_name penguin
 @export var repath_player_move_threshold: float = 24.0
 @export var repath_self_move_threshold: float = 32.0
 @export var direct_chase_distance: float = 96.0
+@export var hurt_sound_cooldown: float = 0.08
+@export var hurt_sound_pitch_min: float = 0.95
+@export var hurt_sound_pitch_max: float = 1.05
 
 @onready var animatedSprite = $AnimatedSprite2D
 @onready var navAgent := $NavigationAgent2D as NavigationAgent2D
@@ -17,6 +22,7 @@ class_name penguin
 @onready var invincibilityTimer = $InvinicbilityFrames
 @onready var damageTimer : Timer = $DamageTimer
 @onready var attackRadius : Area2D = $AttackRadius
+@onready var hurtSound: AudioStreamPlayer2D = $HurtSound
 
 var canMove=true
 var hitpoints : float
@@ -102,6 +108,7 @@ func onDamage(incDamage : Attack) -> bool:
 	if !invincibilityTimer.is_stopped(): return false
 	if incDamage.triggerInvulnerability:invincibilityTimer.start(immunityTime)
 	hitpoints -= incDamage.damage
+	play_hurt_sound()
 	updateHealthbar()
 	if hitpoints <= 0:
 		die()
@@ -109,6 +116,15 @@ func onDamage(incDamage : Attack) -> bool:
 	
 func updateHealthbar() -> void:
 	hpBar.value = hitpoints
+
+func play_hurt_sound() -> void:
+	var now := Time.get_ticks_msec() / 1000.0
+	if now - _last_global_hurt_sound_time < hurt_sound_cooldown:
+		return
+
+	_last_global_hurt_sound_time = now
+	hurtSound.pitch_scale = randf_range(hurt_sound_pitch_min, hurt_sound_pitch_max)
+	hurtSound.play()
 
 func getPlayer() -> Node2D:
 	var p := get_tree().get_first_node_in_group("player") as Node2D

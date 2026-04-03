@@ -50,6 +50,7 @@ func fireLaser() -> void:
 
 	if animationPlayer != null and animationPlayer.has_animation(fireAnimationName):
 		animationPlayer.play(fireAnimationName)
+	$BeamSound.play()
 
 	await get_tree().create_timer(chargeTime).timeout
 	if !is_inside_tree():

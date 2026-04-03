@@ -73,6 +73,7 @@ func onDamage(inc : Attack) -> bool:
 		invincTimer.start(invincibilityTime)
 		tookDamage.emit()
 		blinkRed()
+		$AudioStreamPlayer2D.play()
 		return true
 	return false
 

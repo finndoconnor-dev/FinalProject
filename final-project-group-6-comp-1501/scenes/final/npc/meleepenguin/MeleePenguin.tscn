@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://diofj4v72dv74" path="res://assets/pictures/npcs/penguin/penguin_melee.png" id="1_ogfpt"]
 [ext_resource type="Script" uid="uid://xxuksoctqd63" path="res://scripts/npc/MeleePenguin/MeleePenguin.gd" id="1_sbfm1"]
+[ext_resource type="AudioStream" uid="uid://rarcsh3avuyo" path="res://assets/sounds/hurtenemy.wav" id="3_sbfm1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owh6f"]
 atlas = ExtResource("1_ogfpt")
@@ -67,6 +68,9 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRadius" unique_id=1438657021]
 shape = SubResource("CircleShape2D_ogfpt")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=136513556]
+stream = ExtResource("3_sbfm1")
 
 [connection signal="timeout" from="PathfindingTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="onDamageTimer"]

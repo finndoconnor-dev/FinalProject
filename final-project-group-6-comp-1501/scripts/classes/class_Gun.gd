@@ -16,6 +16,7 @@ class_name gun
 @onready var gunRotate : Node2D = $GunRotate #Sprite and rotation controller
 @onready var projPoint : Marker2D = $GunRotate/ExitPoint #The muzzle of the gun's sprite, where the bullet will spawn.
 @onready var cooldownTimer : Timer = $UseCooldown #Timer for cooldown.
+@onready var sound : AudioStreamPlayer2D = $sound
 @onready var queueCooldown : Timer = Timer.new()
 
 signal gunFired
@@ -60,6 +61,7 @@ func tryShoot() -> void:
 	if (useSpeed > 0): cooldownTimer.start(useSpeed)
 	ammoCount -= 1
 	gunFired.emit()
+	sound.play()
 	shootFunctionPointer.call()
 	
 func defaultProjectile() -> void:

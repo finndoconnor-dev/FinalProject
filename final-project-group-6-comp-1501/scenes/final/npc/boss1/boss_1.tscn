@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bbov440ih66ar" path="res://scripts/npc/boss1/boss_1child.gd" id="2_1frk4"]
 [ext_resource type="Texture2D" uid="uid://bdfpva0vb45ss" path="res://assets/pictures/animations/Laser_sheet.png" id="3_12uo4"]
 [ext_resource type="Script" uid="uid://bvohc0ko2tfqn" path="res://scripts/npc/boss1/boss_1_beam.gd" id="3_kh8nn"]
+[ext_resource type="AudioStream" uid="uid://cu3fdx58no0vc" path="res://assets/sounds/laser.wav" id="4_3l0uk"]
 [ext_resource type="Texture2D" uid="uid://bs7thy6jovxo7" path="res://assets/pictures/npcs/boss1/boss1_handsheet.png" id="4_lxxl3"]
 [ext_resource type="Texture2D" uid="uid://naey5joelcgm" path="res://assets/pictures/npcs/boss1/boss1_righthanddead.png" id="6_gakja"]
 [ext_resource type="Texture2D" uid="uid://v2o6gpxf350y" path="res://assets/pictures/npcs/boss1/boss1_lefthanddead.png" id="8_3l0uk"]
@@ -175,6 +176,10 @@ bodyBeamCooldownMin = 5
 bodyBeamCooldownMax = 9
 bodyBeamDamage = 10.0
 barrageProjectileCount = 50
+
+[node name="BeamFire" type="AudioStreamPlayer2D" parent="Body/BeamPivotBody" unique_id=350581389]
+scale = Vector2(0.99999994, 0.99999994)
+stream = ExtResource("4_3l0uk")
 
 [node name="Beam" type="Sprite2D" parent="Body/BeamPivotBody" unique_id=631393333]
 z_index = 1

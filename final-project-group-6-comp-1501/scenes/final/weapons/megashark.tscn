@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dlrsx0c0sehmo" path="res://scenes/demo/weapons/projectiles/smg_round.tscn" id="3_3bx6q"]
 [ext_resource type="PackedScene" uid="uid://3ixhvyibyp4n" path="res://scenes/final/projectiles/ChlorophyteBullet.tscn" id="3_a8cif"]
 [ext_resource type="Texture2D" uid="uid://c8lc50u7a2f8y" path="res://assets/pictures/weapons/Megashark.png" id="3_ljfui"]
+[ext_resource type="AudioStream" uid="uid://wvqhbdoksnyp" path="res://assets/sounds/shot.wav" id="6_a8cif"]
 
 [node name="Megashark" unique_id=385922210 instance=ExtResource("1_3cnq6")]
 script = ExtResource("2_3bx6q")
@@ -27,3 +28,7 @@ texture = ExtResource("3_ljfui")
 
 [node name="ExitPoint" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
 position = Vector2(34, -2)
+
+[node name="sound" type="AudioStreamPlayer2D" parent="." index="2" unique_id=1922215887]
+stream = ExtResource("6_a8cif")
+pitch_scale = 2.05

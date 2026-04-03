@@ -7,6 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/pictures/player/demo_sprite_frames.tres" id="3_sahy8"]
 [ext_resource type="Texture2D" uid="uid://v1kw3y1fe3ks" path="res://assets/pictures/player/player3.png" id="4_urnij"]
 [ext_resource type="Texture2D" uid="uid://gxgcyu4io6fu" path="res://assets/pictures/player/player 4.png" id="5_a8fng"]
+[ext_resource type="AudioStream" uid="uid://bys3tosykgf3d" path="res://assets/sounds/hurtplayer.wav" id="8_a45s4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_elqn5"]
 atlas = ExtResource("2_0y6rb")
@@ -498,5 +499,8 @@ offset_left = 1.0
 offset_top = -5.0
 offset_right = 36.0
 offset_bottom = 30.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1150980220]
+stream = ExtResource("8_a45s4")
 
 [connection signal="tookDamage" from="." to="PlayerHUD" method="_on_player_took_damage"]

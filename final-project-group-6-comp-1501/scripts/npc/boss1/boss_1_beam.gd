@@ -151,6 +151,7 @@ func _start_beam_windup() -> void:
 	var animationSpeed := _get_body_beam_animation_speed()
 	if animationPlayer != null and animationPlayer.has_animation(animationName):
 		animationPlayer.play(animationName, -1.0, animationSpeed)
+	$BeamFire.play()
 
 
 func _start_beam_firing() -> void:

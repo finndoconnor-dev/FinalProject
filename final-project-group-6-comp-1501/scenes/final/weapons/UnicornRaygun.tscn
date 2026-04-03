@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://di0necymaxgun" path="res://scripts/weapons/weapons/UnicornRaygun.gd" id="2_7ec1l"]
 [ext_resource type="Texture2D" uid="uid://bdfpva0vb45ss" path="res://assets/pictures/animations/Laser_sheet.png" id="5_d3sbj"]
 [ext_resource type="Texture2D" uid="uid://cd4t560amn5e2" path="res://assets/pictures/weapons/unicorn.png" id="5_fjy4u"]
+[ext_resource type="AudioStream" uid="uid://cu3fdx58no0vc" path="res://assets/sounds/laser.wav" id="5_whn30"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pnibi"]
 radius = 3.0
@@ -57,7 +58,7 @@ resetAnimationName = "RESET"
 projectileScene = null
 useSpeed = 0.0
 maxAmmoCount = 1
-reloadSpeed = 1.0
+reloadSpeed = 80.0
 displayName = "Uniray"
 speedUpgradeRange = [0.0, 0.0]
 ammoUpgradeRange = [0, 0]
@@ -90,3 +91,6 @@ position = Vector2(62, -3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1005852151]
 libraries/ = SubResource("AnimationLibrary_413jr")
+
+[node name="BeamSound" type="AudioStreamPlayer2D" parent="." index="3" unique_id=306670824]
+stream = ExtResource("5_whn30")
