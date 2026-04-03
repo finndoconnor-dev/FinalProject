@@ -2,14 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://e7qvujpqym2e" path="res://scenes/demo/level/level_1s_2.tscn" id="1_aorb8"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_i1c3o"]
-[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/placeholders/tilesets/forest_ [resources].png" id="3_vqba4"]
+[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_vqba4"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_52c42"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_iedad"]
-[ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="6_qwnh6"]
-[ext_resource type="PackedScene" uid="uid://dfbesiupawjly" path="res://scenes/demo/weapons/guns/demo_pistol.tscn" id="7_jrvf6"]
-[ext_resource type="PackedScene" uid="uid://hsndrpeld1xa" path="res://scenes/demo/weapons/guns/demo_ar.tscn" id="8_kaecp"]
-[ext_resource type="PackedScene" uid="uid://b75ejnbhiiuq2" path="res://scenes/demo/weapons/guns/demo_shotgun.tscn" id="9_tftb8"]
-[ext_resource type="PackedScene" uid="uid://b07qsk3nrn0es" path="res://scenes/demo/weapons/guns/demo_smg.tscn" id="10_gp7bl"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_doml7"]
+[ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="7_n0lhc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_vqba4")
@@ -118,6 +115,9 @@ texture = ExtResource("3_vqba4")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_412rl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0lhc"]
+size = Vector2(267.75, 36.5)
+
 [node name="Level1B" type="Node" unique_id=1738964985]
 
 [node name="BaseLayers" type="Node2D" parent="." unique_id=525971682]
@@ -142,27 +142,38 @@ position = Vector2(35, 55)
 position = Vector2(104, 55)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
+visible = false
 y_sort_enabled = true
 
 [node name="Decorations" type="TileMapLayer" parent="YsortingContainer/MapDecorations" unique_id=1023302603]
+visible = false
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAhAB0AAAADAAEAAAAbABoAAAACAAMAAAAqAA8AAAACAAMAAAAtAA4AAAACAAMAAAAwABAAAAACAAMAAAAsABIAAAAGAAEAAAAyABYAAAAIAAEAAAAuABcAAAAHAAEAAAAwABYAAAAHAAEAAAAwABcAAAAHAAEAAAAxABUAAAAHAAEAAAAsABcAAAAFAAQAAAAqABUAAAAFAAQAAAAsABUAAAAFAAQAAAAqABcAAAAFAAQAAAAoAB8AAAACAAEAAAAqAB8AAAACAAEAAAAqAB4AAAACAAEAAAApABwAAAACAAEAAAAoABwAAAACAAEAAAAoAB4AAAACAAEAAAAtAB0AAAACAAEAAAAsAB8AAAACAAEAAAAeABgAAAAGAAcAAAA=")
 tile_set = SubResource("TileSet_iv1bh")
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_52c42")]
-position = Vector2(272, 341)
+position = Vector2(456, 593)
 speed = 100
 gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("5_iedad")
-gun_scenes = Array[PackedScene]([ExtResource("6_qwnh6"), ExtResource("7_jrvf6"), ExtResource("8_kaecp"), ExtResource("9_tftb8"), ExtResource("10_gp7bl")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
-limit_left = 0
-limit_top = 0
-limit_right = 530
-limit_bottom = 480
+limit_left = -315
+limit_top = -1930
+limit_right = 1249
+limit_bottom = 685
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=2050373598]
+script = ExtResource("6_doml7")
+outgoingLevel = ExtResource("7_n0lhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1841992639]
+position = Vector2(533, -1644)
+shape = SubResource("RectangleShape2D_n0lhc")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]

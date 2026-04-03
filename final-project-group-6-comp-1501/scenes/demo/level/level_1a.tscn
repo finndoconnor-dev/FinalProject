@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_qnjxx"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_0k1us"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_37g17"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_xtnq0"]
+[ext_resource type="PackedScene" uid="uid://0f04drfu63ht" path="res://level_1b.tscn" id="7_2s0kt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_qnjxx")
@@ -113,6 +115,9 @@ texture = ExtResource("3_qnjxx")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_412rl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbfe"]
+size = Vector2(267.75, 36.5)
+
 [node name="Level1A" type="Node" unique_id=1738964985]
 
 [node name="BaseLayers" type="Node2D" parent="." unique_id=525971682]
@@ -124,35 +129,34 @@ y_sort_enabled = true
 
 [node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("2_a6my5")]
 y_sort_enabled = true
-position = Vector2(267, 105)
 target = NodePath("../Player")
 enemyCount = 2
 
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 
 [node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
-position = Vector2(-149, -246)
+position = Vector2(99, -126)
 
 [node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
-position = Vector2(-99, -912)
+position = Vector2(386, -146)
 
 [node name="Marker2D3" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1126041284]
-position = Vector2(272, -558)
+position = Vector2(496, -79)
 
 [node name="Marker2D4" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1219904591]
-position = Vector2(392, -840)
+position = Vector2(176, -504)
 
 [node name="Marker2D5" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=993186594]
-position = Vector2(515, -1207)
+position = Vector2(509, -442)
 
 [node name="Marker2D6" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=672317874]
-position = Vector2(-108, -1187)
+position = Vector2(220, -197)
 
 [node name="Marker2D7" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1638458745]
-position = Vector2(254, -215)
+position = Vector2(138, -25)
 
 [node name="Marker2D8" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1849398591]
-position = Vector2(-91, -622)
+position = Vector2(302, -21)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false
@@ -180,4 +184,13 @@ limit_top = -1606
 limit_right = 1184
 limit_bottom = 334
 
+[node name="LevelExit" type="Area2D" parent="." unique_id=641284904]
+script = ExtResource("6_xtnq0")
+outgoingLevel = ExtResource("7_2s0kt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=704189700]
+position = Vector2(524.125, -1334.25)
+shape = SubResource("RectangleShape2D_tdbfe")
+
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
