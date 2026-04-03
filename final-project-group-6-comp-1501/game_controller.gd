@@ -9,11 +9,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("pause"):
-		print("Pause working?")
 		pauseGame()
 
 func pauseGame():
-	print("Paused???")
 	get_tree().paused=true
 	$PauseMenu.visible=true
 	$DemoLevel/YsortingContainer/Player/PlayerHUD.hide()
