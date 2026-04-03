@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dolffc12i2vyf" path="res://scenes/demo/weapons/demo gun/projectile.tscn" id="1_0dmbv"]
 
 [node name="HighVelocityRound" unique_id=1277775916 instance=ExtResource("1_0dmbv")]
-collision_layer = 3
 speed = 50.0
 lifetime = 1.0
 damage = 50.0

@@ -4,14 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="2_gba4l"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_0elbr"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="3_1yc2b"]
-<<<<<<< HEAD
-=======
 <<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://dagvwb2t13kcw" path="res://scenes/final/npc/meleepenguin/melee_penguin.tscn" id="3_343tm"]
 =======
 [ext_resource type="PackedScene" uid="uid://ltlb0einkg7r" path="res://melee_cactus.tscn" id="3_343tm"]
 >>>>>>> Stashed changes
->>>>>>> 990800f2ce28a357a0400d2caa6f28ea37e62340
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_sj21m"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="7_c82i2"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="8_c82i2"]

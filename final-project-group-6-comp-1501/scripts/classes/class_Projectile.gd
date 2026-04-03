@@ -29,8 +29,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func onHit(area : Node2D) -> void:
 	#var damageTarget := _resolve_damage_target(body)
-	if area is TileMapLayer:
-		queue_free()
 	if area.has_method("onDamage"):
 		if (attack.pierces):
 			area.onDamage(attack)
