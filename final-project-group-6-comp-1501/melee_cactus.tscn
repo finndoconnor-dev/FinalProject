@@ -32,3 +32,9 @@ position = Vector2(0.9999993, 1.15)
 scale = Vector2(0.04359673, 0.043129254)
 sprite_frames = SubResource("SpriteFrames_ry2ff")
 frame_progress = 0.0
+
+[node name="NavigationAgent2D" parent="." index="2" unique_id=340184599]
+simplify_path = true
+
+[node name="PathfindingTimer" parent="." index="3" unique_id=531750241]
+wait_time = 0.5

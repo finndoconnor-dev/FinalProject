@@ -59,11 +59,12 @@ position = Vector2(13, 0)
 shape = SubResource("CircleShape2D_1yxd1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1611063569]
+simplify_path = true
 debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="pathfindingTimer" type="Timer" parent="." unique_id=2138587168]
-wait_time = 0.00999999999999999
+wait_time = 0.7
 autostart = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1915077424]

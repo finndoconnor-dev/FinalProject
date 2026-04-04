@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 upgradeController="*uid://cp8lw24e7763f"
 levelTransitionController="*uid://b2lwleq8e6a6u"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/stretch/scale=2.0
