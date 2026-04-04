@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="9_3thpo"]
 [ext_resource type="PackedScene" uid="uid://lcqwegq76wiq" path="res://scenes/final/weapons/UnicornRaygun.tscn" id="10_atopc"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="11_hvehy"]
-[ext_resource type="PackedScene" uid="uid://bngu5341u1cwh" path="res://scenes/final/levels/level 2/level_2_boss.tscn" id="12_3p0a1"]
+[ext_resource type="PackedScene" uid="uid://d18o4petxoxuw" path="res://scenes/final/levels/level 2/level_2b.tscn" id="12_3p0a1"]
 [ext_resource type="AudioStream" uid="uid://cvmebjh17otdo" path="res://assets/sounds/Dreamty ahh beat.mp3" id="13_xebsr"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="14_ihqni"]
 

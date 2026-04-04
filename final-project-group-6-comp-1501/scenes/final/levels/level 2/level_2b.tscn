@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d18o4petxoxuw"]
 
-[ext_resource type="PackedScene" uid="uid://dresvbx8vllkv" path="res://scenes/final/levels/level 2/level_2b_map.tscn" id="1_mry0b"]
+[ext_resource type="PackedScene" uid="uid://d126g3jqxyeox" path="res://scenes/final/levels/level 2/level_2b_map.tscn" id="1_mry0b"]
 [ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="2_0dfyp"]
 [ext_resource type="PackedScene" uid="uid://bkyrgytodfill" path="res://scripts/npc/MeleePenguin/RangedPenguin.tscn" id="3_pndlj"]
 [ext_resource type="PackedScene" uid="uid://bntkwxphfakws" path="res://scenes/final/npc/meleepenguin/MeleePenguin.tscn" id="4_j7r1t"]
