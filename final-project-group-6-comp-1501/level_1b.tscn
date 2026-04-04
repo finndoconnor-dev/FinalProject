@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://e7qvujpqym2e" path="res://scenes/demo/level/level_1s_2.tscn" id="1_aorb8"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_i1c3o"]
+[ext_resource type="PackedScene" uid="uid://wwc1wexj26ar" path="res://scenes/final/npc/util/AmbushSpawner.tscn" id="3_j0aya"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_vqba4"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_52c42"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="4_aorb8"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_iedad"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_doml7"]
 [ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="7_n0lhc"]
@@ -129,7 +131,6 @@ y_sort_enabled = true
 
 [node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("2_i1c3o")]
 y_sort_enabled = true
-position = Vector2(267, 105)
 target = NodePath("../Player")
 enemyCount = 2
 
@@ -140,6 +141,33 @@ position = Vector2(35, 55)
 
 [node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
 position = Vector2(104, 55)
+
+[node name="AmbushSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 instance=ExtResource("3_j0aya")]
+position = Vector2(-354, 3)
+
+[node name="HoardSpawner8" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=125490789 instance=ExtResource("4_aorb8")]
+position = Vector2(934, -1294)
+
+[node name="HoardSpawner7" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=824797294 instance=ExtResource("4_aorb8")]
+position = Vector2(49, -1382)
+
+[node name="HoardSpawner6" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306757075 instance=ExtResource("4_aorb8")]
+position = Vector2(1098, -1083)
+
+[node name="HoardSpawner5" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1635609556 instance=ExtResource("4_aorb8")]
+position = Vector2(763, -730)
+
+[node name="HoardSpawner4" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=159116727 instance=ExtResource("4_aorb8")]
+position = Vector2(88, -529)
+
+[node name="HoardSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=302058105 instance=ExtResource("4_aorb8")]
+position = Vector2(846, 325)
+
+[node name="HoardSpawner2" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1400320371 instance=ExtResource("4_aorb8")]
+position = Vector2(699, -52)
+
+[node name="HoardSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1487143181 instance=ExtResource("4_aorb8")]
+position = Vector2(232, -69)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false
