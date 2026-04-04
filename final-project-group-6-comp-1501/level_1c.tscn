@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="1_4eg4a"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_5qoar"]
+[ext_resource type="PackedScene" uid="uid://wwc1wexj26ar" path="res://scenes/final/npc/util/AmbushSpawner.tscn" id="3_5qoar"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_mvomh"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_w5mc2"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_csd8n"]
@@ -116,7 +117,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_412rl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4eg4a"]
-size = Vector2(251.69287, 64)
+size = Vector2(395.3133, 56.510864)
 
 [node name="Level1C" type="Node" unique_id=1738964985]
 
@@ -129,7 +130,6 @@ y_sort_enabled = true
 
 [node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("2_5qoar")]
 y_sort_enabled = true
-position = Vector2(267, 105)
 target = NodePath("../Player")
 enemyCount = 2
 
@@ -140,6 +140,15 @@ position = Vector2(35, 55)
 
 [node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
 position = Vector2(104, 55)
+
+[node name="AmbushSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 instance=ExtResource("3_5qoar")]
+position = Vector2(498, -1133)
+
+[node name="AmbushSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1718960819 instance=ExtResource("3_5qoar")]
+position = Vector2(801, -1985)
+
+[node name="AmbushSpawner2" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=94944363 instance=ExtResource("3_5qoar")]
+position = Vector2(731, -1146)
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false
@@ -152,7 +161,7 @@ tile_map_data = PackedByteArray("AAAhAB0AAAADAAEAAAAbABoAAAACAAMAAAAqAA8AAAACAAM
 tile_set = SubResource("TileSet_iv1bh")
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_w5mc2")]
-position = Vector2(456, 593)
+position = Vector2(1027, 738)
 speed = 100
 gunController = NodePath("EquipSlot")
 metadata/_edit_group_ = true
@@ -162,18 +171,18 @@ script = ExtResource("5_csd8n")
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
-limit_left = -315
-limit_top = -1930
-limit_right = 1249
-limit_bottom = 685
+limit_left = -448
+limit_top = -5262
+limit_right = 3346
+limit_bottom = 836
 
 [node name="LevelExit" type="Area2D" parent="." unique_id=2050373598]
 script = ExtResource("6_ax3ki")
 outgoingLevel = ExtResource("7_g4o4k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1841992639]
-position = Vector2(2055.1392, -4761.814)
-rotation = 0.6981317
+position = Vector2(1299.9258, -3184.6592)
+rotation = 0.2443461
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_4eg4a")
 
