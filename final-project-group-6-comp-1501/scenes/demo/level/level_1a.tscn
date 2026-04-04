@@ -5,8 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_qnjxx"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_0k1us"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_37g17"]
+[ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_2s0kt"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_xtnq0"]
-[ext_resource type="PackedScene" uid="uid://0f04drfu63ht" path="res://level_1b.tscn" id="7_2s0kt"]
+[ext_resource type="PackedScene" path="res://level_1b.tscn" id="7_2s0kt"]
+[ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="9_idpkh"]
+[ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="10_a6my5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_qnjxx")
@@ -176,6 +179,7 @@ metadata/_edit_group_ = true
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
 script = ExtResource("5_37g17")
+gunScenes = Array[PackedScene]([ExtResource("6_2s0kt")])
 
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
@@ -191,6 +195,11 @@ outgoingLevel = ExtResource("7_2s0kt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=704189700]
 position = Vector2(524.125, -1334.25)
 shape = SubResource("RectangleShape2D_tdbfe")
+
+[node name="WeaponPickup" parent="." unique_id=174857649 instance=ExtResource("9_idpkh")]
+z_index = 10
+position = Vector2(559, -477)
+weaponScene = ExtResource("10_a6my5")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
