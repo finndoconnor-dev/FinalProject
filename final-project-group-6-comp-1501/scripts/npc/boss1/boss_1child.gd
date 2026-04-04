@@ -25,7 +25,7 @@ signal attackStarted(state: HandState)
 @export var dashDelay := 0.5
 @export var dashSpeed := 280
 @export var trackDuration := 3
-@export var dashDuration := 3
+@export var dashDuration := 1
 @export var projectileCount := 7
 @export var projectileInterval := 0.22
 @export var projectileSpread := 0.22
@@ -35,6 +35,7 @@ signal attackStarted(state: HandState)
 @export var brokenAttackCooldownMin := 2.0
 @export var brokenAttackCooldownMax := 5.0
 @export var brokenBarrageProjectileInterval := 0.08
+@export_range(0.0, 1.0) var dashAttackChance := 0.25
 @export var dashDamage := 3.0
 @export var maxHP : float = 1000.0
 @export var immunityFrames := 0.01
@@ -259,10 +260,10 @@ func _update_hover(delta: float) -> void:
 	if attackCooldown > 0.0:
 		return
 
-	if randf() < 0.5:
-		transition_to(HandState.PROJECTILE)
-	else:
+	if randf() < dashAttackChance:
 		transition_to(HandState.TRACKING)
+	else:
+		transition_to(HandState.PROJECTILE)
 
 
 func _update_projectile_attack(delta: float) -> void:

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://erhx8vcfmqy2"]
+
+[ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="1_uqk3g"]
+[ext_resource type="Script" uid="uid://c35b0yvs84i3p" path="res://scripts/npc/boss1/boss_1_shot.gd" id="2_4dxui"]
+[ext_resource type="Texture2D" uid="uid://c8r2ljjscscx" path="res://assets/pictures/weapons/RifleAmmoBig.png" id="3_w7fkj"]
+
+[node name="BossRocket" unique_id=1277775916 instance=ExtResource("1_uqk3g")]
+script = ExtResource("2_4dxui")
+speed = 3.5
+lifetime = 12.0
+damage = 2.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=1218213356]
+scale = Vector2(1.0625, 1.0625)
+texture = ExtResource("3_w7fkj")

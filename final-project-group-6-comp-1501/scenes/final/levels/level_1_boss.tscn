@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_ettai"]
 [ext_resource type="PackedScene" uid="uid://c541jj0x52347" path="res://scenes/final/levels/level 2/level_2c_map.tscn" id="7_5vw1c"]
 [ext_resource type="PackedScene" uid="uid://bs2tt8xtb1yag" path="res://scenes/final/npc/boss1/boss_1.tscn" id="8_0483b"]
+[ext_resource type="PackedScene" uid="uid://b6ic05j4s6s56" path="res://scenes/final/levels/level 2/level_2a.tscn" id="9_1jx45"]
 [ext_resource type="AudioStream" uid="uid://cflnpxt4b73ff" path="res://assets/sounds/creepty ahh beat inst..mp3" id="9_hv2j3"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="10_dyblp"]
 
@@ -56,6 +57,7 @@ shape = SubResource("RectangleShape2D_343tm")
 
 [node name="Boss1" parent="." unique_id=1882365501 instance=ExtResource("8_0483b")]
 position = Vector2(-18, -448)
+outgoingLevel = ExtResource("9_1jx45")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1691311664]
 stream = ExtResource("9_hv2j3")

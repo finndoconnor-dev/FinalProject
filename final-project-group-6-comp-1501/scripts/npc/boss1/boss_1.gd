@@ -9,6 +9,7 @@ enum Phase {
 
 signal phaseChanged(previousPhase: Phase, newPhase: Phase)
 
+@export var outgoingLevel : PackedScene
 @export var maxHP := 10000
 @export var immunityFrames := 0.01
 @export var finalPhaseAttackCooldown := 1.0
@@ -59,7 +60,10 @@ func onDamage(inc: Attack) -> bool:
 
 
 func onDeath() -> void:
-	queue_free()
+	await get_tree().create_timer(2.0).timeout
+	var inv = get_tree().get_first_node_in_group("gunslot")
+	inv.exportToLevelTransition()
+	get_tree().change_scene_to_packed(outgoingLevel)
 
 
 func _update_phase() -> void:
