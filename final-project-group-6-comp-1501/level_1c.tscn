@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_csd8n"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_ax3ki"]
 [ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="7_g4o4k"]
+[ext_resource type="PackedScene" path="res://scenes/final/levels/level_1_boss.tscn" id="9_csd8n"]
 [ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="9_g4o4k"]
 [ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="10_4mwhy"]
 
@@ -205,7 +206,7 @@ limit_bottom = 836
 
 [node name="LevelExit" type="Area2D" parent="." unique_id=2050373598]
 script = ExtResource("6_ax3ki")
-outgoingLevel = ExtResource("7_g4o4k")
+outgoingLevel = ExtResource("9_csd8n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1841992639]
 position = Vector2(1299.9258, -3184.6592)
