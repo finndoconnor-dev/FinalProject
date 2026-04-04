@@ -14,10 +14,14 @@ signal attack_finished()
 @export var beamWindup := 0.5
 @export var beamLinger := 0.5
 @export var beamDamage := 20.0
+@export var offAnimationName := "off"
+@export var chargingAnimationName := "charging"
+@export var chargedAnimationName := "charged"
+@export var fireAnimationName := "fire"
 
 @onready var beamHitBox: Area2D = $BeamHitBox
 @onready var beamHitBoxShape: CollisionShape2D = $BeamHitBox/CollisionShape2D
-@onready var beamVisual: Sprite2D = $Beam
+@onready var beamVisual: AnimatedSprite2D = $Beam
 @onready var beamAudio: AudioStreamPlayer2D = $BeamFire
 
 var beamState := BeamState.INACTIVE
@@ -25,6 +29,7 @@ var beamTimer := 0.0
 var beamLockedRotation := 0.0
 var beamAttack: Attack = Attack.new()
 var beamHitTargets: Array[Node2D] = []
+var chargedVisualShown := false
 
 
 func _ready() -> void:
@@ -44,13 +49,12 @@ func _physics_process(delta: float) -> void:
 		BeamState.WINDUP:
 			beamTimer -= delta
 			global_rotation = beamLockedRotation
-			_update_beam_visual(false)
+			_update_windup_visual()
 			if beamTimer <= 0.0:
 				_start_beam_firing()
 		BeamState.FIRING:
 			beamTimer -= delta
 			global_rotation = beamLockedRotation
-			_update_beam_visual(true)
 			_damage_players_in_beam()
 			if beamTimer <= 0.0:
 				_finish_beam_attack()
@@ -68,10 +72,11 @@ func trigger_attack() -> void:
 	beamLockedRotation = global_position.angle_to_point(target_position)
 	global_rotation = beamLockedRotation
 	beamState = BeamState.WINDUP
-	beamTimer = beamWindup
+	beamTimer = _get_windup_duration()
 	beamHitTargets.clear()
+	chargedVisualShown = false
 	_set_beam_hitbox_enabled(false)
-	_update_beam_visual(false)
+	_play_beam_animation(chargingAnimationName)
 	if is_instance_valid(beamAudio):
 		beamAudio.play()
 	attack_started.emit()
@@ -81,6 +86,7 @@ func cancel_attack() -> void:
 	beamState = BeamState.INACTIVE
 	beamTimer = 0.0
 	beamHitTargets.clear()
+	chargedVisualShown = false
 	_set_beam_hitbox_enabled(false)
 	_reset_beam_visual()
 
@@ -91,10 +97,11 @@ func is_busy() -> bool:
 
 func _start_beam_firing() -> void:
 	beamState = BeamState.FIRING
-	beamTimer = beamLinger
+	beamTimer = _get_fire_duration()
 	beamHitTargets.clear()
+	chargedVisualShown = false
 	_set_beam_hitbox_enabled(true)
-	_update_beam_visual(true)
+	_play_beam_animation(fireAnimationName)
 	_damage_players_in_beam()
 
 
@@ -102,6 +109,7 @@ func _finish_beam_attack() -> void:
 	beamState = BeamState.INACTIVE
 	beamTimer = 0.0
 	beamHitTargets.clear()
+	chargedVisualShown = false
 	_set_beam_hitbox_enabled(false)
 	_reset_beam_visual()
 	attack_finished.emit()
@@ -133,31 +141,46 @@ func _damage_players_in_beam() -> void:
 			beamHitTargets.append(target)
 
 
-func _update_beam_visual(is_firing: bool) -> void:
-	if not is_instance_valid(beamVisual):
+func _update_windup_visual() -> void:
+	if chargedVisualShown:
 		return
 
-	beamVisual.visible = true
-	if beamVisual.vframes <= 0:
-		return
-
-	var progress := 0.0
-	if is_firing:
-		if beamLinger > 0.0:
-			progress = 1.0 - (beamTimer / beamLinger)
-	else:
-		if beamWindup > 0.0:
-			progress = 1.0 - (beamTimer / beamWindup)
-
-	beamVisual.frame = clampi(int(progress * float(beamVisual.vframes - 1)), 0, beamVisual.vframes - 1)
+	if beamTimer <= _get_charged_duration():
+		chargedVisualShown = true
+		_play_beam_animation(chargedAnimationName)
 
 
 func _reset_beam_visual() -> void:
 	if not is_instance_valid(beamVisual):
 		return
 
-	beamVisual.visible = false
-	beamVisual.frame = 0
+	beamVisual.visible = true
+	_play_beam_animation(offAnimationName)
+
+
+func _play_beam_animation(animationName: String) -> void:
+	if not is_instance_valid(beamVisual):
+		return
+	if beamVisual.sprite_frames == null:
+		return
+	if not beamVisual.sprite_frames.has_animation(animationName):
+		return
+	if beamVisual.animation == animationName and beamVisual.is_playing():
+		return
+
+	beamVisual.play(animationName)
+
+
+func _get_windup_duration() -> float:
+	return maxf(beamWindup, 1.0)
+
+
+func _get_charged_duration() -> float:
+	return maxf(_get_windup_duration() - 1.0, 0.0)
+
+
+func _get_fire_duration() -> float:
+	return 1.0
 
 
 func _get_player() -> Node2D:
