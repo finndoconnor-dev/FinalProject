@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="3_qqibm"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="4_cyvx7"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="5_uqdpf"]
-[ext_resource type="PackedScene" uid="uid://dubj5acfe174x" path="res://scenes/final/levels/level 2/level_2b.tscn" id="6_jtglk"]
+[ext_resource type="PackedScene" uid="uid://c541jj0x52347" path="res://scenes/final/levels/level 2/level_2c_map.tscn" id="6_jtglk"]
 [ext_resource type="PackedScene" uid="uid://bs2tt8xtb1yag" path="res://scenes/final/npc/boss1/boss_1.tscn" id="8_cyvx7"]
 [ext_resource type="AudioStream" uid="uid://cflnpxt4b73ff" path="res://assets/sounds/creepty ahh beat inst..mp3" id="9_cyvx7"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="10_uqdpf"]
