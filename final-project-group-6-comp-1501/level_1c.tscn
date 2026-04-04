@@ -68,8 +68,8 @@ enemyCount = 5
 timeBetweenSpawns = 1.0
 
 [node name="HoardSpawner12" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1470043747 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
-position = Vector2(718, -1147)
-rotation = 0.6981317
+position = Vector2(568, -1202)
+rotation = 1.8151424
 scale = Vector2(5, 3)
 rareEnemy = ExtResource("4_csd8n")
 commonEnemy = ExtResource("5_ax3ki")
@@ -188,6 +188,7 @@ timeBetweenSpawns = 1.0
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_w5mc2")]
 position = Vector2(1027, 738)
+collision_layer = 3
 speed = 100
 gunController = NodePath("EquipSlot")
 metadata/_edit_group_ = true
