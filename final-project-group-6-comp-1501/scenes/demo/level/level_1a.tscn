@@ -2,8 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://157ks7v8mgv" path="res://scenes/demo/level/level_1S1.tscn" id="1_idpkh"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_a6my5"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="3_0k1us"]
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_qnjxx"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_0k1us"]
+[ext_resource type="PackedScene" uid="uid://bhdw3rhm6pq8" path="res://scenes/demo/enemy/RangedCactus/cactusEnemy.tscn" id="4_37g17"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_37g17"]
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_2s0kt"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_xtnq0"]
@@ -160,6 +162,13 @@ position = Vector2(138, -25)
 
 [node name="Marker2D8" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1849398591]
 position = Vector2(302, -21)
+
+[node name="HoardSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(299, -341)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("4_37g17")
+target = NodePath("../../../Player")
+enemyCount = 10
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false

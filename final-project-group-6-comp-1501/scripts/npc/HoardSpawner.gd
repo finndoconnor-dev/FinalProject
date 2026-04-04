@@ -2,7 +2,7 @@ extends Node2D
 
 @export var rareEnemy : PackedScene
 @export var commonEnemy : PackedScene
-#@export var target : Node2D
+@export var target : Node2D
 #@onready var spawnPoints=$SpawnPointsStage1.get_children()
 @onready var spawnPosition = $Marker2D
 @onready var triggerArea = $TriggerRadius
@@ -25,6 +25,7 @@ func spawnEnemies():
 		print("Attempting to spawn enemy ",i)
 		#var enemy = enemyPrefabArray[randi_range(0,enemyPrefabArray.size()-1)].instantiate() #spwans a random enemy from the array
 		var enemy = pickEnemy().instantiate()
+		if ("player" in enemy): enemy.player = target
 		spawn_parent.add_child(enemy)
 		if enemy is Node2D:
 			enemy.global_position = get_random_spawn_position()
