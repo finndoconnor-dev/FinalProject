@@ -58,6 +58,11 @@ func _physics_process(delta: float) -> void:
 	if hitpoints <= 0:
 		npcHasDied.emit()
 		queue_free()
+		
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = true # facing right
+	elif velocity.x < 0:
+		$AnimatedSprite2D.flip_h = false    # facing left
 	
 #updates the path based on the timer if it becomes to resource intensive then we can limit the timer
 func makepath() -> void:
