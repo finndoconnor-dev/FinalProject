@@ -1,129 +1,22 @@
-[gd_scene format=4 uid="uid://ctkkm3y82m85o"]
+[gd_scene format=3 uid="uid://ctkkm3y82m85o"]
 
-[ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="1_4eg4a"]
 [ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_5qoar"]
-[ext_resource type="PackedScene" uid="uid://wwc1wexj26ar" path="res://scenes/final/npc/util/AmbushSpawner.tscn" id="3_5qoar"]
-[ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_mvomh"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="3_w5mc2"]
+[ext_resource type="PackedScene" uid="uid://bhdw3rhm6pq8" path="res://scenes/demo/enemy/RangedCactus/cactusEnemy.tscn" id="4_csd8n"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_w5mc2"]
+[ext_resource type="PackedScene" uid="uid://ltlb0einkg7r" path="res://melee_cactus.tscn" id="5_ax3ki"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_csd8n"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_ax3ki"]
-[ext_resource type="PackedScene" uid="uid://0f04drfu63ht" path="res://level_1b.tscn" id="7_g4o4k"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
-texture = ExtResource("3_mvomh")
-1:4/0 = 0
-1:3/0 = 0
-4:4/0 = 0
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:3/0 = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:4/0 = 0
-5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:3/0 = 0
-5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:4/0 = 0
-6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:3/0 = 0
-6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-10:2/0 = 0
-9:2/0 = 0
-8:2/0 = 0
-7:2/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-10:4/0 = 0
-9:4/0 = 0
-8:4/0 = 0
-7:4/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-10:6/0 = 0
-9:6/0 = 0
-8:6/0 = 0
-7:6/0 = 0
-4:7/size_in_atlas = Vector2i(1, 2)
-4:7/0 = 0
-4:7/0/texture_origin = Vector2i(0, 8)
-4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:7/size_in_atlas = Vector2i(1, 2)
-3:7/0 = 0
-3:7/0/texture_origin = Vector2i(0, 8)
-3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:7/size_in_atlas = Vector2i(1, 2)
-2:7/0 = 0
-2:7/0/texture_origin = Vector2i(0, 8)
-2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:7/size_in_atlas = Vector2i(1, 2)
-1:7/0 = 0
-1:7/0/texture_origin = Vector2i(0, 8)
-1:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:5/size_in_atlas = Vector2i(1, 2)
-1:5/0 = 0
-1:5/0/texture_origin = Vector2i(0, 8)
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:5/size_in_atlas = Vector2i(1, 2)
-2:5/0 = 0
-2:5/0/texture_origin = Vector2i(0, 8)
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:5/size_in_atlas = Vector2i(2, 2)
-3:5/0 = 0
-3:5/0/texture_origin = Vector2i(0, 8)
-3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:5/size_in_atlas = Vector2i(2, 2)
-5:5/0 = 0
-5:5/0/texture_origin = Vector2i(0, 8)
-5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:1/size_in_atlas = Vector2i(1, 2)
-6:1/0 = 0
-6:1/0/texture_origin = Vector2i(0, 8)
-6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:1/size_in_atlas = Vector2i(3, 2)
-3:1/0 = 0
-3:1/0/texture_origin = Vector2i(0, 8)
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:3/size_in_atlas = Vector2i(2, 2)
-2:3/0 = 0
-2:3/0/texture_origin = Vector2i(0, 8)
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:1/size_in_atlas = Vector2i(1, 2)
-2:1/0 = 0
-2:1/0/texture_origin = Vector2i(0, 8)
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:1/size_in_atlas = Vector2i(1, 2)
-1:1/0 = 0
-1:1/0/texture_origin = Vector2i(0, 8)
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:7/size_in_atlas = Vector2i(1, 2)
-6:7/animation_columns = 5
-6:7/animation_frame_0/duration = 1.0
-6:7/animation_frame_1/duration = 1.0
-6:7/animation_frame_2/duration = 1.0
-6:7/animation_frame_3/duration = 1.0
-6:7/animation_frame_4/duration = 1.0
-6:7/0 = 0
-6:7/0/texture_origin = Vector2i(0, 8)
-6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_iv1bh"]
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_412rl")
+[ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="7_g4o4k"]
+[ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="9_g4o4k"]
+[ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="10_4mwhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4eg4a"]
 size = Vector2(395.3133, 56.510864)
 
 [node name="Level1C" type="Node" unique_id=1738964985]
 
-[node name="BaseLayers" type="Node2D" parent="." unique_id=525971682]
-
-[node name="Level1S3" parent="." unique_id=272578069 instance=ExtResource("1_4eg4a")]
+[node name="Level1S3" parent="." unique_id=272578069 instance=ExtResource("7_g4o4k")]
 
 [node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]
 y_sort_enabled = true
@@ -135,30 +28,163 @@ enemyCount = 2
 
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 
-[node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
-position = Vector2(35, 55)
+[node name="HoardSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(511, 383)
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
-position = Vector2(104, 55)
+[node name="HoardSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=761472248 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1196, -201.00006)
+rotation = -0.58119464
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="AmbushSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 instance=ExtResource("3_5qoar")]
-position = Vector2(498, -1133)
+[node name="HoardSpawner5" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1775591767 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1163, -610.99994)
+rotation = 0.6981317
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="AmbushSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1718960819 instance=ExtResource("3_5qoar")]
-position = Vector2(801, -1985)
+[node name="HoardSpawner8" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1560299486 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(718, -1147)
+rotation = 0.6981317
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="AmbushSpawner2" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=94944363 instance=ExtResource("3_5qoar")]
-position = Vector2(731, -1146)
+[node name="HoardSpawner12" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1470043747 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(718, -1147)
+rotation = 0.6981317
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
-visible = false
-y_sort_enabled = true
+[node name="HoardSpawner9" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1328788358 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(192.00003, -1795.9999)
+rotation = -3.3754668
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
-[node name="Decorations" type="TileMapLayer" parent="YsortingContainer/MapDecorations" unique_id=1023302603]
-visible = false
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAhAB0AAAADAAEAAAAbABoAAAACAAMAAAAqAA8AAAACAAMAAAAtAA4AAAACAAMAAAAwABAAAAACAAMAAAAsABIAAAAGAAEAAAAyABYAAAAIAAEAAAAuABcAAAAHAAEAAAAwABYAAAAHAAEAAAAwABcAAAAHAAEAAAAxABUAAAAHAAEAAAAsABcAAAAFAAQAAAAqABUAAAAFAAQAAAAsABUAAAAFAAQAAAAqABcAAAAFAAQAAAAoAB8AAAACAAEAAAAqAB8AAAACAAEAAAAqAB4AAAACAAEAAAApABwAAAACAAEAAAAoABwAAAACAAEAAAAoAB4AAAACAAEAAAAtAB0AAAACAAEAAAAsAB8AAAACAAEAAAAeABgAAAAGAAcAAAA=")
-tile_set = SubResource("TileSet_iv1bh")
+[node name="HoardSpawner13" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=889951386 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(856, -2325)
+rotation = -3.200934
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner14" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=815967798 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(93.00009, -2933)
+rotation = -2.2933626
+scale = Vector2(12, 5)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 15
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner15" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=291887420 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1541, -2760.9998)
+rotation = -3.9217548
+scale = Vector2(12, 5)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 15
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner16" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=2044233793 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(896, -3010)
+rotation = -4.502949
+scale = Vector2(12, 5)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 15
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner10" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=841369063 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(993.99994, -1840)
+rotation = -3.143338
+scale = Vector2(7, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner11" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=424013637 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(-324, -2270)
+rotation = -3.143338
+scale = Vector2(15, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner7" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1972361215 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(109.000015, -788.00006)
+rotation = 0.45029494
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner6" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=293102172 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(598, -455.99997)
+rotation = 0.143117
+scale = Vector2(6, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner4" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=318199941 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(412, -63)
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner2" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=106370289 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1146.0001, 292)
+rotation = -0.51487213
+scale = Vector2(10, 5)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_w5mc2")]
 position = Vector2(1027, 738)
@@ -172,8 +198,8 @@ script = ExtResource("5_csd8n")
 [node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
 zoom = Vector2(1.5, 1.5)
 limit_left = -448
-limit_top = -5262
-limit_right = 3346
+limit_top = -3401
+limit_right = 1948
 limit_bottom = 836
 
 [node name="LevelExit" type="Area2D" parent="." unique_id=2050373598]
@@ -185,6 +211,10 @@ position = Vector2(1299.9258, -3184.6592)
 rotation = 0.2443461
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_4eg4a")
+
+[node name="WeaponPickup" parent="." unique_id=174857649 instance=ExtResource("9_g4o4k")]
+position = Vector2(693, -904)
+weaponScene = ExtResource("10_4mwhy")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]

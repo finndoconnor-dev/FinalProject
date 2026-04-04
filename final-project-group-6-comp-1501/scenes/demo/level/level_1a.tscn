@@ -6,12 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://fhjjglwwg6ec" path="res://assets/pictures/tilesets/forest_ [resources].png" id="3_qnjxx"]
 [ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_0k1us"]
 [ext_resource type="PackedScene" uid="uid://bhdw3rhm6pq8" path="res://scenes/demo/enemy/RangedCactus/cactusEnemy.tscn" id="4_37g17"]
+[ext_resource type="PackedScene" uid="uid://ltlb0einkg7r" path="res://melee_cactus.tscn" id="5_0k1us"]
 [ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_37g17"]
 [ext_resource type="PackedScene" uid="uid://c8iuv85vvj6c0" path="res://scenes/final/weapons/SquirrelPistol.tscn" id="6_2s0kt"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_xtnq0"]
-[ext_resource type="PackedScene" path="res://level_1b.tscn" id="7_2s0kt"]
-[ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="9_idpkh"]
-[ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="10_a6my5"]
+[ext_resource type="PackedScene" uid="uid://0f04drfu63ht" path="res://level_1b.tscn" id="7_2s0kt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_412rl"]
 texture = ExtResource("3_qnjxx")
@@ -139,36 +138,69 @@ enemyCount = 2
 
 [node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
 
-[node name="Marker2D" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1412478197]
-position = Vector2(99, -126)
-
-[node name="Marker2D2" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=595375726]
-position = Vector2(386, -146)
-
-[node name="Marker2D3" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1126041284]
-position = Vector2(496, -79)
-
-[node name="Marker2D4" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1219904591]
-position = Vector2(176, -504)
-
-[node name="Marker2D5" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=993186594]
-position = Vector2(509, -442)
-
-[node name="Marker2D6" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=672317874]
-position = Vector2(220, -197)
-
-[node name="Marker2D7" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1638458745]
-position = Vector2(138, -25)
-
-[node name="Marker2D8" type="Marker2D" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1849398591]
-position = Vector2(302, -21)
-
-[node name="HoardSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
-position = Vector2(299, -341)
+[node name="HoardSpawner4" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(531.00006, -83)
+scale = Vector2(10, 5)
 rareEnemy = ExtResource("4_37g17")
-commonEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
 target = NodePath("../../../Player")
 enemyCount = 10
+timeBetweenSpawns = 2.0
+
+[node name="HoardSpawner" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1234729999 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(65.00001, -77)
+scale = Vector2(10, 5)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 2.0
+
+[node name="HoardSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=379311312 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(474, -406)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 2.0
+
+[node name="HoardSpawner2" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1943607191 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(164, -516)
+rotation = 0.8150688
+scale = Vector2(5, 1)
+skew = 0.08726646
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 2.0
+
+[node name="HoardSpawner7" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1199397760 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(542, -1130)
+scale = Vector2(8, 8)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 1.5
+
+[node name="HoardSpawner6" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1790024436 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(954, -1061)
+scale = Vector2(15, 7)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 1.5
+
+[node name="HoardSpawner5" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=789797277 node_paths=PackedStringArray("target") instance=ExtResource("3_0k1us")]
+position = Vector2(138, -1077)
+scale = Vector2(10, 7)
+rareEnemy = ExtResource("4_37g17")
+commonEnemy = ExtResource("5_0k1us")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 1.5
 
 [node name="MapDecorations" type="Node2D" parent="YsortingContainer" unique_id=218956306]
 visible = false
@@ -198,17 +230,13 @@ limit_right = 1184
 limit_bottom = 334
 
 [node name="LevelExit" type="Area2D" parent="." unique_id=641284904]
+position = Vector2(16, 19)
 script = ExtResource("6_xtnq0")
 outgoingLevel = ExtResource("7_2s0kt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=704189700]
 position = Vector2(524.125, -1334.25)
 shape = SubResource("RectangleShape2D_tdbfe")
-
-[node name="WeaponPickup" parent="." unique_id=174857649 instance=ExtResource("9_idpkh")]
-z_index = 10
-position = Vector2(559, -477)
-weaponScene = ExtResource("10_a6my5")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]

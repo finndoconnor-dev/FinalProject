@@ -3,6 +3,9 @@
 [sub_resource type="TileMapPattern" id="TileMapPattern_scbsh"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 3, 1, 65537, 0, 65537, 65537, 3, 2, 65537, 0, 65538, 65537, 3, 3, 65537, 0, 65539, 65537, 3, 4, 65537, 0, 65540, 65537, 3, 5, 65537, 0, 65541, 65537, 3, 6, 262145, 0, 65542, 262145, 3)
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_gjyae"]
+tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 2, 131072, 1, 2, 196608, 1, 3, 1, 65537, 0, 65537, 131073, 2, 131073, 65537, 5, 196609, 65537, 3, 2, 262145, 0, 65538, 262145, 2, 131074, 262145, 2, 196610, 262145, 3)
+
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyae"]
 vertices = PackedVector2Array(7.5, 7.5, -7.5, 7.5, -7.5, -7.5, 7.5, -7.5)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
@@ -28,6 +31,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-7.5, -7.5, 7.5, -7.5, 
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b8nou"]
+vertices = PackedVector2Array(7.5, 7.5, -7.5, 7.5, -7.5, -7.5, 7.5, -7.5)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-7.5, -7.5, 7.5, -7.5, 7.5, 7.5, -7.5, 7.5)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_scbsh"]
 vertices = PackedVector2Array(7.5, 7.5, -7.5, 7.5, -7.5, -7.5, 7.5, -7.5)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-7.5, -7.5, 7.5, -7.5, 7.5, 7.5, -7.5, 7.5)])
@@ -334,6 +343,7 @@ texture_region_size = Vector2i(15, 15)
 15:5/0 = 0
 15:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.5, -7.5, 1.079154, -7.5, 0.8992944, 7.5, -7.5, 7.5)
 16:5/0 = 0
+16:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_scbsh")
 17:5/0 = 0
 17:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.17985964, -7.5, 7.5, -7.5, 7.5, 7.5, 0.35971832, 7.5)
 18:5/0 = 0
@@ -381,3 +391,4 @@ physics_layer_1/collision_mask = 2
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_ld7kg")
 pattern_0 = SubResource("TileMapPattern_scbsh")
+pattern_1 = SubResource("TileMapPattern_gjyae")
