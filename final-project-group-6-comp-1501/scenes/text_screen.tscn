@@ -15,17 +15,16 @@ outgoing = ExtResource("2_2wjlwm")
 
 [node name="Continue" type="Button" parent="." unique_id=1899121411]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -45.5
-offset_top = -22.0
+offset_top = -44.0
 offset_right = 45.5
-offset_bottom = 22.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 text = "Continue
 "
 
@@ -36,7 +35,7 @@ anchor_right = 1.0
 offset_top = -2.0
 offset_bottom = 176.0
 grow_horizontal = 2
-text = "After I crash landed on this planet I can't seem to get away from these damn monsters, good thing I learned to click to shoot and hold to make it easier. My legs aren't as good as they used to be I need to use \"WASD\" to walk around now."
+text = "After I crash landed on this planet I can't seem to get away from these damn monsters, good thing I learned to click to shoot and hold to make it easier. My legs aren't as good as they used to be I need to use \"WASD\" to walk around now. I need to find my dog. That thing must've taken it all the way to the arctic... I'll need to navigate my way through the wastelands to get there, first."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
