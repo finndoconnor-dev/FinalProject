@@ -1,0 +1,205 @@
+[gd_scene format=3 uid="uid://ctkkm3y82m85o"]
+
+[ext_resource type="PackedScene" uid="uid://c2vr6kr0xxj3j" path="res://scenes/demo/enemy/enemy_controller.tscn" id="2_5qoar"]
+[ext_resource type="PackedScene" uid="uid://bkrll0ac32d2r" path="res://scenes/final/npc/util/HoardSpawner.tscn" id="3_w5mc2"]
+[ext_resource type="PackedScene" uid="uid://bhdw3rhm6pq8" path="res://scenes/demo/enemy/RangedCactus/cactusEnemy.tscn" id="4_csd8n"]
+[ext_resource type="PackedScene" uid="uid://bnq2gdjipp61" path="res://scenes/demo/player/player.tscn" id="4_w5mc2"]
+[ext_resource type="PackedScene" uid="uid://ltlb0einkg7r" path="res://melee_cactus.tscn" id="5_ax3ki"]
+[ext_resource type="Script" uid="uid://baagcimdhylse" path="res://scripts/weapons/utils/gun_slot.gd" id="5_csd8n"]
+[ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_ax3ki"]
+[ext_resource type="PackedScene" uid="uid://iuxcbb7kbjjc" path="res://level_1s_3.tscn" id="7_g4o4k"]
+[ext_resource type="PackedScene" uid="uid://bmnkwb5xlgibj" path="res://scenes/final/levels/level_1_boss.tscn" id="9_csd8n"]
+[ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="9_g4o4k"]
+[ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="10_4mwhy"]
+[ext_resource type="AudioStream" uid="uid://cv46xcu636j52" path="res://assets/sounds/joyf.mp3" id="12_g4o4k"]
+[ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="13_4mwhy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eg4a"]
+size = Vector2(395.3133, 56.510864)
+
+[node name="Level1C" type="Node" unique_id=1738964985]
+
+[node name="Level1S3" parent="." unique_id=272578069 instance=ExtResource("7_g4o4k")]
+
+[node name="YsortingContainer" type="Node2D" parent="." unique_id=463788156]
+y_sort_enabled = true
+
+[node name="EnemyController" parent="YsortingContainer" unique_id=421038925 node_paths=PackedStringArray("target") instance=ExtResource("2_5qoar")]
+y_sort_enabled = true
+target = NodePath("../Player")
+enemyCount = 2
+
+[node name="SpawnPointsStage1" type="Node2D" parent="YsortingContainer/EnemyController" unique_id=1924742256]
+
+[node name="HoardSpawner3" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=761472248 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1111, -91.00001)
+rotation = -0.7993608
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner5" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1775591767 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(753, -852)
+rotation = -0.16580628
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner8" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1560299486 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(943.00006, -1271)
+rotation = 2.469641
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner11" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=306356326 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(619.00006, -1325.0001)
+rotation = 1.2740904
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner12" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1470043747 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(348.00003, -1142.0001)
+rotation = 0.65100783
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner9" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1328788358 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(313.99997, -2096)
+rotation = -3.3754668
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner15" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=797424329 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(236.00003, -1754.0001)
+rotation = -4.77173
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner14" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=799947967 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1406, -1948)
+rotation = -3.3754668
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner13" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=889951386 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(1073, -2069)
+rotation = -3.200934
+scale = Vector2(5, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner10" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=841369063 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(886.00006, -1833)
+rotation = -3.143338
+scale = Vector2(7, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner7" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=1972361215 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(169.00002, -794)
+rotation = 0.45029494
+scale = Vector2(10, 3)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner6" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=293102172 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(621.99994, -435)
+rotation = -0.033161256
+scale = Vector2(8, 4)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 10
+timeBetweenSpawns = 1.0
+
+[node name="HoardSpawner4" parent="YsortingContainer/EnemyController/SpawnPointsStage1" unique_id=318199941 node_paths=PackedStringArray("target") instance=ExtResource("3_w5mc2")]
+position = Vector2(328.99997, -10.999996)
+rotation = 0.34906584
+scale = Vector2(10, 5)
+rareEnemy = ExtResource("4_csd8n")
+commonEnemy = ExtResource("5_ax3ki")
+target = NodePath("../../../Player")
+enemyCount = 5
+timeBetweenSpawns = 1.0
+
+[node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("4_w5mc2")]
+position = Vector2(664, 364)
+collision_layer = 3
+speed = 100
+gunController = NodePath("EquipSlot")
+metadata/_edit_group_ = true
+
+[node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
+script = ExtResource("5_csd8n")
+
+[node name="Camera2D" type="Camera2D" parent="YsortingContainer/Player" unique_id=610172380]
+zoom = Vector2(1.5, 1.5)
+limit_left = -153
+limit_top = -2403
+limit_right = 1684
+limit_bottom = 469
+
+[node name="LevelExit" type="Area2D" parent="." unique_id=2050373598]
+script = ExtResource("6_ax3ki")
+outgoingLevel = ExtResource("9_csd8n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExit" unique_id=1841992639]
+position = Vector2(1282, -2181.9998)
+rotation = 0.2443461
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_4eg4a")
+
+[node name="WeaponPickup" parent="." unique_id=174857649 instance=ExtResource("9_g4o4k")]
+position = Vector2(651, -909)
+weaponScene = ExtResource("10_4mwhy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1611244743]
+position = Vector2(0, -2)
+stream = ExtResource("12_g4o4k")
+volume_db = -5.0
+autoplay = true
+max_distance = 10000.0
+script = ExtResource("13_4mwhy")
+
+[connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
+[connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
