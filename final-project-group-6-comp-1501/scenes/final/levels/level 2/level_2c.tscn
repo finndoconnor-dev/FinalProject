@@ -50,7 +50,7 @@ spawnRadius = 8.0
 y_sort_enabled = true
 
 [node name="Player" parent="YsortingContainer" unique_id=164105634 node_paths=PackedStringArray("gunController") instance=ExtResource("5_ikvwk")]
-position = Vector2(831, -619)
+position = Vector2(831, -623)
 speed = 100
 gunController = NodePath("EquipSlot")
 metadata/_edit_group_ = true
