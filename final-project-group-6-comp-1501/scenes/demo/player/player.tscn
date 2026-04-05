@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dd4q3m1o482y0" path="res://scripts/player.gd" id="1_dds5i"]
 [ext_resource type="Texture2D" uid="uid://dtammnj6c67uk" path="res://assets/pictures/player/player1.png" id="2_0y6rb"]
-[ext_resource type="PackedScene" uid="uid://bbn3l0dk2wb1f" path="res://scenes/final/youlose.tscn" id="2_urnij"]
+[ext_resource type="PackedScene" uid="uid://byyj08pgffmqy" path="res://scenes/final/youlose.tscn" id="2_urnij"]
 [ext_resource type="Texture2D" uid="uid://dpwqtc1o86h6x" path="res://assets/pictures/player/player2.png" id="3_a45s4"]
 [ext_resource type="Script" uid="uid://ltu208mmlfps" path="res://scripts/player_hud.gd" id="3_dds5i"]
 [ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/pictures/player/demo_sprite_frames.tres" id="3_sahy8"]
@@ -503,7 +503,6 @@ offset_right = 36.0
 offset_bottom = 30.0
 
 [node name="UpgradeAvailable" type="Label" parent="PlayerHUD/Panel" unique_id=1109370499]
-visible = false
 layout_mode = 0
 offset_left = 8.0
 offset_top = -24.0
