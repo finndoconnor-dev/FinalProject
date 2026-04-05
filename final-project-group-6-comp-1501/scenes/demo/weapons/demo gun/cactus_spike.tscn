@@ -7,7 +7,7 @@
 [node name="cactusSpike" unique_id=1277775916 instance=ExtResource("1_anlkd")]
 script = ExtResource("2_6oebi")
 speed = 1.0
-lifetime = 0.75
+lifetime = 2.5
 damage = 1.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1218213356]
