@@ -1,17 +1,15 @@
 extends Control
 
 @export var outgoing : PackedScene
-const DEFAULT_OUTGOING_PATH := "res://scenes/demo/level/level_1a.tscn"
+const DEFAULT_OUTGOING_PATH := "res://scenes/title_screen.tscn"
 
 func _ready() -> void:
 	get_tree().paused = false
 
 func _on_quit_pressed() -> void:
-	get_tree().paused = false
-	get_tree().quit()
+	_on_return_to_menu_pressed()
 
-
-func _on_start_game_pressed() -> void:
+func _on_return_to_menu_pressed() -> void:
 	get_tree().paused = false
 	call_deferred("_change_to_outgoing")
 
