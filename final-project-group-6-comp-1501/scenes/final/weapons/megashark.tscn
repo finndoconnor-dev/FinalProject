@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://3n8fhoyal1n3" path="res://scripts/weapons/weapons/Megashark.gd" id="2_3bx6q"]
 [ext_resource type="PackedScene" uid="uid://dlrsx0c0sehmo" path="res://scenes/demo/weapons/projectiles/smg_round.tscn" id="3_3bx6q"]
 [ext_resource type="PackedScene" uid="uid://3ixhvyibyp4n" path="res://scenes/final/projectiles/ChlorophyteBullet.tscn" id="3_a8cif"]
-[ext_resource type="Texture2D" uid="uid://c8lc50u7a2f8y" path="res://assets/pictures/weapons/Megashark.png" id="3_ljfui"]
+[ext_resource type="Texture2D" uid="uid://bw36dtansew57" path="res://assets/pictures/weapons/sharkgun.png" id="5_a8cif"]
 [ext_resource type="AudioStream" uid="uid://wvqhbdoksnyp" path="res://assets/sounds/shot.wav" id="6_a8cif"]
 
 [node name="Megashark" unique_id=385922210 instance=ExtResource("1_3cnq6")]
@@ -14,17 +14,17 @@ bulletSpread = 0.12
 bulletSpeedVariance = 0.05
 projectileScene = ExtResource("3_3bx6q")
 useSpeed = 0.1
-maxAmmoCount = 36
+maxAmmoCount = 26
 reloadSpeed = 4.0
-displayName = "Megashark"
+displayName = "Shark Rifle"
 speedUpgradeRange = [10.0, 15.0]
 ammoUpgradeRange = [50, 50]
 cooldownUpgradeRange = [20.0, 30.0]
 
 [node name="Sprite2D" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="0" unique_id=280086086]
-position = Vector2(18, -3.0000005)
-scale = Vector2(0.45979682, 0.4183413)
-texture = ExtResource("3_ljfui")
+position = Vector2(20, 0)
+scale = Vector2(0.022, 0.02)
+texture = ExtResource("5_a8cif")
 
 [node name="ExitPoint" parent="GunRotate" parent_id_path=PackedInt32Array(49708536) index="1" unique_id=302921545]
 position = Vector2(34, -2)
