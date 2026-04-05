@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://ce8f76rhju71h"]
 
-[ext_resource type="TileSet" uid="uid://cb86uq3pjjhbs" path="res://assets/placeholders/tilesets/trees_collision.tres" id="1_vuuda"]
+[ext_resource type="TileSet" uid="uid://cb86uq3pjjhbs" path="res://assets/pictures/tilesets/trees_collision.tres" id="1_vuuda"]
 
 [node name="Level1BossMap" type="Node" unique_id=49914821]
 

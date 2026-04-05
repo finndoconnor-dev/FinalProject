@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d4djjja3d72wu"]
 
 [ext_resource type="Script" uid="uid://bunllwa8hr1vh" path="res://scripts/title_screen.gd" id="1_fgkus"]
-[ext_resource type="PackedScene" uid="uid://d4meb7iiip66r" path="res://scenes/text_screen.tscn" id="2_sa3yf"]
 
 [node name="Title Screen" type="Control" unique_id=1026881785]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fgkus")
-outgoing = ExtResource("2_sa3yf")
 
 [node name="StartGame" type="Button" parent="." unique_id=1899121411]
 layout_mode = 1
