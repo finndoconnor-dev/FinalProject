@@ -15,7 +15,7 @@ signal tookDamage
 
 func _ready() -> void:
 	invincTimer.one_shot = true
-	tookDamage.emit(hitPoints) #inits healthbar
+	tookDamage.emit() #inits healthbar
 	add_to_group("player")
 	upgradeController.setPlayer(self)
 

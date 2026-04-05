@@ -52,4 +52,4 @@ func pickEnemy() -> PackedScene:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and !has_spawned:
 		has_spawned = true
-		spawnEnemies()
+		call_deferred("spawnEnemies")
