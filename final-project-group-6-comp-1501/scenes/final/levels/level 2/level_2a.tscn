@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d18o4petxoxuw" path="res://scenes/final/levels/level 2/level_2b.tscn" id="10_ceh02"]
 [ext_resource type="AudioStream" uid="uid://cvmebjh17otdo" path="res://assets/sounds/Dreamty ahh beat.mp3" id="13_ft2ws"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="14_2s2o1"]
+[ext_resource type="PackedScene" uid="uid://cxyye5nxfuk7j" path="res://scenes/final/weapons/weapon_pickup.tscn" id="15_2s2o1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_343tm"]
 size = Vector2(35.5, 33.674683)
@@ -77,6 +78,7 @@ y_sort_enabled = true
 position = Vector2(849, -411)
 speed = 100
 gunController = NodePath("EquipSlot")
+gameOver = null
 metadata/_edit_group_ = true
 
 [node name="EquipSlot" type="Node2D" parent="YsortingContainer/Player" unique_id=1021083204]
@@ -109,6 +111,10 @@ volume_db = -5.0
 autoplay = true
 max_distance = 10000.0
 script = ExtResource("14_2s2o1")
+
+[node name="WeaponPickup" parent="." unique_id=174857649 instance=ExtResource("15_2s2o1")]
+position = Vector2(481, -1324)
+weaponScene = ExtResource("10_2ftoy")
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]
