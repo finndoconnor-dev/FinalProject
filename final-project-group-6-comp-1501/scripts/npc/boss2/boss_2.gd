@@ -14,7 +14,6 @@ signal state_changed(previous_state: State, new_state: State)
 signal enraged_state_entered()
 
 @export var nextScreen : PackedScene
-const DEFAULT_NEXT_SCREEN_PATH := "res://scenes/final/youwin.tscn"
 @export var regularProjectile : PackedScene
 @export var rocketProjectile : PackedScene
 @export var maxHP := 10000
@@ -45,10 +44,6 @@ const DEFAULT_NEXT_SCREEN_PATH := "res://scenes/final/youwin.tscn"
 @onready var body: AnimatedSprite2D = $Body
 @onready var hitbox: CollisionShape2D = $CollisionShape2D
 @onready var healthBar: ProgressBar = _resolve_health_bar()
-@onready var projectileSound: AudioStreamPlayer2D = $ProjectileSound
-@onready var projectileEnragedSound: AudioStreamPlayer2D = $ProjectileEnragedSound
-@onready var rocketSound: AudioStreamPlayer2D = $RocketSound
-@onready var tookDamageSound: AudioStreamPlayer2D = $TookDamageSound
 
 var current_state: State = State.IDLE
 var state_timer := 0.0
@@ -106,8 +101,6 @@ func onDamage(inc: Attack) -> bool:
 
 	invincibility_remaining = immunityFrames
 	hitpoints -= inc.damage
-	if is_instance_valid(tookDamageSound):
-		tookDamageSound.play()
 	if is_instance_valid(healthBar):
 		healthBar.value = hitpoints
 		healthBar.show()
@@ -122,13 +115,7 @@ func onDamage(inc: Attack) -> bool:
 
 
 func onDeath() -> void:
-	self.hide()
-	await get_tree().create_timer(2.0).timeout
-	get_tree().paused = false
-	var next_screen_path := DEFAULT_NEXT_SCREEN_PATH
-	if nextScreen != null and nextScreen.resource_path != "":
-		next_screen_path = nextScreen.resource_path
-	get_tree().change_scene_to_file(next_screen_path)
+	get_tree().change_scene_to_packed(nextScreen)
 	queue_free()
 
 
@@ -281,44 +268,29 @@ func _choose_next_attack() -> void:
 func _begin_projectile_left() -> void:
 	barrage_shots_remaining = _get_projectile_barrage_count()
 	barrage_timer = 0.0
-	_play_projectile_sound()
 	_begin_enraged_beam(beam_fire_left)
 
 
 func _begin_projectile_right() -> void:
 	barrage_shots_remaining = _get_projectile_barrage_count()
 	barrage_timer = 0.0
-	_play_projectile_sound()
 	_begin_enraged_beam(beam_fire_right)
 
 
 func _begin_rocket_left() -> void:
 	barrage_shots_remaining = _get_rocket_barrage_count()
 	barrage_timer = 0.0
-	if is_instance_valid(rocketSound):
-		rocketSound.play()
 
 
 func _begin_rocket_right() -> void:
 	barrage_shots_remaining = _get_rocket_barrage_count()
 	barrage_timer = 0.0
-	if is_instance_valid(rocketSound):
-		rocketSound.play()
 
 
 func _begin_enraged_beam(beam_fsm: Boss2BeamFSM) -> void:
 	if not isEnraged:
 		return
 	_set_beam_enabled(beam_fsm, true)
-
-
-func _play_projectile_sound() -> void:
-	if isEnraged:
-		if is_instance_valid(projectileEnragedSound):
-			projectileEnragedSound.play()
-		return
-	if is_instance_valid(projectileSound):
-		projectileSound.play()
 
 
 func _set_beam_enabled(beam_fsm: Boss2BeamFSM, enabled: bool) -> void:

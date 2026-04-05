@@ -4,7 +4,6 @@ const upgradeMenu = preload("res://scenes/demo/weapons/upgrade menu/UpgradeMenu.
 
 var player : Node
 
-var pendingUpgrades : int = 0
 var numberOfUpgrades : int = 0
 var nextUpgrade: int = 1 #current number of kills needed for an upgrade
 var enemiesKilled : int = 0  #Enemy kill count.
@@ -20,13 +19,11 @@ func _physics_process(_delta: float) -> void:
 	if (enemiesKilled >= nextUpgrade):
 		print("Upgrade Aquired.")
 		numberOfUpgrades +=1
-		pendingUpgrades += 1
 		var upgradeIncrement = baseIncrement * numberOfUpgrades
 		nextUpgrade += upgradeIncrement
-	if pendingUpgrades > 0 and not get_tree().paused and Input.is_action_just_pressed("E"):
 		initUpgradeMenu()
-	#if Input.is_action_just_pressed("1"):
-		#initUpgradeMenu()
+	if Input.is_action_just_pressed("1"):
+		initUpgradeMenu()
 
 func _on_enemyDied():
 	enemiesKilled +=1
@@ -44,8 +41,6 @@ func getPlayerWeapons() -> Array[Node]:
 	return guns
 
 func initUpgradeMenu():
-	if pendingUpgrades > 0:
-		pendingUpgrades -= 1
 	var menu = upgradeMenu.instantiate()
 	get_tree().current_scene.add_child(menu)
 	get_tree().paused = true
