@@ -3,7 +3,7 @@ extends baseEnemy
 func takeStopAction() -> void:
 	canMove = false
 	shootTimer.start()
-	gunNode.tryShoot()
+	gunNode.call_deferred("tryShoot")
 
 func takeMoveAction() -> void:
 	canMove = true

@@ -15,7 +15,7 @@ func _ready() -> void:
 	self.process_mode = PROCESS_MODE_ALWAYS
 	print("Upgrade System Initialized.")
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if (enemiesKilled >= nextUpgrade):
 		print("Upgrade Aquired.")
 		numberOfUpgrades +=1

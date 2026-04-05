@@ -1,7 +1,7 @@
 extends Button
 
-@onready var upgradeNameLabel = $MarginContainer/VBoxContainer/UpgradeName
-@onready var upgradeDescLabel = $MarginContainer/VBoxContainer/UpgradeDescription
+#@onready var upgradeNameLabel = $MarginContainer/VBoxContainer/UpgradeName
+#@onready var upgradeDescLabel = $MarginContainer/VBoxContainer/UpgradeDescription
 
 var upgradeData : Dictionary
 
