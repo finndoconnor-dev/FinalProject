@@ -13,6 +13,7 @@ enum State {
 signal state_changed(previous_state: State, new_state: State)
 signal enraged_state_entered()
 
+@export var nextScreen : PackedScene
 @export var regularProjectile : PackedScene
 @export var rocketProjectile : PackedScene
 @export var maxHP := 10000
@@ -114,6 +115,7 @@ func onDamage(inc: Attack) -> bool:
 
 
 func onDeath() -> void:
+	get_tree().change_scene_to_packed(nextScreen)
 	queue_free()
 
 
@@ -122,12 +124,21 @@ func transition_to(new_state: State) -> void:
 		return
 
 	var previous_state := current_state
+	_on_exit_state(previous_state)
 	current_state = new_state
 	state_timer = 0.0
 	barrage_shots_remaining = 0
 	barrage_timer = 0.0
 	_enter_state(new_state)
 	state_changed.emit(previous_state, new_state)
+
+
+func _on_exit_state(previous_state: State) -> void:
+	match previous_state:
+		State.PROJECTILELEFT:
+			_set_beam_enabled(beam_fire_left, false)
+		State.PROJECTILERIGHT:
+			_set_beam_enabled(beam_fire_right, false)
 
 
 func _enter_state(new_state: State) -> void:
@@ -279,8 +290,13 @@ func _begin_rocket_right() -> void:
 func _begin_enraged_beam(beam_fsm: Boss2BeamFSM) -> void:
 	if not isEnraged:
 		return
-	if is_instance_valid(beam_fsm):
-		beam_fsm.trigger_attack()
+	_set_beam_enabled(beam_fsm, true)
+
+
+func _set_beam_enabled(beam_fsm: Boss2BeamFSM, enabled: bool) -> void:
+	if not is_instance_valid(beam_fsm):
+		return
+	beam_fsm.set_attack_enabled(enabled)
 
 
 func _enter_enraged_state() -> void:

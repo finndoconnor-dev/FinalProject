@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://by4qwlrmyxtq8" path="res://scenes/final/levels/level 2/BossShot2.tscn" id="2_6gh85"]
 [ext_resource type="PackedScene" uid="uid://erhx8vcfmqy2" path="res://scenes/final/levels/level 2/boss_rocket.tscn" id="3_h0dp1"]
 [ext_resource type="Script" uid="uid://cwkylq3u8tdb7" path="res://scripts/npc/boss2/boss_2_beam.gd" id="6_cxwvc"]
+[ext_resource type="AudioStream" uid="uid://cu3fdx58no0vc" path="res://assets/sounds/laser.wav" id="7_5cjft"]
 [ext_resource type="Texture2D" uid="uid://bdfpva0vb45ss" path="res://assets/pictures/animations/Laser_sheet.png" id="8_hgm3e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yq3kk"]
@@ -42,7 +43,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 0.5
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,7 +183,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"charging",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,7 +209,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fire",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,6 +227,7 @@ size = Vector2(2461.462, 133.86954)
 script = ExtResource("1_hrjrc")
 regularProjectile = ExtResource("2_6gh85")
 rocketProjectile = ExtResource("3_h0dp1")
+enraged_rocket_count_bonus = 30
 projectile_spawn_left = NodePath("ProjectileSpawnLeft")
 projectile_spawn_right = NodePath("ProjectileSpawnRight")
 beam_fire_left = NodePath("BeamFireLeft")
@@ -233,8 +235,7 @@ beam_fire_right = NodePath("BeamFireRight")
 
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=6020496]
 sprite_frames = SubResource("SpriteFrames_hgm3e")
-animation = &"shootleft"
-frame_progress = 0.18085647
+frame_progress = 0.27410144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1243648109]
 position = Vector2(0, -58)
@@ -250,6 +251,7 @@ position = Vector2(235, 72)
 position = Vector2(160, 111)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("6_cxwvc")
+beamDamage = 2.0
 metadata/_edit_group_ = true
 
 [node name="Beam" type="AnimatedSprite2D" parent="BeamFireLeft" unique_id=801947243]
@@ -258,7 +260,7 @@ position = Vector2(984.30774, 168.9132)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_kohe1")
 animation = &"fire"
-frame_progress = 0.52128804
+frame_progress = 0.63881874
 
 [node name="BeamHitBox" type="Area2D" parent="BeamFireLeft" unique_id=779092891]
 position = Vector2(4.3076935, -2.2521667)
@@ -267,10 +269,16 @@ position = Vector2(4.3076935, -2.2521667)
 position = Vector2(1307.3846, 9.0086975)
 shape = SubResource("RectangleShape2D_l30ei")
 
+[node name="BeamFire" type="AudioStreamPlayer2D" parent="BeamFireLeft" unique_id=1147023532]
+scale = Vector2(0.99999994, 0.99999994)
+stream = ExtResource("7_5cjft")
+pitch_scale = 2.3
+
 [node name="BeamFireRight" type="Node2D" parent="." unique_id=1821150884]
 position = Vector2(-160, 110)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("6_cxwvc")
+beamDamage = 2.0
 metadata/_edit_group_ = true
 
 [node name="Beam" type="AnimatedSprite2D" parent="BeamFireRight" unique_id=587165673]
@@ -287,6 +295,12 @@ position = Vector2(4.3076935, -2.2521667)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeamFireRight/BeamHitBox" unique_id=1791372549]
 position = Vector2(1307.3846, 9.0086975)
 shape = SubResource("RectangleShape2D_l30ei")
+
+[node name="BeamFire" type="AudioStreamPlayer2D" parent="BeamFireRight" unique_id=1264145449]
+position = Vector2(0, -3.9999998)
+scale = Vector2(0.99999994, 0.99999994)
+stream = ExtResource("7_5cjft")
+pitch_scale = 2.6
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=1801288138]
 offset_left = -110.0

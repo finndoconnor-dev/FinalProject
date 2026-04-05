@@ -18,11 +18,12 @@ signal attack_finished()
 @export var chargingAnimationName := "charging"
 @export var chargedAnimationName := "charged"
 @export var fireAnimationName := "fire"
+@export var chargingSoundPrimary: AudioStreamPlayer2D
+@export var chargingSoundSecondary: AudioStreamPlayer2D
 
 @onready var beamHitBox: Area2D = $BeamHitBox
 @onready var beamHitBoxShape: CollisionShape2D = $BeamHitBox/CollisionShape2D
 @onready var beamVisual: AnimatedSprite2D = $Beam
-@onready var beamAudio: AudioStreamPlayer2D = $BeamFire
 
 var beamState := BeamState.INACTIVE
 var beamTimer := 0.0
@@ -30,9 +31,17 @@ var beamLockedRotation := 0.0
 var beamAttack: Attack = Attack.new()
 var beamHitTargets: Array[Node2D] = []
 var chargedVisualShown := false
+var attackEnabled := false
 
 
 func _ready() -> void:
+	if chargingSoundPrimary == null:
+		chargingSoundPrimary = get_node_or_null("ChargingSoundPrimary") as AudioStreamPlayer2D
+	if chargingSoundSecondary == null:
+		chargingSoundSecondary = get_node_or_null("ChargingSoundSecondary") as AudioStreamPlayer2D
+	if chargingSoundPrimary == null:
+		chargingSoundPrimary = get_node_or_null("BeamFire") as AudioStreamPlayer2D
+
 	beamAttack.damage = beamDamage
 	beamAttack.damagesPlayer = true
 	beamAttack.damagesNPC = false
@@ -45,6 +54,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	match beamState:
 		BeamState.INACTIVE:
+			if attackEnabled:
+				_start_windup()
 			return
 		BeamState.WINDUP:
 			beamTimer -= delta
@@ -60,10 +71,20 @@ func _physics_process(delta: float) -> void:
 				_finish_beam_attack()
 
 
+func set_attack_enabled(enabled: bool) -> void:
+	attackEnabled = enabled
+	if not attackEnabled:
+		cancel_attack()
+
+
 func trigger_attack() -> void:
+	attackEnabled = true
 	if beamState != BeamState.INACTIVE:
 		return
+	_start_windup()
 
+
+func _start_windup() -> void:
 	var player := _get_player()
 	var target_position := global_position + Vector2.RIGHT * 100.0
 	if is_instance_valid(player):
@@ -77,12 +98,12 @@ func trigger_attack() -> void:
 	chargedVisualShown = false
 	_set_beam_hitbox_enabled(false)
 	_play_beam_animation(chargingAnimationName)
-	if is_instance_valid(beamAudio):
-		beamAudio.play()
+	_play_charging_sounds()
 	attack_started.emit()
 
 
 func cancel_attack() -> void:
+	attackEnabled = false
 	beamState = BeamState.INACTIVE
 	beamTimer = 0.0
 	beamHitTargets.clear()
@@ -171,16 +192,23 @@ func _play_beam_animation(animationName: String) -> void:
 	beamVisual.play(animationName)
 
 
+func _play_charging_sounds() -> void:
+	if is_instance_valid(chargingSoundPrimary):
+		chargingSoundPrimary.play()
+	if is_instance_valid(chargingSoundSecondary):
+		chargingSoundSecondary.play()
+
+
 func _get_windup_duration() -> float:
-	return maxf(beamWindup, 1.0)
+	return beamWindup
 
 
 func _get_charged_duration() -> float:
-	return maxf(_get_windup_duration() - 1.0, 0.0)
+	return maxf(_get_windup_duration(), 0.0)
 
 
 func _get_fire_duration() -> float:
-	return 1.0
+	return beamLinger
 
 
 func _get_player() -> Node2D:

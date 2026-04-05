@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="8_85j36"]
 [ext_resource type="PackedScene" uid="uid://lcqwegq76wiq" path="res://scenes/final/weapons/UnicornRaygun.tscn" id="9_0dfyp"]
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="9_bc5i3"]
-[ext_resource type="PackedScene" uid="uid://c541jj0x52347" path="res://scenes/final/levels/level 2/level_2c_map.tscn" id="11_0dfyp"]
+[ext_resource type="PackedScene" uid="uid://66a60abhev2r" path="res://scenes/final/levels/level 2/level_2c.tscn" id="11_0dfyp"]
 [ext_resource type="AudioStream" uid="uid://cvmebjh17otdo" path="res://assets/sounds/Dreamty ahh beat.mp3" id="12_j7r1t"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="13_kh53k"]
 
