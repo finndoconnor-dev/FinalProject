@@ -4,12 +4,16 @@ extends CharacterBody2D
 @export var gunController : Node2D
 @export var maxHP = 100
 @export var invincibilityTime = 0.14 #how long player is immune to damage after being hit.
+@export var gameOver : PackedScene
+const DEFAULT_GAME_OVER_PATH := "res://scenes/final/youlose.tscn"
 
 @onready var invincTimer = $InvincFrames
+@onready var upgradeAvailableLabel = $PlayerHUD/Panel/UpgradeAvailable
 
 var isPlayer = true
 var lastDirection = "Down" #Directions need capitalization
 var hitPoints = maxHP
+var isDead := false
 signal useItem
 signal tookDamage
 
@@ -18,9 +22,11 @@ func _ready() -> void:
 	tookDamage.emit() #inits healthbar
 	add_to_group("player")
 	upgradeController.setPlayer(self)
+	_updateUpgradeAvailability()
 
 func _process(_delta:float) -> void:
 	self.setAnimation()
+	_updateUpgradeAvailability()
 	
 func _physics_process(delta: float) -> void:
 	self.getInput(delta)
@@ -66,10 +72,14 @@ func getMovementDirection() -> String:
 	return "Up"
 
 func onDamage(inc : Attack) -> bool:
+	if isDead:
+		return false
 	if (inc.damagesPlayer and invincTimer.is_stopped()):
 		hitPoints -= inc.damage
 		if (hitPoints <= 0):
-			print("Player died... That isn't programmed yet...")
+			hitPoints = 0
+			onDeath()
+			return true
 		invincTimer.start(invincibilityTime)
 		tookDamage.emit()
 		blinkRed()
@@ -79,8 +89,39 @@ func onDamage(inc : Attack) -> bool:
 
 func blinkRed() -> void:
 	$AnimatedSprite2D.modulate = Color(1,0,0)
-	await get_tree().create_timer(invincibilityTime).timeout
+	var tree := get_tree()
+	if tree == null:
+		return
+	await tree.create_timer(invincibilityTime).timeout
+	if not is_inside_tree() or isDead:
+		return
 	$AnimatedSprite2D.modulate = Color(1,1,1)
+
+func onDeath() -> void:
+	if isDead:
+		return
+
+	isDead = true
+	tookDamage.emit()
+
+	var tree := get_tree()
+	if tree == null:
+		return
+
+	tree.paused = false
+	call_deferred("_change_to_game_over")
+
+
+func _change_to_game_over() -> void:
+	var tree := get_tree()
+	if tree == null:
+		return
+
+	var game_over_path := DEFAULT_GAME_OVER_PATH
+	if gameOver != null and gameOver.resource_path != "":
+		game_over_path = gameOver.resource_path
+
+	tree.change_scene_to_file(game_over_path)
 	
 
 func _on_base_layers_map_changed() -> void:
@@ -89,3 +130,6 @@ func _on_base_layers_map_changed() -> void:
 
 func onGamePaused():
 	$PlayerHUD.hide()
+
+func _updateUpgradeAvailability() -> void:
+	upgradeAvailableLabel.visible = upgradeController.pendingUpgrades > 0

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dd4q3m1o482y0" path="res://scripts/player.gd" id="1_dds5i"]
 [ext_resource type="Texture2D" uid="uid://dtammnj6c67uk" path="res://assets/pictures/player/player1.png" id="2_0y6rb"]
+[ext_resource type="PackedScene" uid="uid://bbn3l0dk2wb1f" path="res://scenes/final/youlose.tscn" id="2_urnij"]
 [ext_resource type="Texture2D" uid="uid://dpwqtc1o86h6x" path="res://assets/pictures/player/player2.png" id="3_a45s4"]
 [ext_resource type="Script" uid="uid://ltu208mmlfps" path="res://scripts/player_hud.gd" id="3_dds5i"]
 [ext_resource type="SpriteFrames" uid="uid://bgwfbcvpamr8d" path="res://assets/pictures/player/demo_sprite_frames.tres" id="3_sahy8"]
@@ -380,6 +381,7 @@ height = 15.0
 y_sort_enabled = true
 script = ExtResource("1_dds5i")
 speed = 400
+gameOver = ExtResource("2_urnij")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=477144299]
 scale = Vector2(0.025, 0.025)
@@ -499,6 +501,15 @@ offset_left = 1.0
 offset_top = -5.0
 offset_right = 36.0
 offset_bottom = 30.0
+
+[node name="UpgradeAvailable" type="Label" parent="PlayerHUD/Panel" unique_id=1109370499]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -24.0
+offset_right = 48.0
+offset_bottom = -1.0
+text = "You have an upgrade available, press E to select an upgrade."
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1150980220]
 stream = ExtResource("8_a45s4")
