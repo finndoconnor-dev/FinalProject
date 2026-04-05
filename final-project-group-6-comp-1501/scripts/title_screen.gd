@@ -1,7 +1,7 @@
 extends Control
 
 @export var outgoing : PackedScene
-const DEFAULT_OUTGOING_PATH := "res://scenes/demo/level/level_1a.tscn"
+const DEFAULT_OUTGOING_PATH := "res://scenes/text_screen.tscn"
 
 func _ready() -> void:
 	get_tree().paused = false

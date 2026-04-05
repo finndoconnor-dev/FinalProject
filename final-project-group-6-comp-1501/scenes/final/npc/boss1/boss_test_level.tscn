@@ -40,7 +40,6 @@ limit_bottom = 805
 
 [node name="Boss2" parent="." unique_id=248263190 instance=ExtResource("5_38mi2")]
 position = Vector2(613, 290)
-maxHP = 500
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=492978588]
 stream = ExtResource("7_rkuey")
