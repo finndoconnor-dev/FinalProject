@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://4x7gugld1fse" path="res://scenes/final/weapons/megashark.tscn" id="3_38mi2"]
 [ext_resource type="PackedScene" uid="uid://c5t2jxwq1cw52" path="res://scenes/final/weapons/SnakeSniper.tscn" id="4_rkuey"]
 [ext_resource type="PackedScene" uid="uid://dojhgftv3vw7f" path="res://scenes/final/levels/level 2/boss_2.tscn" id="5_38mi2"]
-[ext_resource type="AudioStream" uid="uid://cflnpxt4b73ff" path="res://assets/sounds/creepty ahh beat inst..mp3" id="7_rkuey"]
-[ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="8_hqqig"]
 
 [node name="boss_test_level" type="Node" unique_id=1738964985]
 
@@ -41,12 +39,16 @@ limit_bottom = 805
 [node name="Boss2" parent="." unique_id=248263190 instance=ExtResource("5_38mi2")]
 position = Vector2(613, 290)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=492978588]
-stream = ExtResource("7_rkuey")
-volume_db = -5.0
-autoplay = true
-max_distance = 10000.0
-script = ExtResource("8_hqqig")
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1830037787]
+offset_left = -57.0
+offset_top = 106.0
+offset_right = -17.0
+offset_bottom = 602.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=46356624]
+offset_left = 1157.0
+offset_top = 117.0
+offset_right = 1215.0
+offset_bottom = 600.0
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
-[connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]
