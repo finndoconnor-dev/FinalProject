@@ -30,8 +30,8 @@ func getUpgrades()->Array:
 	if !mutated:
 		upgrades.append({
 			"gun": self,
-			"upgradeName" : "Mutation: Chlorophyte Bullets",
-			"label":"If you know, you know.",
+			"upgradeName" : "Mutation: Blood Seeking Bubbles",
+			"label":"Shark Rifle's projectiles home in on enemies.",
 			"apply": func(gun):
 				gun.projectileScene = mutationProjectile
 				gun.reloadSpeed *= 2

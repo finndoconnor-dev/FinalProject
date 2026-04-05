@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d6bd3f10fdtn"]
 
 [ext_resource type="Script" uid="uid://bunllwa8hr1vh" path="res://scripts/title_screen.gd" id="1_tbmtn"]
-[ext_resource type="PackedScene" uid="uid://805m6jbipeba" path="res://scenes/demo/level/level_1a.tscn" id="2_ubsra"]
 
 [node name="Title Screen" type="Control" unique_id=1026881785]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tbmtn")
-outgoing = ExtResource("2_ubsra")
 
 [node name="Quit" type="Button" parent="." unique_id=1156537495]
 layout_mode = 1

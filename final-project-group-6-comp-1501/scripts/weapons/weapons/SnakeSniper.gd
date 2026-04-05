@@ -17,7 +17,7 @@ func oneshotProjectile():
 	var proj1 := projectileScene.instantiate() as Node2D
 	get_tree().current_scene.add_child(proj1)
 	proj1.global_transform = projPoint.global_transform
-	proj1.attack.damage = maxAmmoCount * 8
+	proj1.attack.damage = maxAmmoCount * 16
 	self.ammoCount = 0
 
 

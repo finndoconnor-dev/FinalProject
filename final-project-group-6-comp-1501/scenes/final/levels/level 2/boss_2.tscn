@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvwho"]
-size = Vector2(418, 282)
+size = Vector2(430, 282)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgm3e"]
 atlas = ExtResource("8_hgm3e")
@@ -241,7 +241,7 @@ sprite_frames = SubResource("SpriteFrames_hgm3e")
 frame_progress = 0.27410144
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1243648109]
-position = Vector2(0, -58)
+position = Vector2(-6, -58)
 shape = SubResource("RectangleShape2D_gvwho")
 
 [node name="ProjectileSpawnLeft" type="Marker2D" parent="." unique_id=1105632419]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dolffc12i2vyf" path="res://scenes/demo/weapons/demo gun/projectile.tscn" id="1_mm5d6"]
 [ext_resource type="Script" uid="uid://chj5qpjajbpcu" path="res://scripts/weapons/projectiles/ChlorophyteBullet.gd" id="2_sliv8"]
-[ext_resource type="Texture2D" uid="uid://xd1fykmfpt3y" path="res://assets/pictures/projectiles/Chlorophyte_Bullet.png" id="3_a32qn"]
+[ext_resource type="Texture2D" uid="uid://bs7u3uf5m7mck" path="res://assets/pictures/projectiles/bubblered.png" id="3_mm5d6"]
 
 [node name="SMGRound" unique_id=1277775916 instance=ExtResource("1_mm5d6")]
 script = ExtResource("2_sliv8")
@@ -14,4 +14,6 @@ lifetime = 1.5
 damage = 1.0
 
 [node name="Sprite2D" parent="." index="0" unique_id=1218213356]
-texture = ExtResource("3_a32qn")
+position = Vector2(-0.1, 0)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("3_mm5d6")

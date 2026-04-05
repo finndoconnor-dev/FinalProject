@@ -67,4 +67,4 @@ debug_enabled = false
 scale = Vector2(1.1, 1.1)
 
 [node name="ShootTimer" parent="." index="8" unique_id=439946473]
-wait_time = 1.0
+wait_time = 2.0

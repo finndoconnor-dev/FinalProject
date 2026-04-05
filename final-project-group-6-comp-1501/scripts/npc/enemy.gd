@@ -89,6 +89,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func onDamage(incDamage : Attack) -> bool:
 	#print(self.name + " took damage.")
 	if !invincibilityTimer.is_stopped(): return false
+	if incDamage.damagesNPC == false: return false
 	if incDamage.triggerInvulnerability:invincibilityTimer.start(immunityTime)
 	hitpoints -= incDamage.damage
 	updateHealthbar()

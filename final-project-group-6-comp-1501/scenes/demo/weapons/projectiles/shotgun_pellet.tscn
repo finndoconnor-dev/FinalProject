@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cx2haquojy545" path="res://scenes/demo/weapons/projectiles/high_velocity_round.tscn" id="1_kl4il"]
 [ext_resource type="Script" uid="uid://wvxn5m6ujk56" path="res://scripts/weapons/projectiles/shotgun_pellet.gd" id="2_kl4il"]
-[ext_resource type="Texture2D" uid="uid://1ps27sdptatm" path="res://assets/placeholders/weapons/ShotgunShellSmall.png" id="3_4fvwb"]
+[ext_resource type="Texture2D" uid="uid://1ps27sdptatm" path="res://assets/pictures/weapons/ShotgunShellSmall.png" id="3_4fvwb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vt2o0"]
 radius = 2.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://da81bcrd2f6qx" path="res://scripts/weapons/weapons/demo_gun.gd" id="1_rpofc"]
 [ext_resource type="Script" uid="uid://cyec4uydq50w6" path="res://scripts/weapons/utils/gun_roatate.gd" id="2_4rjlk"]
 [ext_resource type="PackedScene" uid="uid://dolffc12i2vyf" path="res://scenes/demo/weapons/demo gun/projectile.tscn" id="2_7nxnl"]
-[ext_resource type="Texture2D" uid="uid://mlw2e3rmdjm3" path="res://assets/placeholders/weapons/Revolver.png" id="2_57euh"]
+[ext_resource type="Texture2D" uid="uid://mlw2e3rmdjm3" path="res://assets/pictures/weapons/Revolver.png" id="2_57euh"]
 
 [node name="Gun" type="Node2D" unique_id=385922210]
 script = ExtResource("1_rpofc")

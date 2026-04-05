@@ -22,11 +22,11 @@ func _ready() -> void:
 	tookDamage.emit() #inits healthbar
 	add_to_group("player")
 	upgradeController.setPlayer(self)
-	_updateUpgradeAvailability()
+	updateUpgradeAvailability()
 
 func _process(_delta:float) -> void:
 	self.setAnimation()
-	_updateUpgradeAvailability()
+	updateUpgradeAvailability()
 	
 func _physics_process(delta: float) -> void:
 	self.getInput(delta)
@@ -131,5 +131,10 @@ func _on_base_layers_map_changed() -> void:
 func onGamePaused():
 	$PlayerHUD.hide()
 
-func _updateUpgradeAvailability() -> void:
-	upgradeAvailableLabel.visible = upgradeController.pendingUpgrades > 0
+func updateUpgradeAvailability() -> void:
+	#upgradeAvailableLabel.visible = upgradeController.pendingUpgrades > 0
+	if (upgradeController.pendingUpgrades > 0):
+		upgradeAvailableLabel.text = "You have an upgrade available. Press E to select an upgrade."
+	else:
+		upgradeAvailableLabel.text = "Next upgrade: %d/%d" % [upgradeController.enemiesKilled,upgradeController.nextUpgrade]
+	

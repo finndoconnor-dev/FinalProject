@@ -51,9 +51,21 @@ func throwCube():
 
 	numberOfCubes -= 1
 	var proj = cube.instantiate()
+	var proj2= cube.instantiate()
+	var proj3= cube.instantiate()
 	get_tree().current_scene.add_child(proj)
+	get_tree().current_scene.add_child(proj2)
+	get_tree().current_scene.add_child(proj3)
+
 	proj.global_transform = global_transform
+	proj2.global_transform = global_transform
+	proj3.global_transform = global_transform
 	proj.look_at(player.global_position)
+	proj2.look_at(player.global_position)
+	proj3.look_at(player.global_position)
+	proj2.global_rotation_degrees += 45
+	proj3.global_rotation_degrees -= 45
+
 	speed = 0
 	throwCooldownRemaining = throwCooldown
 
