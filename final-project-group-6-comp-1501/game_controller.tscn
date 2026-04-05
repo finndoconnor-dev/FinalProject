@@ -1,13 +1,36 @@
 [gd_scene format=3 uid="uid://blqclburswevf"]
 
-[ext_resource type="PackedScene" uid="uid://ca5o6kviyaii7" path="res://scenes/demo/demoScene.tscn" id="1_3iy47"]
-[ext_resource type="Script" uid="uid://orkrqfmllr8a" path="res://game_controller.gd" id="1_i1fhm"]
 [ext_resource type="PackedScene" uid="uid://c2hl6ieoiqn77" path="res://pause_menu.tscn" id="3_u7d8s"]
 
-[node name="GameController" type="Node" unique_id=860625884]
-script = ExtResource("1_i1fhm")
+[sub_resource type="GDScript" id="GDScript_3iy47"]
+script/source = "extends Node
+signal gamePaused
 
-[node name="DemoLevel" parent="." unique_id=1738964985 instance=ExtResource("1_3iy47")]
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_pressed(\"pause\"):
+		pauseGame()
+
+func pauseGame():
+	get_tree().paused=true
+	$PauseMenu.visible=true
+	$DemoLevel/YsortingContainer/Player/PlayerHUD.hide()
+	gamePaused.emit()
+
+
+func _on_pause_menu_resumed() -> void:
+	$DemoLevel/YsortingContainer/Player/PlayerHUD.visible=true
+"
+
+[node name="GameController" type="Node" unique_id=860625884]
+script = SubResource("GDScript_3iy47")
+
+[node name="DemoLevel" parent="." unique_id=1738964985]
 
 [node name="PauseMenu" parent="." unique_id=504482800 instance=ExtResource("3_u7d8s")]
 process_mode = 2

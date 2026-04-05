@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cdvwxgth1p6d3"]
 
 [ext_resource type="Script" uid="uid://b4ncv0gi85x7y" path="res://scripts/text_screen.gd" id="1_mo3sq"]
-[ext_resource type="PackedScene" uid="uid://805m6jbipeba" path="res://scenes/demo/level/level_1a.tscn" id="2_o6h0w"]
 
 [node name="Text Screen" type="Control" unique_id=1026881785]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mo3sq")
-outgoing = ExtResource("2_o6h0w")
 
 [node name="Continue" type="Button" parent="." unique_id=1899121411]
 layout_mode = 1

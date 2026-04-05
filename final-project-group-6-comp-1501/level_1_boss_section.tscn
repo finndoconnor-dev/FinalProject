@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://do8f6xjwlfs2k"]
 
-[ext_resource type="TileSet" uid="uid://x45u2gahvilh" path="res://assets/wastelandTileSet.tres" id="1_262po"]
+[ext_resource type="TileSet" uid="uid://cyio71lg85u1y" path="res://assets/wastelandTileSet.tres" id="1_262po"]
 
 [node name="Level1BossSection" type="Node" unique_id=180496305]
 

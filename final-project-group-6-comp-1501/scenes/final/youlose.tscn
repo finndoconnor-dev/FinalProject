@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://byyj08pgffmqy"]
 
 [ext_resource type="Script" path="res://scripts/gameover.gd" id="1_yh4jd"]
-[ext_resource type="PackedScene" uid="uid://d4djjja3d72wu" path="res://scenes/title_screen.tscn" id="2_cdaaf"]
 
 [node name="Title Screen" type="Control" unique_id=1026881785]
 layout_mode = 3
@@ -11,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh4jd")
-outgoing = ExtResource("2_cdaaf")
 
 [node name="ReturnToMenu" type="Button" parent="." unique_id=1156537495]
 layout_mode = 1

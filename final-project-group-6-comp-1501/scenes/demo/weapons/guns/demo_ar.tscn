@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dqdatr2o6n1yn" path="res://scenes/demo/weapons/guns/demo_revolver.tscn" id="1_q580n"]
 [ext_resource type="Script" uid="uid://ba1l60337uf8a" path="res://scripts/weapons/weapons/rifle.gd" id="2_q580n"]
-[ext_resource type="Texture2D" uid="uid://b08444q0oojon" path="res://assets/placeholders/weapons/AK47.png" id="3_p82e1"]
+[ext_resource type="Texture2D" uid="uid://b08444q0oojon" path="res://assets/pictures/weapons/AK47.png" id="3_p82e1"]
 
 [node name="demoAR" unique_id=385922210 instance=ExtResource("1_q580n")]
 script = ExtResource("2_q580n")

@@ -5,4 +5,4 @@
 [node name="monkey" unique_id=2094719843 instance=ExtResource("1_gl5s3")]
 
 [node name="pathfindingTimer" parent="." index="4" unique_id=2138587168]
-wait_time = 0.030000000000000002
+wait_time = 0.03
