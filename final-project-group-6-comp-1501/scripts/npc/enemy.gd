@@ -12,10 +12,12 @@ class_name baseEnemy
 @onready var hpBar = $HealthBar
 @onready var invincibilityTimer = $InvinicbilityFrames
 @onready var shootTimer : Timer = $ShootTimer
+@onready var navTimer : Timer = $pathfindingTimer
 
 var canMove=true
 var hitpoints : float
 var gunNode
+var navFreq
 
 signal npcHasDied
 
@@ -27,6 +29,9 @@ func _ready() -> void:
 	hpBar.min_value = 0
 	hpBar.value = hitpoints
 	updateHealthbar()
+	
+	navFreq = randf_range(0.5,1.0)
+	navTimer.wait_time = navFreq
 	
 	npcHasDied.connect(upgradeController._on_enemyDied)
 	
