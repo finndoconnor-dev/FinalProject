@@ -5,7 +5,8 @@ const DEFAULT_OUTGOING_PATH := "res://scenes/text_screen.tscn"
 
 func _ready() -> void:
 	get_tree().paused = false
-
+	
+	
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().quit()

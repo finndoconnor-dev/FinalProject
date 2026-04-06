@@ -1,6 +1,44 @@
 [gd_scene format=3 uid="uid://d6bd3f10fdtn"]
 
 [ext_resource type="Script" uid="uid://bunllwa8hr1vh" path="res://scripts/title_screen.gd" id="1_tbmtn"]
+[ext_resource type="Texture2D" uid="uid://c8eubl6l4gtnk" path="res://dog.png" id="2_tbmtn"]
+[ext_resource type="Script" uid="uid://d4jl2wbc7d1n6" path="res://scenes/final/texture_rect.gd" id="3_ubsra"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbmtn"]
+atlas = ExtResource("2_tbmtn")
+region = Rect2(0, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubsra"]
+atlas = ExtResource("2_tbmtn")
+region = Rect2(187, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg7kk"]
+atlas = ExtResource("2_tbmtn")
+region = Rect2(374, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6yea"]
+atlas = ExtResource("2_tbmtn")
+region = Rect2(561, 0, 187, 183)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5dkdi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbmtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubsra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg7kk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6yea")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Title Screen" type="Control" unique_id=1026881785]
 layout_mode = 3
@@ -36,5 +74,11 @@ grow_horizontal = 2
 text = "Victory! You rescued your dog from the evil King of Penguins."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="AnimatedSprite2D" parent="." unique_id=1092757689]
+position = Vector2(288, 140)
+scale = Vector2(0.47860962, 0.48907104)
+sprite_frames = SubResource("SpriteFrames_5dkdi")
+script = ExtResource("3_ubsra")
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
