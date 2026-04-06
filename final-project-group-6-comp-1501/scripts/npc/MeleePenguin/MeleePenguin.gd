@@ -71,9 +71,8 @@ func _physics_process(delta: float) -> void:
 			direction = global_position.direction_to(player.global_position)
 		elif !navAgent.is_navigation_finished():
 			direction = global_position.direction_to(navAgent.get_next_path_position())
-	if(canMove):
-		velocity = direction*speed
-		move_and_slide()
+	velocity = direction*speed
+	move_and_slide()
 		
 	if velocity.x > 0:
 		$AnimatedSprite2D.flip_h = true   # facing right

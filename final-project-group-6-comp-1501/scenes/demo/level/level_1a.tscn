@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bkjjx0ycvs5uk" path="res://scripts/level_change.gd" id="6_xtnq0"]
 [ext_resource type="PackedScene" uid="uid://0f04drfu63ht" path="res://level_1b.tscn" id="7_2s0kt"]
 [ext_resource type="AudioStream" uid="uid://cv46xcu636j52" path="res://assets/sounds/joyf.mp3" id="12_0k1us"]
+[ext_resource type="PackedScene" uid="uid://yu44k0tntr31" path="res://dog.tscn" id="13_0k1us"]
 [ext_resource type="Script" uid="uid://byrpewcjpq7n4" path="res://scenes/final/levels/level 2/bossmusic.gd" id="13_37g17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdbfe"]
@@ -129,6 +130,9 @@ volume_db = -5.0
 autoplay = true
 max_distance = 10000.0
 script = ExtResource("13_37g17")
+
+[node name="dogStart" parent="." unique_id=1298686971 instance=ExtResource("13_0k1us")]
+position = Vector2(265, 219)
 
 [connection signal="useItem" from="YsortingContainer/Player" to="YsortingContainer/Player/EquipSlot" method="_on_player_use_item"]
 [connection signal="body_entered" from="LevelExit" to="LevelExit" method="_on_body_entered"]

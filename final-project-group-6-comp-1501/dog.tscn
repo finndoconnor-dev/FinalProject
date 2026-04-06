@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://yu44k0tntr31"]
+
+[ext_resource type="Script" uid="uid://df4fifrmnx6f2" path="res://dog.gd" id="1_kb3ao"]
+[ext_resource type="Texture2D" uid="uid://c8eubl6l4gtnk" path="res://dog.png" id="2_ptela"]
+[ext_resource type="AudioStream" uid="uid://b7b8r6lh5p76k" path="res://dagBark.mp3" id="3_ptela"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngebd"]
+atlas = ExtResource("2_ptela")
+region = Rect2(0, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jurjn"]
+atlas = ExtResource("2_ptela")
+region = Rect2(187, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vfhn"]
+atlas = ExtResource("2_ptela")
+region = Rect2(374, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq3vt"]
+atlas = ExtResource("2_ptela")
+region = Rect2(561, 0, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad4jp"]
+atlas = ExtResource("2_ptela")
+region = Rect2(0, 366, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyo8i"]
+atlas = ExtResource("2_ptela")
+region = Rect2(187, 366, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqx0s"]
+atlas = ExtResource("2_ptela")
+region = Rect2(374, 366, 187, 183)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dunbu"]
+atlas = ExtResource("2_ptela")
+region = Rect2(561, 366, 187, 183)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dfh6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngebd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jurjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vfhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq3vt")
+}],
+"loop": true,
+"name": &"endScreen",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad4jp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyo8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqx0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dunbu")
+}],
+"loop": true,
+"name": &"runAway",
+"speed": 5.0
+}]
+
+[node name="dogStart" type="Node2D" unique_id=1298686971]
+script = ExtResource("1_kb3ao")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1447216801]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_dfh6p")
+animation = &"endScreen"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=473502417]
+stream = ExtResource("3_ptela")
