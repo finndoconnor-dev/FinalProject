@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://yu44k0tntr31"]
+[gd_scene format=3 uid="uid://bvrj8wl200f1s"]
 
 [ext_resource type="Script" uid="uid://df4fifrmnx6f2" path="res://dog.gd" id="1_kb3ao"]
 [ext_resource type="Texture2D" uid="uid://c8eubl6l4gtnk" path="res://dog.png" id="2_ptela"]
